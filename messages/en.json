@@ -1,0 +1,30 @@
+{
+  "Nav": {
+    "welcome": "Welcome",
+    "selectLanguage": "Select Language",
+    "cashback": "My Cashback",
+    "history": "Transition History",
+    "account": "My Account",
+    "payments": "Cashback Withdrawal",
+    "available": "Available",
+    "settings": "Settings",
+    "faq": "FAQ",
+    "rules": "Shopping Rules",
+    "help": "Help and Requests",
+    "logout": "Logout"
+  },
+  "Main": {
+    "all_offers": "All offers with cashbacks"
+  },
+
+  "Offer": {
+    "button_text": "Go to store",
+    "info": "Cashback information:",
+    "conditions": "Important conditions:"
+  },
+  "Footer": {
+    "title": "Salesdoubler LLC"
+  }
+
+  
+}

@@ -1,0 +1,17 @@
+.nav {
+  padding: 10px;
+}
+.nav a {
+  padding: 4px 0;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+.nav a:hover {
+  color: var(--dark-green)
+}
+
+.user {
+  color: grey;
+}

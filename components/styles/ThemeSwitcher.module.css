@@ -1,0 +1,19 @@
+/* day/night Toggler */
+.daynight { cursor: pointer; height: 49px; margin: -4px -15px; text-align: center; transform: scale(0.41); width: 80px; margin-left: auto; margin-right: 0px; }
+.daynight .toggle { border-radius: 40px; display: inline-block; padding: 4px; position: relative; width: 97px; }
+.daynight .toggle:before, .daynight .toggle:after { content: ""; display: table; }
+.daynight .toggle:after { clear: both; }
+.daynight .toggle_bg { background-color: #57cdff; border-radius: 40px; height: 100%; left: 0; position: absolute; top: 0; transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94); width: 100%; }
+.daynight .toggle_input { border-radius: 40px; border: 1px solid red; cursor: pointer; height: 100%; left: 0; opacity: 0; position: absolute; top: 0; width: 100%; z-index: 2; }
+.daynight .toggle_switcher { background-color: #F5EB42; border-radius: 50%; height: 40px; margin-left: 50px; position: relative; transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94); width: 40px; }
+.daynight .toggle_switcher_figure { background-color: white; border-radius: 20px; bottom: -4px; display: block; height: 30px; left: -62px; position: absolute; transform: scale(0.4); transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94); width: 80px; }
+.daynight .toggle_switcher_figure:after { background-color: white !important; border-radius: 100%; content: ""; display: block; height: 15px; position: relative; right: -56px; top: -68px; transform: rotateZ(70deg); width: 15px; }
+.daynight .toggle_switcher_figure:before { background-color: white !important; border-radius: 100%; content: ""; display: block; height: 30px; position: relative; right: -18px; top: -20px; transform: rotateZ(30deg); width: 30px; }
+.daynight .toggle_switcher_figureAlt { content: ""; position: absolute; top: 5px; left: 2px; width: 2px; height: 2px; background-color: #EFEEDA; border-radius: 100%; border: 4px solid #DEE1C5; box-shadow:  34px 4px 0 -4px #FCFCFC, 42px -3px 0 -3px #FCFCFC, 43px 18px 0 -4px #FCFCFC, 44px 20px 0 -2px #FCFCFC, 53px 7px 0 -2px #FCFCFC, 65px -5px 0 -3px #FCFCFC, 68px 17px 0 -3px #FCFCFC !important; transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94); transform: scale(0); }
+.daynight .toggle_switcher_figureAlt:before { background-color: #EFEEDA; border-radius: 100%; border: 4px solid #DEE1C5; content: ""; height: 7px; left: 18px; position: absolute; top: -6px; width: 7px; }
+.daynight .toggle_switcher_figureAlt:after { background-color: #EFEEDA; border-radius: 100%; border: 4px solid #DEE1C5; content: ""; height: 2px; left: 10px; position: absolute; top: 15px; width: 2px; }
+.daynight .toggle_input:checked ~ .toggle_switcher { background-color: white; border-color: #DEE1C5; margin-left: 0; }
+.daynight .toggle_input:checked ~ .toggle_bg { background-color: var(--night); border-color: var(--night); }
+.daynight .toggle_input:checked ~ .toggle_switcher .toggle_switcher_figure { margin-left: 40px; opacity: 0; transform: scale(0.1); }
+.daynight .toggle_input:checked ~ .toggle_switcher .toggle_switcher_figureAlt { transform: scale(1); }
+/* end day/night Toggler */
