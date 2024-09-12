@@ -1,10 +1,10 @@
 // app/components/LanguageSwitcher.tsx
 'use client';
-
 import {useRouter} from 'next/navigation';
 import { useState, useEffect } from 'react';
 import {usePathname} from '@/i18n/routing';
 import { useLocale } from '../contexts/LocaleContext';
+import Dropdown from './Dropdown';
 
 export default function LanguageSwitcher() {
   const {locale} = useLocale();
@@ -18,20 +18,28 @@ export default function LanguageSwitcher() {
   useEffect(() => {
     setLocale(lang);
   }, [lang]);
-
   
   const handleLocaleChange = (newLocale: string) => {
     setLocale(newLocale);
     router.push(`/${newLocale}${pathname}`);
   };
+  const mainInfo = (
+    <>
+      {locale.toUpperCase()}
+      <svg className="ml-1 w-2 h-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8" >
+        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+      </svg>
+    </>
+    );
+    const languagesBlock = (
+      <nav className="nav">
+        <button onClick={() => handleLocaleChange('uk')}>UK</button>
+        <button onClick={() => handleLocaleChange('ru')}>RU</button>
+        <button onClick={() => handleLocaleChange('en')}>EN</button>
+      </nav>
+    );
 
   return (
-    <select value={locale}
-      onChange={(e) => handleLocaleChange(e.target.value)}
-      className="language-dropdown bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-      <option value="uk">UA</option>
-      <option value="en">EN</option>
-      <option value="ru">RU</option>
-    </select>
+    <Dropdown main={mainInfo} inside={languagesBlock} className="language" />
   );
 }

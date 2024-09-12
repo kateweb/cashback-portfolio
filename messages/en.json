@@ -20,10 +20,29 @@
   "Offer": {
     "button_text": "Go to store",
     "info": "Cashback information:",
-    "conditions": "Important conditions:"
+    "conditions": "Important conditions:",
+    "back_button": "Back"
+  },
+  "Help": {
+    "title": "To create a claim for lost cashback, follow the link below, select the transition that corresponds to the date of purchase and create a claim.",
+    "button_text": "Go"
+  },
+  "Rules": {
+    "title": "Purchase Rules with Cashback",
+    "subtitle": "To ensure the best shopping experience and ensure you get your cashback, please follow these simple rules:",
+    "rules_list": {
+      "1": "Disable third-party browser extensions: Some browser extensions can interfere with cashback tracking. We recommend disabling ad-blocking extensions and other plugins that may affect the tracking process.",
+      "2": "Store terms and conditions: Please read the store terms and conditions carefully before making a purchase. Please note that some offers or sales may be excluded from the cashback program.",
+      "3": "Purchase in one browser session: Make your purchase in one session after going to the store site through the MoneyBack site. Avoid opening additional tabs or windows that may affect conversion tracking.",
+      "3_notice": "If you went to the store from the MoneyBack site, found the product you needed, then went to look at other sites, closed the previous tab with the selected product, after some time found it again, this conversion will most likely be lost and the cashback will not be automatically will be charged. Therefore, it is important to transfer from the MoneyBack site again to confirm the transfer.",
+      "4": "Use only coupons and promo codes from MoneyBack: Use only coupons and promo codes you find on our service. Coupons from other sources may void your cashback.",
+      "5": "Check cashback terms and conditions: Cashback terms and percentages may change. Please check the current terms regularly before making purchases.",
+      "6": "Save proof of purchase: Keep all receipts and proof of purchase until the cashback is credited. This can be useful if you have trouble tracking the transaction.",
+      "7": "Avoid returning an item or changing an order. Returning an item may void your cashback. If you need to return, be prepared to adjust your cashback accordingly."
+    }
   },
   "Footer": {
-    "title": "Salesdoubler LLC"
+    "title": "MoneyBack"
   }
 
   

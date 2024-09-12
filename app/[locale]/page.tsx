@@ -2,10 +2,10 @@
 
 import {useTranslations} from 'next-intl';
 import { useEffect, useState } from 'react';
-import Layout from '../../components/Layout';
-import Categories from '../../components/Categories';
-import CashbackCard from '../../components/CashbackCard';
-import { useLocale } from '../../contexts/LocaleContext';
+import Layout from '@/components/Layout';
+import Categories from '@/components/Categories';
+import CashbackCard from '@/components/CashbackCard';
+import { useLocale } from '@/contexts/LocaleContext';
 import Image from 'next/image'
 
 
@@ -38,7 +38,7 @@ export default function Home() {
     <Layout>
       <h1 className="my-10 text-center text-3xl font-bold dark:text-white">{t('all_offers')}</h1>
       <Categories />
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="d-flex flex-wrap justify-content-center">
         {filteredOffers.map((offer) => (
           <CashbackCard
             id={offer['id']}

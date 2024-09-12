@@ -11,7 +11,7 @@ import { useLocale } from '@/contexts/LocaleContext';
 const CategoryPage = () => {
   const { locale } = useLocale();
   const [filteredOffers, setOffers] = useState([]);
-  const t = useTranslations('Nav');
+  const t = useTranslations('Offer');
   const { id } = useParams(); // Get category ID from URL
 
 
@@ -42,8 +42,17 @@ const CategoryPage = () => {
 
   return (
     <Layout>
-      <h1 className="my-10 text-center text-3xl font-bold dark:text-white">{filteredOffers.map(offer =>  offer['category'])[0]}</h1>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className='top-block my-6 md:my-10'>
+        <button onClick={() => window.history.back()}
+          className="back-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
+          <svg className="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+          </svg>
+          {t('back_button')}
+        </button>
+        <h1 className="mx-auto text-center text-3xl font-bold dark:text-white">{filteredOffers.map(offer =>  offer['category'])[0]}</h1>
+      </div>
+      <div className="d-flex flex-wrap justify-content-center">
         {filteredOffers.map((offer) => (
           <CashbackCard
             id={offer['id']}
