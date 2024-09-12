@@ -1,7 +1,5 @@
 stages:
- - ca_and_test
  - deploy
-# - migrate
  - cleanup
 
 include:
@@ -26,114 +24,27 @@ variables:
       --set imageCredentials.username=$CI_DEPLOY_USER
       --set imageCredentials.password=$CI_DEPLOY_PASSWORD
       --set ingress.host="$K8S_INGRESS_HOST"
-      --set newrelic.daemon.enabled._default="$NEWRELIC_ENABLED"
 
 .base_stop:
   stage: cleanup
   extends: .werf_dismiss
-
-before_script:
-  - cd libs
-  - composer install
-  - cd ..
-
-code style:
-  stage: ca_and_test
-  image: gitlab.treeum.net:5005/docker-library/sd-ci-tools:latest
   script:
-    - phpcs --standard=/opt/CoderAssistant/resources/Festi/ruleset.xml -d memory_limit=1024M --extensions=php --error-severity=1 --warning-severity=8 --ignore="themes/**, core/public/**, libs/vendor/**, libs/sentry/**, core/.phan/**, .phan/**, libs/log/**, db/**" ./
-  except:
-    refs:
-      - schedules
-  tags:
-    - docker
-
-test:
-  stage: ca_and_test
-  image: gitlab.treeum.net:5005/docker-library/sd-ci-tools:latest
-  script:
-  - /etc/init.d/postgresql start
-  - su postgres -c "psql -c 'CREATE USER gitlab_user WITH SUPERUSER;'"
-  - su postgres -c "psql -d postgres -U gitlab_user -c 'CREATE DATABASE gitlab_i_system;'"
-  - su postgres -c "psql -d postgres -U gitlab_user -c 'CREATE DATABASE gitlab_i_test;'"
-  - cd tests
-  - phpunit --coverage-text
-  coverage: '/^\s*Lines:\s*\d+.\d+\%/'
-  cache:
-    paths:
-      - tests/reports/
-  except:
-    refs:
-      - schedules
-  tags:
-    - docker
-
-code analysis:
-  stage: ca_and_test
-  image: gitlab.treeum.net:5005/docker-library/sd-ci-tools:latest
-  script:
-    -  /vendor/bin/phan  --config-file .phan/config.php
-  except:
-    refs:
-      - schedules
-  tags:
-    - docker
-
-deploy:review1:
-  extends: .base_deploy
-  resource_group: review1
-  variables:
-    K8S_INGRESS_HOST: internal-api.$CI_ENVIRONMENT_SLUG.sd-app.net
-  environment:
-    name: review1
-    action: start
-    url: https://internal-api.$CI_ENVIRONMENT_SLUG.sd-app.net
-    on_stop: "stop:review1"
-    auto_stop_in: 3 days
-  only:
-    refs:
-      - /^feature\/.+/
-      - develop
-      - master
+    - touch .env
+    - werf dismiss --namespace $KUBE_NAMESPACE
 
 deploy:stage:
   extends: .base_deploy
   resource_group: stage
   variables:
-    K8S_INGRESS_HOST: internal-api.$CI_ENVIRONMENT_SLUG.sd-app.net
+    K8S_INGRESS_HOST: cashback-service.sd-app.net
   environment:
     name: stage
     action: start
-    url: https://internal-api.$CI_ENVIRONMENT_SLUG.sd-app.net
+    url: https://cashback-service.sd-app.net
     on_stop: "stop:stage"
   only:
     refs:
-      - /^hotfix\/.+/
-      - develop
-      - master
-
-deploy:prod:
-  extends: .base_deploy
-  resource_group: prod
-  variables:
-    K8S_INGRESS_HOST: api.internal.salesdoubler.com.ua
-  environment:
-    name: prod
-    action: start
-    url: https://api.internal.salesdoubler.com.ua
-  only:
-    refs:
-      - tags
-
-stop:review1:
-  extends: .base_stop
-  resource_group: review1
-  environment:
-    name: review1
-    action: stop
-  only:
-    refs:
-      - /^feature\/.+/
+      - branches
 
 stop:stage:
   extends: .base_stop
@@ -143,29 +54,9 @@ stop:stage:
     action: stop
   only:
     refs:
-      - /^hotfix\/.+/
-      - develop
-      - master
+      - branches
 
-stop:prod:
-  extends: .base_stop
-  resource_group: prod
-  environment:
-    name: prod
-    action: stop
-  only:
-    refs:
-      - tags
-    variables:
-      - $ENABLE_DESTROY == "YES"
-
-#migration dev:
-#  stage: migrate
-#  only:
-#    - develop
-#    - /^feature.*$/
-#  script:
-#    - cd $TARGET_STAGING_DIR/libs
-#    - php vendor/bin/phinx migrate -e main
-#  when: manual
-#
+werf:cleanup:
+  script:
+    - touch .env
+    - werf cleanup
