@@ -36,11 +36,11 @@ deploy:stage:
   extends: .base_deploy
   resource_group: stage
   variables:
-    K8S_INGRESS_HOST: cashback-service.sd-app.net
+    K8S_INGRESS_HOST: cashback-service-$CI_ENVIRONMENT_SLUG.sd-app.net
   environment:
     name: stage
     action: start
-    url: https://cashback-service.sd-app.net
+    url: https://cashback-service-$CI_ENVIRONMENT_SLUG.sd-app.net
     on_stop: "stop:stage"
   only:
     refs:
