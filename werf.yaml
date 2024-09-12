@@ -1,0 +1,11 @@
+project: "cashback-service"
+configVersion: 1
+
+deploy:
+  helmRelease: >-
+    [[ env ]]-[[ project ]]
+
+---
+image: app
+dockerfile: Dockerfile
+target: release
