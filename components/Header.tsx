@@ -4,7 +4,6 @@ import LanguageSwitcher from './LanguageSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useLocale } from '../contexts/LocaleContext';
 import Dropdown from './Dropdown';
 
@@ -27,7 +26,7 @@ const Header = () => {
         <Link href={menuLink('user/history')}>{t('history')}</Link>
         <Link href={menuLink('user/account')}>{t('account')}</Link>
         <Link href={menuLink('user/payout')}>
-          {t('payments')} <span className="status dark:text-white">{t('available')}</span>
+          {t('payments')} <span className="status dark-text-white">{t('available')}</span>
         </Link>
         <Link href={menuLink('user/settings')}>{t('settings')}</Link>
         <Link href={menuLink('faq')}>{t('faq')}</Link>

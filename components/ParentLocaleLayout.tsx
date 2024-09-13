@@ -32,7 +32,7 @@ export async function ParentLocaleLayout({
   return (
     <html lang={locale}>
       <body className={roboto.className}>
-        <div className="bg-white dark:bg-black">
+        <div className="bg-white dark-bg-black">
           <NextIntlClientProvider messages={messages}>
             <LocaleProvider locale={locale}>
               <Header />

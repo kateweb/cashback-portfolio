@@ -6,7 +6,7 @@ import Layout from '@/components/Layout';
 import Categories from '@/components/Categories';
 import CashbackCard from '@/components/CashbackCard';
 import { useLocale } from '@/contexts/LocaleContext';
-import Image from 'next/image'
+import Image from 'next/image';
 
 
 export default function Home() {
@@ -36,7 +36,7 @@ export default function Home() {
   
   return (
     <Layout>
-      <h1 className="my-10 text-center text-3xl font-bold dark:text-white">{t('all_offers')}</h1>
+      <h1 className="my-10 text-center text-3xl font-bold dark-text-white">{t('all_offers')}</h1>
       <Categories />
       <div className="d-flex flex-wrap justify-content-center">
         {filteredOffers.map((offer) => (
