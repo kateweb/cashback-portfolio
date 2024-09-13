@@ -5,6 +5,7 @@ import { LocaleProvider } from '../contexts/LocaleContext';
 import { getMessages } from 'next-intl/server';
 import { Roboto } from 'next/font/google';
 import '../app/[locale]/globals.css';
+import {NextUIProvider} from "@nextui-org/system";
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -28,20 +29,22 @@ export async function ParentLocaleLayout({
   locale: string;
 }) {
   const messages = await getMessages();
-
+  
   return (
-    <html lang={locale}>
-      <body className={roboto.className}>
-        <div className="bg-white dark-bg-black">
-          <NextIntlClientProvider messages={messages}>
-            <LocaleProvider locale={locale}>
-              <Header />
-              {children}
-              <Footer />
-            </LocaleProvider>
-          </NextIntlClientProvider>
-        </div>
-      </body>
-    </html>
+      <html lang={locale}>
+        <body className={roboto.className}>
+          <div className="bg-white dark-bg-black font-roboto">
+            <NextUIProvider>
+              <NextIntlClientProvider messages={messages}>
+                <LocaleProvider locale={locale}>
+                  <Header />
+                  {children}
+                  <Footer />
+                </LocaleProvider>
+              </NextIntlClientProvider>
+            </NextUIProvider>
+          </div>
+        </body>
+      </html>
   );
 }

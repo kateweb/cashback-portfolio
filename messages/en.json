@@ -41,6 +41,56 @@
       "7": "Avoid returning an item or changing an order. Returning an item may void your cashback. If you need to return, be prepared to adjust your cashback accordingly."
     }
   },
+  "Faq": {
+    "title": "What is cashback and how does it work?",
+    "subtitle": "Cashback is a rewards program that allows users to get a percentage of their purchases back as rewards.",
+    "faq_list": {
+      "1": "Register on the site ",
+      "2": "Choose a store (there are stores of daily needs and very specific ones)",
+      "3": "Make a purchase by going to the site of a partner from the MoneyBack platform",
+      "4": "After confirmation of the purchase by the store, the service calculates cashback from the store.",
+      "5": "Indicate your personal account and collect cashback to pay for electricity or other options"
+    },
+    "title2": "Where do funds for cashback payments come from?",
+    "subtitle2": "The MoneyBack platform attracts partners on mutually beneficial terms, brings consumers to stores, for which the stores pay a fee, while saving on advertising. As a result, the stores receive customers, the platform - a commission, consumers - paid bills. At the same time, an important function is performed - reducing debt for electricity, which allows maintaining the infrastructure at the required level.",
+    "title3": "How to register and start using the service?",
+    "faq_list3": {
+      "1": "Go to the service site ",
+      "2": "Click on the \"Register\" button. You will be asked to enter some basic information such as your email, name, and create a password. Social media registration is also offered to simplify the process.",
+      "3": "Email confirmation: After registration, check your email for an email with a link to confirm your email address.",
+      "4": "After confirming your e-mail, you can enter the service site using your registration data.",
+      "5": "Explore our store directory to find what you're interested in. You can use search or store categories to make your search easier.",
+      "6": "Go to the store through special links on our site. This way, we can track your purchase and credit you with cashback.",
+      "7": "After making a purchase, the cashback will be processed and added to your account at the specified time. At any time after the cashback has been credited, you can transfer the funds to the personal account specified by you"
+    },
+    "subtitle3": "If you have additional questions or need help, our support service is always ready to help! Write a request - follow the link ",
+    "title4": "Which stores and products participate in the cashback program?",
+    "subtitle4": "Our cashback service cooperates with about 100 stores and services that cover various categories, including:",
+    "faq_list4": {
+      "1": "Everyday shopping: Grocery stores, supermarkets and home improvement stores.",
+      "2": "Technology and electronics: Mobile phones, home appliances and other appliances.",
+      "3": "Clothing and accessories: A large selection of clothes, shoes and accessories for all members of the family.",
+      "4": "Jewellery and Precious Gifts: Exquisite jewelry and exclusive gifts for special moments.",
+      "5": "Home goods and decor: Everything you need for comfort and style in your home."
+    },
+    "subtitle5": "We strive to meet the needs of each customer, so our list of partners is constantly expanding. Cashback conditions may differ depending on the store or service, so we recommend that you familiarize yourself with them before making a purchase."
+  },
+  "Settings": {
+    "title": "You can",
+    "link_text": "delete your account"
+  },
+  "Cashback": {
+    "waiting": "Waiting for enrollment: ",
+    "available": "Available for payout: ",
+    "uah": "UAH",
+    "status": {
+      "title": "Status",
+      "available": "Available",
+      "waiting": "Waiting",
+      "declined": "Declined"
+    },
+    "choose_date": "Choose a date"
+  },
   "Footer": {
     "title": "MoneyBack"
   }

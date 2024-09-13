@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '@fontsource/roboto';
+@import "@fontsource/roboto/400.css"; 
+@import "@fontsource/roboto/400-italic.css";
+@import "@fontsource/roboto/700.css"; 
+@import "@fontsource/roboto/700-italic.css";
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -11,6 +17,7 @@
   --focus-color: rgb(209, 213, 219);
   --green: #8AB63F;
   --night:rgb(31, 41, 55);
+  --dark-card-color: #2A2D34;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -25,10 +32,13 @@ body {
   background: #fff;
 }
 body > div.bg-white {
+  
+  background-color: #f7f7f7;
+}
+body > div.bg-white > div {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f7f7f7;
 }
 .header {
   display: flex;
@@ -240,7 +250,7 @@ select:hover {
   color: #B0B0B0 !important;
 }
 .dark .dark-bg-gray-800 {
-  background-color: #2A2D34 !important;
+  background-color: var(--dark-card-color) !important;
 }
 .cashback-card {
   width: calc(25% - 20px);
@@ -265,6 +275,44 @@ select:hover {
 }
 .dark .dark-border-transparent {
   border-color: transparent;
+}
+.unordered-list {
+  list-style-type: disc;
+  list-style-position: outside;
+  padding-left: 50px;
+}
+.faq a {
+  color: var(--green);
+}
+.faq a:hover {
+  color: var(--dark-green);
+}
+.text-green {
+  color: var(--green);
+}
+.text-darkgreen {
+  color: var(--dark-green);
+}
+.bg-default-100 {
+  background-color: #fff;
+}
+.dark .bg-default-100, .dark .bg-content1, 
+.dark .focus-within\:hover\:bg-default-100:hover:focus-within,
+.dark .hover\:bg-default-200:hover {
+  background-color: var(--dark-card-color) !important
+}
+.dark .bg-content1 {
+  color: #fff;
+}
+.focus-within\:hover\:bg-default-100:hover:focus-within,
+.hover\:bg-default-200:hover {
+  background-color: #fff !important;
+}
+.cashback-item {
+  width: 320px;
+}
+.data-\[selected\=true\]\:bg-primary[data-selected="true"] {
+  background-color: var(--green) !important;
 }
 @media(max-width: 1199px){
   .cashback-card {
