@@ -12,7 +12,7 @@ const Rules = () => {
 
   return (
     <Layout>
-      <div className='my-5 mx-5 dark:text-white'>
+      <div className='my-5 mx-5 dark-text-white'>
         <h2 className="mb-4 font-bold text-xl">{t('title')}</h2>
         <p className='text-lg mb-4'>{t('subtitle')}</p>
         <ol className='ordered-list text-lg'>

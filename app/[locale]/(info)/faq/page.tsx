@@ -13,7 +13,7 @@ const Faq = () => {
   return (
     <Layout>
       <div className='my-5 mx-5 '>
-        <h2 className="mb-2 font-bold dark:text-white">{t('title')}</h2>
+        <h2 className="mb-2 font-bold dark-text-white">{t('title')}</h2>
         <Link href={baseUrl+locale+"/user/history"} className="m-2 offer-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
           {t('button_text')}
         </Link>
