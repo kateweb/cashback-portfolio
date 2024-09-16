@@ -5,6 +5,8 @@
 @import '@fontsource/roboto';
 @import "@fontsource/roboto/400.css"; 
 @import "@fontsource/roboto/400-italic.css";
+@import "@fontsource/roboto/500.css"; 
+@import "@fontsource/roboto/500-italic.css";
 @import "@fontsource/roboto/700.css"; 
 @import "@fontsource/roboto/700-italic.css";
 
@@ -28,7 +30,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: #000;
   background: #fff;
 }
 body > div.bg-white {
@@ -298,14 +300,16 @@ select:hover {
 }
 .dark .bg-default-100, .dark .bg-content1, 
 .dark .focus-within\:hover\:bg-default-100:hover:focus-within,
-.dark .hover\:bg-default-200:hover {
+.dark .hover\:bg-default-200:hover,
+.dark .group[data-focus="true"] .group-data-\[focus\=true\]\:bg-default-100 {
   background-color: var(--dark-card-color) !important
 }
 .dark .bg-content1 {
   color: #fff;
 }
 .focus-within\:hover\:bg-default-100:hover:focus-within,
-.hover\:bg-default-200:hover {
+.hover\:bg-default-200:hover,
+.group[data-focus="true"] .group-data-\[focus\=true\]\:bg-default-100 {
   background-color: #fff !important;
 }
 .cashback-item {
@@ -313,6 +317,35 @@ select:hover {
 }
 .data-\[selected\=true\]\:bg-primary[data-selected="true"] {
   background-color: var(--green) !important;
+}
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+.max-w-500 {
+  max-width: 500px;
+}
+.history-item {
+  justify-content: center;
+  align-items: center;
+}
+.file-input {
+  display: none;
+}
+
+.custom-file-label {
+  background-color: #fff;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+.dark .custom-file-label {
+  background-color: var(--dark-card-color);
+}
+.data-\[hover\=true\]\:text-primary-400[data-hover="true"] {
+  color: var(--green) !important;
+}
+.data-\[hover\=true\]\:bg-primary-50[data-hover="true"] {
+  background-color: var(--transparent-active) !important;
 }
 @media(max-width: 1199px){
   .cashback-card {
@@ -327,7 +360,7 @@ select:hover {
     transform: none;
   }
   .back-btn {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
   }
   .cashback-card {
     width: calc(50% - 20px);
@@ -337,5 +370,15 @@ select:hover {
   .cashback-card {
     width:100%;
     margin: 10px 0;
+  }
+  .history-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .history-btn {
+    margin-left: auto;
+  }
+  .header h1 {
+    font-size: 18px;
   }
 }

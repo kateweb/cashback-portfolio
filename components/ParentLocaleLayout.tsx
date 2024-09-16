@@ -3,16 +3,8 @@ import Footer from '../components/Footer';
 import { NextIntlClientProvider } from 'next-intl';
 import { LocaleProvider } from '../contexts/LocaleContext';
 import { getMessages } from 'next-intl/server';
-import { Roboto } from 'next/font/google';
 import '../app/[locale]/globals.css';
 import {NextUIProvider} from "@nextui-org/system";
-
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-  display: 'swap',
-});
 
 export const metadata = {
   title: 'SDback',
@@ -32,7 +24,7 @@ export async function ParentLocaleLayout({
   
   return (
       <html lang={locale}>
-        <body className={roboto.className}>
+        <body>
           <div className="bg-white dark-bg-black font-roboto">
             <NextUIProvider>
               <NextIntlClientProvider messages={messages}>

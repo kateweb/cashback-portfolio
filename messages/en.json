@@ -91,9 +91,69 @@
     },
     "choose_date": "Choose a date"
   },
+  "History": {
+    "title": "Transition History",
+    "action": {
+      "site_visit": "Site visit",
+      "buy": "Purchase"
+    },
+    "search_by_date": "Search by date",
+    "button_text": "Submit request"
+  },
+  "Account": {
+    "no_accounts": "You have no personal accounts added yet",
+    "add_account": "Add personal account",
+    "form": {
+      "choose_supplier": "Choose a supplier",
+      "enter_account_number": "Enter personal account number",
+      "eic_code": "EIC Code",
+      "full_name": "Last Name",
+      "full_name_placeholder": "Shevchenko Taras Grigoryovych",
+      "add_btn": "Add account"
+    },
+    "suppliers": {
+      "sumy": "Sumy",
+      "vinnytsya": "Vinnytsia",
+      "chernigiv": "Chernigiv"
+    }
+  },
+  "Payout": {
+    "form":{
+      "application_title": "Create an application for a bonus",
+      "choose_account": "Choose an account to receive",
+      "enter_ipn": "Enter your TIN (We only check it and do not store it anywhere)",
+      "enter_sum": "Enter the amount you want to receive, number only",
+      "btn_text": "Make a request to receive",
+      "no_accounts": "No accounts available"
+    },
+    "alert": {
+      "warning": "Attention!",
+      "fees": "MoneyBack will pay cashback taxes on your behalf",
+      "info_list": {
+        "1": "After sending the application, you will not be able to cancel it",
+        "2": "The application will be processed within 14 working days",
+        "3": "If this does not happen - contact the support service"
+      }
+    }
+  },
+  "Disputs": {
+    "lost_cashback_title": "Lost cashback application form",
+    "shop_title": "Shop Name",
+    "date_time": "Date and time of transition",
+    "order_number": "Store order number",
+    "enter_order_number": "Enter the store order number",
+    "order_sum": "Purchase amount",
+    "phone_number": "The phone number on which the order was placed",
+    "comment": "Your comment",
+    "enter_comment": "Enter a comment",
+    "alert_file_text": "WARNING!!! Attach photo proof of purchase - receipt, receipt, screenshot, anything",
+    "btn_text": "Claim cashback loss"
+  },
+  "File": {
+    "add_file": "Add file",
+    "no_file_selected": "no file selected"
+  },
   "Footer": {
     "title": "MoneyBack"
   }
-
-  
 }

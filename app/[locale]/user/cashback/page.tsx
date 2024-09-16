@@ -12,20 +12,10 @@ import {I18nProvider} from "@react-aria/i18n";
 const Cashback = () => {
   const t = useTranslations('Cashback');
   const statuses = [
-    {
-      key: "available",
-      label: t('status.available')
-    },
-    {
-      key: "waiting",
-      label: t('status.waiting')
-    },
-    {
-      key: "declined",
-      label: t('status.declined')
-    }
+    { key: "available", label: t('status.available')},
+    { key: "waiting", label: t('status.waiting')},
+    { key: "declined", label: t('status.declined')}
   ]
-
   const { locale } = useLocale();
 
   return (
