@@ -46,7 +46,7 @@ const OfferPage = () => {
   return (
     <Layout>
         <div key={offer['brand']} className='flex align-items-center flex-column'>
-          <div className='top-block w-full my-6 md:my-10'>
+          <div className='top-block w-full my-6 md:my-10 mb-0'>
             <button onClick={() => window.history.back()}
               className="back-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
               <svg className="w-4 h-4 mr-2 text-gray-800 dark-text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

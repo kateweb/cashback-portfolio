@@ -10,9 +10,18 @@
     "export": "next export"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.1.0",
+    "@internationalized/date": "^3.5.5",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.8",
+    "@nextui-org/date-picker": "^2.1.6",
+    "@nextui-org/react": "^2.4.6",
+    "@nextui-org/select": "^2.2.5",
+    "@nextui-org/system": "^2.2.5",
+    "@nextui-org/theme": "^2.2.9",
+    "@react-aria/i18n": "^3.12.2",
+    "framer-motion": "^11.5.4",
     "next": "^14.2.11",
     "next-intl": "^3.19.1",
     "next-translate": "^2.6.2",
