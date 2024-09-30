@@ -1,13 +1,13 @@
 'use client';
 
 import {useTranslations} from 'next-intl';
-import React from "react";
+import { useState }  from "react";
 import Layout from '@/components/Layout';
 import {Select, SelectItem} from "@nextui-org/select";
-import {useLocale} from '@/contexts/LocaleContext';
-import {DatePicker} from "@nextui-org/date-picker";
+import CustomDatepicker from '@/components/CustomDatepicker';
 
-import {I18nProvider} from "@react-aria/i18n";
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const Cashback = () => {
   const t = useTranslations('Cashback');
@@ -16,12 +16,12 @@ const Cashback = () => {
     { key: "waiting", label: t('status.waiting')},
     { key: "declined", label: t('status.declined')}
   ]
-  const { locale } = useLocale();
+  const [value, onChange] = useState<Value>(null);
 
   return (
     <Layout>
-      <div className='my-5 -mx-3 md:mx-5 dark-text-white '>
-        <div className='flex justify-content-center'>
+      <div className='my-5 sm:-mx-3 md:mx-5 dark-text-white '>
+        <div className='sm:flex justify-content-center'>
           <div className='cashback-item m-3 p-2 pb-6 font-bold rounded-lg bg-white dark-bg-gray-800 border dark-border-transparent shadow-sm bg-card text-darkgreen'>
             {t('waiting')+"0 "+t('uah')}
           </div>
@@ -29,23 +29,17 @@ const Cashback = () => {
             {t('available')+"0 "+t('uah')}
           </div>
         </div>
-        <div className='flex justify-content-center'>
+        <div className='sm:flex justify-content-center cashback-form'>
           <Select 
             label={t('status.title')}
-            className="max-w-xs m-3" >
+            className="sm:max-w-xs mb-3 sm:m-3" >
             {statuses.map((status) => (
               <SelectItem key={status.key}>
                 {status.label}
               </SelectItem>
             ))}
           </Select>
-          <I18nProvider locale={locale}>
-            <DatePicker 
-              showMonthAndYearPickers
-              label={t('choose_date')} 
-              className="max-w-xs m-3"
-              />
-          </I18nProvider>
+          <CustomDatepicker calendarAriaLabel={t('choose_date')} className="sm:max-w-xs w-full mb-3 sm:m-3" value={value} onChange={onChange} />
         </div>
       </div>
     </Layout>

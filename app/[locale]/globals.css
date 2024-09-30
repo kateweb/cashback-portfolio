@@ -42,6 +42,20 @@ body > div.bg-white > div {
   flex-direction: column;
   min-height: 100vh;
 }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.transition-none [class*=transition] {
+  transition: none !important;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -366,6 +380,21 @@ select:hover {
     width: calc(50% - 20px);
   }
 }
+@media(max-width: 639px){
+  .cashback-item {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;  
+  }
+  .cashback-form > *{
+    width: 100%;
+  }
+  .cashback-form .react-date-picker {
+    height: 56px;
+  }
+
+
+}
 @media(max-width: 550px){
   .cashback-card {
     width:100%;
@@ -381,4 +410,5 @@ select:hover {
   .header h1 {
     font-size: 18px;
   }
+  
 }

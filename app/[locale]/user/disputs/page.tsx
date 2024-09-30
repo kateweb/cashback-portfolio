@@ -5,23 +5,22 @@ import { useEffect, useState } from 'react';
 import React from "react";
 import Layout from '@/components/Layout';
 import {Input} from "@nextui-org/input";
-import {useLocale} from '@/contexts/LocaleContext';
-import {DatePicker} from "@nextui-org/date-picker";
-import {DateValue, parseDate} from "@internationalized/date";
 import {Textarea} from "@nextui-org/input";
 import { useSearchParams } from 'next/navigation';
-import {I18nProvider} from "@react-aria/i18n";
 import FileUpload from '@/components/FileUpload';
+import CustomDatepicker from '@/components/CustomDatepicker';
 
 const Disputs = () => {
   const t = useTranslations('Disputs');
-  const { locale } = useLocale();
   const searchParams = useSearchParams();
 
   const [isDisabled, setIsDisabled] = useState(false);
   const [offerId, setOfferId] = useState('');
   const [offerName, setOfferName] = useState('');
-  const [date, setDate] = useState<DateValue | null>(null); 
+
+  type ValuePiece = Date | null;
+  type Value = ValuePiece | [ValuePiece, ValuePiece];
+  const [value, setDate] = useState<Value>(null);
 
   useEffect(() => {
     if (searchParams) {
@@ -34,8 +33,8 @@ const Disputs = () => {
       
       if (dateParam) {
         const [day, month, year] = dateParam.split('.'); 
-        const formattedDate = `${year}-${month}-${day}`;
-        setDate(parseDate(formattedDate));
+        const formattedDate = new Date(Number(year), Number(month) - 1, Number(day)); 
+        setDate(formattedDate);
       } else {
         setDate(null);
       }
@@ -58,14 +57,7 @@ const Disputs = () => {
         </div>
         <div className='form-control mb-3'>
           <label className='font-medium text-sm mb-1 block'>{t('date_time')}</label>
-          <I18nProvider locale={locale}>
-            <DatePicker 
-              isDisabled={isDisabled}
-              value={date}
-              showMonthAndYearPickers
-              className="max-w-[240px]"
-              />
-          </I18nProvider>
+          <CustomDatepicker className="max-w-[240px] w-full transition-none" isDisabled={isDisabled} value={value} onChange={setDate} />
         </div>
         <div className='form-control mb-3'>
           <label className='font-medium text-sm mb-1 block'>{t('order_number')}</label>

@@ -154,5 +154,10 @@
   },
   "Footer": {
     "title": "MoneyBack"
+  },
+  "Datepiсker": {
+    "dd": "дд",
+    "mm": "мм",
+    "yyyy": "гггг"
   }
 }

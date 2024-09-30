@@ -64,7 +64,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     
   }
   // Get the array of offers based on the selected language
-  const translatedOffers = offers[lang]; // Fallback to 'en' if the language is not found
+  const translatedOffers = offers[lang]; 
 
   // Filter offers by category if provided, otherwise return all offers
   const offerInfo = translatedOffers.filter(offer => offer.id == id)

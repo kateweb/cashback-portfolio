@@ -2,12 +2,14 @@
 
 import {useTranslations} from 'next-intl';
 import React from "react";
+import { useState }  from "react";
 import Link from 'next/link';
 import Layout from '@/components/Layout';
 import {useLocale} from '@/contexts/LocaleContext';
-import {DatePicker} from "@nextui-org/date-picker";
+import CustomDatepicker from '@/components/CustomDatepicker';
 
-import {I18nProvider} from "@react-aria/i18n";
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const History = () => {
   const t = useTranslations('History');
@@ -29,6 +31,7 @@ const History = () => {
   ]
   const { locale } = useLocale();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const [value, onChange] = useState<Value>(null);
 
   return (
     <Layout>
@@ -36,15 +39,10 @@ const History = () => {
         <h2 className="text-center text-2xl dark-text-white">{t('title')}</h2>
       </div>
       <div className='dark-text-white max-w-500 -mx-3 md:mx-auto'>
-        <I18nProvider locale={locale}>
-          <DatePicker 
-            showMonthAndYearPickers
-            label={t('search_by_date')} 
-            className="max-w-[240px] m-3"
-            labelPlacement="outside"
-            
-            />
-        </I18nProvider>
+        <div className='form-control m-3'>
+          <label className='text-sm mb-1 block'>{t('search_by_date')}</label>
+          <CustomDatepicker className="max-w-[240px] w-full transition-none" value={value} onChange={onChange} />
+        </div>
         {histories.map((history) => (
           <div className="history-item flex m-3" key={history.id}>
             <div className="w-3/4 mt-4">
