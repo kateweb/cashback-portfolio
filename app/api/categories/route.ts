@@ -38,20 +38,19 @@ export async function GET(req: Request) {
     ]
   };
   // Get the array of offers based on the selected language
-  const translatedOffers = offers[lang]; // Fallback to 'en' if the language is not found
+  const translatedOffers = offers[lang]; 
 
-  const uniqueCategories = new Set(); // A set to store unique categories
+  const uniqueCategories = new Set(); 
 
   // Use the Set to filter out duplicate categories
   const filteredCategories = translatedOffers.filter((offer) => {
     if (!uniqueCategories.has(offer.category)) {
       uniqueCategories.add(offer.category); // Add the new category to the Set
-      return true; // Keep this offer in the filtered array
+      return true; 
     }
-    return false; // Skip duplicates
+    return false; 
   });
 
-  // Now, filteredCategories will only contain unique categories
   const uniqueCategoryNames = filteredCategories.map((offer) => ({name: offer.category, id: offer.categoryId }));
 
   return NextResponse.json(uniqueCategoryNames);
