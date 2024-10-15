@@ -21,16 +21,22 @@
     "@nextui-org/system": "^2.2.5",
     "@nextui-org/theme": "^2.2.9",
     "@react-aria/i18n": "^3.12.2",
+    "axios": "^1.7.7",
+    "formik": "^2.4.6",
     "framer-motion": "^11.5.4",
     "next": "^14.2.11",
+    "next-auth": "^4.24.8",
     "next-intl": "^3.19.1",
     "next-translate": "^2.6.2",
     "react": "^18",
     "react-date-picker": "^11.0.0",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-toastify": "^10.0.6",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/acorn": "^6.0.0",
+    "@types/axios": "^0.14.0",
     "@types/debug": "^4.1.12",
     "@types/estree": "^1.0.5",
     "@types/estree-jsx": "^1.0.5",
