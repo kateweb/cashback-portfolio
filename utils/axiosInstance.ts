@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use((config) => {
   const currentUrl = new URL(window.location.href);
   const affiliateId = currentUrl.searchParams.get('aid');
-  const clickId = currentUrl.searchParams.get('affsub');
+  const clickId = currentUrl.searchParams.get('aff_sub');
 
   // Include the params in the request if they exist
   if (affiliateId) {
