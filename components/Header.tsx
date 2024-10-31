@@ -7,10 +7,16 @@ import Link from 'next/link';
 import Image from 'next/image'
 import { useLocale } from '../contexts/LocaleContext';
 import Dropdown from './Dropdown';
+import { saveParamsToLocalStorage } from '@/utils/saveQueryParams'
+import { useEffect } from 'react';
 
 const Header = ({ isAuthorized }) => {
   const t = useTranslations('Nav');
   const { locale } = useLocale();
+
+  useEffect(() => {
+    saveParamsToLocalStorage();
+  }, []);
 
   const menuLink = (href: string) => {
     return `/${locale}/${href}`;
