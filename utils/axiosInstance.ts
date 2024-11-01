@@ -6,9 +6,8 @@ const axiosInstance = axios.create({
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use((config) => {
-  const currentUrl = new URL(window.location.href);
-  const affiliateId = currentUrl.searchParams.get('aid');
-  const clickId = currentUrl.searchParams.get('aff_sub');
+  const affiliateId = localStorage.getItem('aid');
+  const clickId = localStorage.getItem('aff_sub');
 
   // Include the params in the request if they exist
   if (affiliateId) {
