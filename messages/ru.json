@@ -186,7 +186,8 @@
     "reset_password": "Забыли пароль?",
     "errors": {
       "invalid_credentials": "Неправильный email или пароль",
-      "authentication_failed": "Возникла ошибка при авторизации"
+      "authentication_failed": "Возникла ошибка при авторизации",
+      "user_not_yet_activated": "Аккаунт не активирован, проверьте почту для активации"
     }
   },
   "Confirmation": {

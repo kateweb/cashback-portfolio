@@ -187,7 +187,8 @@
     "reset_password": "Forgot password?",
     "errors": {
       "invalid_credentials": "Invalid email or password",
-      "authentication_failed": "An error occurred during authorization"
+      "authentication_failed": "An error occurred during authorization",
+      "user_not_yet_activated": "Account is not activated, check your email for activation"
     }
   },
   "Confirmation": {

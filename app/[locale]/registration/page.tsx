@@ -22,7 +22,7 @@ const Registration = () => {
       // @ts-ignore
       .required(`${t('errors.required', { name: 'Email' })}`),
     password: Yup.string()
-    // @ts-ignore
+      // @ts-ignore
       .min(8,t('errors.password_min', { num: 8 }))
       .matches(/[A-Z]/, t('errors.password_uppercase'))
       .matches(/[a-z]/, t('errors.password_lowercase'))
