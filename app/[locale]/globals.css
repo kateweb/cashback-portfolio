@@ -435,12 +435,17 @@ select:hover {
     margin-right: 10px;
   }
 }
-@media(max-width: 400px){
+@media(max-width: 460px){
   .header {
     flex-wrap: wrap;
+    padding-right: 0;
   }
-  .register-btn {
-    margin: 10px auto;
+  .nav-btn {
+    margin: 10px;
   }
+  .nav-btns {
+    margin-left: auto;
+  }
+  
 
 }

@@ -12,7 +12,8 @@
     "rules": "Shopping Rules",
     "help": "Help and Requests",
     "logout": "Logout",
-    "registration": "Registration"
+    "registration": "Registration",
+    "login": "Login"
   },
   "Main": {
     "all_offers": "All offers with cashbacks"
@@ -180,7 +181,22 @@
       "user_exist": "User already exists in the system"
     }
   },
+  "Login": {
+    "text": "Enter your email and password to login for an account.",
+    "btn_text": "Login",
+    "reset_password": "Forgot password?",
+    "errors": {
+      "invalid_credentials": "Invalid email or password",
+      "authentication_failed": "An error occurred during authorization"
+    }
+  },
   "Confirmation": {
     "text": "A confirmation email has been sent to your email. Follow the link in the email to activate your account."
+  },
+  "Activate": {
+    "errors": {
+      "user_not_found": "User is not found",
+      "no_token_provided": "No token provided"
+    }
   }
 }

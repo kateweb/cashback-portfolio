@@ -6,6 +6,7 @@ import { getMessages } from 'next-intl/server';
 import { cookies } from 'next/headers';
 import '../app/[locale]/globals.css';
 import {NextUIProvider} from "@nextui-org/system";
+import Provider from "../components/Provider";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -18,14 +19,7 @@ export async function ParentLocaleLayout({
   locale: string;
 }) {
   const messages = await getMessages();
-
-  // Get the cookies to check for the authorization token
-  const cookieStore = cookies();
-  const token = cookieStore.get("token")?.value || null;
-
-  // Determine if the user is authorized
-  const isAuthorized = Boolean(token);
-  
+ 
   return (
       <html lang={locale}>
         <body>
@@ -33,10 +27,12 @@ export async function ParentLocaleLayout({
             <NextUIProvider>
               <NextIntlClientProvider messages={messages}>
                 <LocaleProvider locale={locale}>
-                  <Header isAuthorized={isAuthorized} />
-                  {children}
-                  <Footer />
-                  <ToastContainer />
+                  <Provider>
+                    <Header/>
+                    {children}
+                    <Footer />
+                    <ToastContainer />
+                  </Provider>
                 </LocaleProvider>
               </NextIntlClientProvider>
             </NextUIProvider>

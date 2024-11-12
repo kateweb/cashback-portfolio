@@ -38,10 +38,9 @@ export default function middleware(req: NextRequest) {
     return intlMiddleware(req);
   } else {
     const token = req.cookies.get("next-auth.session-token"); // Adjust this to your token
-
     if (!token) {
-      const registrationUrl = `/${locale}/registration/`;
-      return NextResponse.redirect(new URL(registrationUrl, req.url));
+      const loginUrl = `/${locale}/login/`;
+      return NextResponse.redirect(new URL(loginUrl, req.url));
     }
     return (authMiddleware as any)(req);
   }

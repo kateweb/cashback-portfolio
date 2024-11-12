@@ -1,30 +1,28 @@
 'use client';
-import axiosInstance from '@/utils/axiosInstance';
-import {useTranslations} from 'next-intl';
+import { useTranslations } from 'next-intl';
 import React from "react";
 import Layout from '@/components/Layout';
-import {Input} from "@nextui-org/input";
-import {useLocale} from '@/contexts/LocaleContext';
+import { Input } from "@nextui-org/input";
+import { useLocale } from '@/contexts/LocaleContext';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import axiosInstance from '@/utils/axiosInstance';
 
 const Registration = () => {
   const t = useTranslations('Registration');
   const tb = useTranslations('Offer');
   const router = useRouter();
-  let { locale } = useLocale();
+  const { locale } = useLocale();
 
-  locale = locale == 'uk' ? 'ua' : locale;
-  
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email(t('errors.email_valid'))
       // @ts-ignore
       .required(`${t('errors.required', { name: 'Email' })}`),
     password: Yup.string()
-      // @ts-ignore
+    // @ts-ignore
       .min(8,t('errors.password_min', { num: 8 }))
       .matches(/[A-Z]/, t('errors.password_uppercase'))
       .matches(/[a-z]/, t('errors.password_lowercase'))
@@ -33,7 +31,7 @@ const Registration = () => {
       .required(t('errors.required', { name: t('password') })),
   });
 
-  const handleSubmit = async (values:any, { setErrors }) => {
+  const handleSubmit = async (values, { setErrors }) => {
     try {
       const response = await axiosInstance.post('/registration', {
         ...values,
@@ -41,20 +39,15 @@ const Registration = () => {
       });
 
       if (response.status === 201) {
-        router.push('/confirmation'); // Redirect to confirmation on successful registration
-      }
-    } catch (err:any) {
-      if (err.response && err.response.data.errors) {
+        router.push('/confirmation'); 
+      } else {
         const backendErrors = {};
-        err.response.data.errors.forEach(err => {
-          for (const [key, message] of Object.entries(err)) {
+        response.data.errors.forEach(error => {
+          for (const [key, message] of Object.entries(error)) {
             if (key === 'password') {
               backendErrors[key] = t('errors.password_full'); 
-            } else if (key === 'email' && typeof message == 'string' && message.includes('already exists')) {
+            } else if (key === 'email' && typeof message === 'string' && message.includes('already exists')) {
               backendErrors[key] = t('errors.user_exist'); 
-              return;
-            } else if (key === 'email') {
-              backendErrors[key] = t('errors.email_valid'); 
             } else {
               backendErrors[key] = message;
               toast.error(backendErrors[key]);
@@ -62,16 +55,15 @@ const Registration = () => {
           }
         });
         setErrors(backendErrors);
-      } else {
-        toast.error(t('errors.server_error'));
       }
-      
+    } catch (error) {
+      toast.error(t('errors.server_error'));
     }
   };
 
   return (
     <Layout>
-      <div className='top-block my-6 '>
+      <div className='top-block my-6'>
         <button onClick={() => window.history.back()}
           className="back-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
           <svg className="w-4 h-4 mr-2 text-gray-800 dark-text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -88,20 +80,20 @@ const Registration = () => {
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
-          <Form className="w-full">
-            <div className='form-control mb-3'>
-              <Field as={Input} type="text" placeholder={t('enter_email')} name="email" />
-              <ErrorMessage name="email" component="p" className="text-sm text-red-400" />
-            </div>
-            <div className='form-control mb-3'>
-              <Field as={Input} type="password" placeholder={t('enter_password')} name="password"/>
-              <ErrorMessage name="password" component="p" className="text-sm text-red-400" />
-            </div>
-            <button type='submit' className="disabled:pointer-events-none disabled:opacity-50 mt-2 btn inline-flex items-center justify-center rounded-md text-sm font-medium px-4 py-2 w-full">
-              {t('btn_text')}
-            </button>
-          </Form>
-        )}
+            <Form className="w-full">
+              <div className='form-control mb-3'>
+                <Field as={Input} type="text" placeholder={t('enter_email')} name="email" />
+                <ErrorMessage name="email" component="p" className="text-sm text-red-400" />
+              </div>
+              <div className='form-control mb-3'>
+                <Field as={Input} type="password" placeholder={t('enter_password')} name="password" />
+                <ErrorMessage name="password" component="p" className="text-sm text-red-400" />
+              </div>
+              <button type='submit' className="disabled:pointer-events-none disabled:opacity-50 mt-2 btn inline-flex items-center justify-center rounded-md text-sm font-medium px-4 py-2 w-full">
+                {t('btn_text')}
+              </button>
+            </Form>
+          )}
         </Formik>
       </div>
     </Layout>
