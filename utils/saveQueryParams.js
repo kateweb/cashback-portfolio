@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 export function getQueryParams() {
   const urlParams = new URLSearchParams(window.location.search);
   return {
@@ -9,9 +10,9 @@ export function getQueryParams() {
 export function saveParamsToLocalStorage() {
   const params = getQueryParams();
   if (params.aff_sub) {
-    localStorage.setItem('aff_sub', params.aff_sub);
+    Cookies.set('clickId', params.aff_sub, { expires: 30 });
   }
   if (params.aid) {
-    localStorage.setItem('aid', params.aid);
+    Cookies.set('affiliateId', params.aid, { expires: 30 });
   }
 }

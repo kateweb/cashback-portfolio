@@ -7,12 +7,15 @@ import Link from 'next/link';
 import Image from 'next/image'
 import Layout from '@/components/Layout';
 import { useLocale } from '@/contexts/LocaleContext';
+import { useSession } from "next-auth/react";
 
 const OfferPage = () => {
   const { locale } = useLocale();
   const [offer, setOffer] = useState(null);
   const t = useTranslations('Offer');
-  const { id } = useParams(); // Get category ID from URL
+  const { data: session, status } = useSession();
+  const isAuthorized = status === "authenticated";
+  const { id } = useParams(); 
 
 
   useEffect(() => {
@@ -59,10 +62,13 @@ const OfferPage = () => {
           <div className='text-md my-4 text-gray-500'>{offer['category']}</div>
           <div className='w-48'>
             <Image src={offer['imgUrl']} alt={offer['brand']} className="offer-img mb-4 object-contain w-full" width={50} height={50} />
-            </div>
-          <Link target='_blank' href={offer['link']} className="m-2 offer-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
-            {t('button_text')}
-          </Link>
+          </div>
+          {isAuthorized ? (
+            <Link target='_blank' href={offer['link']} className="m-2 offer-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
+              {t('button_text')}
+            </Link>
+          ) : ''}
+         
           <Link key={offer['category']} href={`/${locale}/category/${offer['categoryId']}`} className="hover-green bg-gray-50 border border-gray-300 text-gray-900 text-center rounded-full px-4 py-2 m-2 text-sm font-medium dark-bg-gray-700 dark-border-gray-600 dark-text-white">
             {offer['category']}
           </Link>

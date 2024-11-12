@@ -1,22 +1,26 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL+'api',
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL+'api',
 });
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use((config) => {
-  const affiliateId = localStorage.getItem('aid');
-  const clickId = localStorage.getItem('aff_sub');
-
-  // Include the params in the request if they exist
-  if (affiliateId) {
-    config.params = { ...config.params, affiliateId };
+  const affiliateId = +Cookies.get('affiliateId');
+  const clickId = +Cookies.get('clickId');
+  if (affiliateId || clickId) {
+    if (config.data) {
+      config.data = {
+        ...config.data,
+        affiliateId,
+        clickId,
+      };
+    } else {
+      config.data = { affiliateId, clickId };
+    }
+    
   }
-  if (clickId) {
-    config.params = { ...config.params, clickId };
-  }
-
   return config;
 });
 

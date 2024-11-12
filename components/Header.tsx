@@ -2,6 +2,7 @@
 
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
+import LogoutButton from './LogoutButton';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image'
@@ -9,9 +10,12 @@ import { useLocale } from '../contexts/LocaleContext';
 import Dropdown from './Dropdown';
 import { saveParamsToLocalStorage } from '@/utils/saveQueryParams'
 import { useEffect } from 'react';
+import { useSession } from "next-auth/react";
 
-const Header = ({ isAuthorized }) => {
+const Header = () => {
   const t = useTranslations('Nav');
+  const { data: session, status } = useSession();
+  const isAuthorized = status === "authenticated";
   const { locale } = useLocale();
 
   useEffect(() => {
@@ -39,7 +43,7 @@ const Header = ({ isAuthorized }) => {
         <Link href={menuLink('user/faq')}>{t('faq')}</Link>
         <Link href={menuLink('user/rules')}>{t('rules')}</Link>
         <Link href={menuLink('user/help')}>{t('help')}</Link>
-        <Link className="logout" href="/logout">{t('logout')}</Link>
+        <LogoutButton/>
       </nav>
     </div>
   );
@@ -56,9 +60,14 @@ const Header = ({ isAuthorized }) => {
       {isAuthorized ? (
         <Dropdown main="User" inside={menuBlock} className="menu" />
       ) : (
-        <Link href={"/"+locale+"/registration"} className='register-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium py-2 px-4'>
-          {t('registration')}
-        </Link>
+        <div className="d-flex nav-btns">
+          <Link href={"/"+locale+"/registration"} className='nav-btn register-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium py-2 px-4'>
+            {t('registration')}
+          </Link>
+          <Link href={"/"+locale+"/login"} className='nav-btn login-btn ms-2 btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium py-2 px-4'>
+            {t('login')}
+          </Link>
+        </div>
       )}
     </header>
   );
