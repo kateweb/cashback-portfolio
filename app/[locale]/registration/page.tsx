@@ -46,7 +46,6 @@ const Registration = () => {
       if(error.response.data.errors) {
         error.response.data.errors.forEach(error => {
           for (const [key, message] of Object.entries(error)) {
-            console.log(key)
             if (key === 'password') {
               backendErrors[key] = t('errors.password_full'); 
             } else if (key === 'email' && typeof message === 'string' && message.includes('already exists')) {
