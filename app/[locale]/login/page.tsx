@@ -92,7 +92,7 @@ const Login: React.FC = () => {
           </Form>
          )}
         </Formik>
-        <Link href={"/"+locale+"/reset_password"} className='mt-4 text-gray-400 text-sm font-medium'>
+        <Link href={"/"+locale+"/forgot-password"} className='mt-4 text-gray-400 text-sm font-medium'>
           {tl('reset_password')}
         </Link>
       </div>

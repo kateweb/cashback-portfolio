@@ -22,7 +22,7 @@ const Registration = () => {
       // @ts-ignore
       .required(`${t('errors.required', { name: 'Email' })}`),
     password: Yup.string()
-    // @ts-ignore
+      // @ts-ignore
       .min(8,t('errors.password_min', { num: 8 }))
       .matches(/[A-Z]/, t('errors.password_uppercase'))
       .matches(/[a-z]/, t('errors.password_lowercase'))
@@ -40,9 +40,11 @@ const Registration = () => {
 
       if (response.status === 201) {
         router.push('/confirmation'); 
-      } else {
-        const backendErrors = {};
-        response.data.errors.forEach(error => {
+      } 
+    } catch (error:any) {
+      const backendErrors = {};
+      if(error.response.data.errors) {
+        error.response.data.errors.forEach(error => {
           for (const [key, message] of Object.entries(error)) {
             if (key === 'password') {
               backendErrors[key] = t('errors.password_full'); 
@@ -55,9 +57,9 @@ const Registration = () => {
           }
         });
         setErrors(backendErrors);
+      } else {
+        toast.error(t('errors.server_error'));
       }
-    } catch (error) {
-      toast.error(t('errors.server_error'));
     }
   };
 

@@ -187,7 +187,8 @@
     "reset_password": "Forgot password?",
     "errors": {
       "invalid_credentials": "Invalid email or password",
-      "authentication_failed": "An error occurred during authorization"
+      "authentication_failed": "An error occurred during authorization",
+      "user_not_yet_activated": "Account is not activated, check your email for activation"
     }
   },
   "Confirmation": {
@@ -198,5 +199,15 @@
       "user_not_found": "User is not found",
       "no_token_provided": "No token provided"
     }
+  },
+  "ForgotPassword": {
+    "text": "Enter your email to reset your password",
+    "btn_text": "Reset Password",
+    "confirmation_text": "A confirmation email has been sent to your email. Follow the link in the email to reset your password."
+  },
+  "SetPassword": {
+    "text": "Enter a new password",
+    "btn_text": "Save",
+    "confirmation_text": "Password changed successfully!"
   }
 }
