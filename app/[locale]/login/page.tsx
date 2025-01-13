@@ -50,7 +50,7 @@ const Login: React.FC = () => {
         setPending(false);
       } else {
         setPending(false);
-        router.push("/");
+        router.push(`/${locale}`);
   
       }
     } catch (error) {
