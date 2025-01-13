@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import axios from "axios";
 
 const Login: React.FC = () => {
   const t = useTranslations('Registration');
@@ -37,11 +38,14 @@ const Login: React.FC = () => {
   
   const formSubmitted = async (values) => {
     setPending(true);
+    const response = await axios.get('/api/auth/getip');
+    const ip = response.data.ip;
     try {
       const res = await signIn('credentials', {
         redirect: false,
         email: values.email,
         password: values.password,
+        ip: ip
       });
       if (res?.error ) {
         console.log('res error :::: ',res)
