@@ -7,6 +7,7 @@ export const authOptions : NextAuthOptions = {
       credentials: {
         email: { label: "Email", type: "text", placeholder: "jsmith", value: "administrator" },
         password: { label: "Password", type: "password", value: "admin" },
+        ip: {label: "IP", type: "text"}
       },
       // @ts-ignore
       async authorize(credentials, req) {
@@ -19,6 +20,7 @@ export const authOptions : NextAuthOptions = {
         const data = {
           email: credentials.email,
           password: credentials.password,
+          ip: credentials.ip
         };
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
           method: 'POST',
