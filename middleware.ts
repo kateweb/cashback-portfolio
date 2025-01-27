@@ -37,7 +37,7 @@ export default function middleware(req: NextRequest) {
   if (isPublicPage) {
     return intlMiddleware(req);
   } else {
-    const token = req.cookies.get("next-auth.session-token"); // Adjust this to your token
+    const token = req.cookies.get("next-auth.session-token") || req.cookies.get("__Secure-next-auth.session-token"); // Adjust this to your token
     if (!token) {
       const loginUrl = `/${locale}/login/`;
       return NextResponse.redirect(new URL(loginUrl, req.url));
