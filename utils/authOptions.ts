@@ -1,5 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions } from "next-auth";
+import { jwtDecode } from "jwt-decode";
 export const authOptions : NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -45,10 +46,19 @@ export const authOptions : NextAuthOptions = {
   session: { strategy: "jwt" },
   callbacks: {
     async jwt({token, user}){
+      if (token?.token) {
+        const decoded = jwtDecode(token?.token as string);
+        // @ts-ignore
+        token.username = decoded?.username || null;
+      }
       return {...token, ...user}
     },
     async session ({ session, token, user }) {
-      session.user = token as any ;
+      session.user = {
+        ...session.user,
+        // @ts-ignore
+        email: token.username
+      };
       return session;
     }
   },
