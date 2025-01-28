@@ -29,8 +29,9 @@ const Header = () => {
   const menuBlock = (
     <div>
       <div className="p-2 border-b border-divider">
-        <p>Kate</p>
-        <p className="user">k.burlachenko@treeum.net</p>
+          {isAuthorized && session?.user?.email ? (
+              <p className="user">{session.user.email}</p>
+          ) : ""}
       </div>
       <nav className="nav">
         <Link href={menuLink('user/cashback')}>{t('cashback')}</Link>
