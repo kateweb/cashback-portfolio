@@ -21,7 +21,7 @@ const Categories = () => {
       .then((data) => {
         setCategory(data)});
     } catch (error) {
-      console.error('Error fetching offer:', error);
+      console.error('Error fetching categories:', error);
     }
   }, [locale]);
 

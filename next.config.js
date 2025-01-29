@@ -8,7 +8,17 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
     _next_intl_trailing_slash: process.env._next_intl_trailing_slash || 'false', // Default to 'false' if not provided
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'fra1.digitaloceanspaces.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 };
  
 module.exports = withNextIntl(nextConfig);

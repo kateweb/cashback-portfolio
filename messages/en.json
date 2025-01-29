@@ -16,7 +16,8 @@
     "login": "Login"
   },
   "Main": {
-    "all_offers": "All offers with cashbacks"
+    "all_offers": "All offers with cashbacks",
+    "all_offers_error": "Error loading offers"
   },
 
   "Offer": {
