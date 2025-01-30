@@ -224,7 +224,7 @@ footer {
 .dark .border-divider {
   border-bottom: 1px solid rgb(75, 85, 99);
 }
-.cashback-card img, img.offer-img{
+.cashback-card img, img.offer-img, .cashback-empty-img{
   border-radius: 4px !important;
   padding: 5px;
   background: #f1f1f1;

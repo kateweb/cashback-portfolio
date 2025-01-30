@@ -1,9 +1,9 @@
-// app/api/offers/route.ts
+// app/api/categories/route.ts
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
+  const lang = (req.headers.get('lang') || 'uk');
   try {
-    const lang = (req.headers.get('lang') || 'uk');
     const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/categories?locale=${lang}`;
 
     const response = await fetch(apiUrl, {
