@@ -27,7 +27,7 @@ const Offers = ({ searchParams = {}, categoryId, title }: OffersProps) => {
 	const [filteredOffers, setOffers] = useState<Offer[]>([]);
 	const [totalResults, setTotalResults] = useState(0);
 	const currentPage = parseInt(searchParams.page || "1");
-	const [postsPerPage, setPostsPerPage] = useState<number>(10); // Default to 10
+	const [postsPerPage, setPostsPerPage] = useState<number | null>(null);
 	const [isMounted, setIsMounted] = useState(false);
 
 	useEffect(() => {
@@ -36,8 +36,8 @@ const Offers = ({ searchParams = {}, categoryId, title }: OffersProps) => {
 		setPostsPerPage(defaultPageSize);
 		setIsMounted(true);
 	}, [searchParams.pageSize]);
-
 	useEffect(() => {
+		if (postsPerPage === null) return;
 		const fetchOffers = async () => {
 			try {
 				const url = categoryId
@@ -69,7 +69,7 @@ const Offers = ({ searchParams = {}, categoryId, title }: OffersProps) => {
 
 	const handlePageSizeChange = (newPageSize: number) => {
 		setPostsPerPage(newPageSize);
-		Cookies.set("pageSize", newPageSize.toString(), { expires: 30 }); // Храним 30 дней
+		Cookies.set("pageSize", newPageSize.toString(), { expires: 30 });
 	};
 
 	if (!isMounted) {
@@ -115,15 +115,17 @@ const Offers = ({ searchParams = {}, categoryId, title }: OffersProps) => {
 					<p>{t('all_offers_error')}</p>
 				</div>
 			)}
-			<PaginationWithLinks
-				page={currentPage}
-				pageSize={postsPerPage}
-				totalCount={totalResults}
-				pageSizeSelectOptions={{
-					pageSizeOptions: [3, 5, 10, 25],
-				}}
-				onPageSizeChange={handlePageSizeChange}
-			/>
+			{postsPerPage !== null && (
+				<PaginationWithLinks
+					page={currentPage}
+					pageSize={postsPerPage}
+					totalCount={totalResults}
+					pageSizeSelectOptions={{
+						pageSizeOptions: [3, 5, 10, 25],
+					}}
+					onPageSizeChange={handlePageSizeChange}
+				/>
+			)}
 		</>
 	);
 };
