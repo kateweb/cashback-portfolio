@@ -10,7 +10,7 @@ import { PaginationWithLinks } from "@/components/ui/pagination-with-links";
 
 interface Offer {
 	id: string;
-	cashbackInfo: string;
+	name: string;
 	cashbackPercent: number;
 	category_name: string;
 	logoUrl: string;
@@ -73,7 +73,7 @@ const Offers = ({ searchParams = {}, categoryId, title }: OffersProps) => {
 	};
 
 	if (!isMounted) {
-		return null; // Avoid SSR mismatch during initial render
+		return null;
 	}
 
 	if (!filteredOffers) {
@@ -102,9 +102,9 @@ const Offers = ({ searchParams = {}, categoryId, title }: OffersProps) => {
 					{filteredOffers.map((offer) => (
 						<CashbackCard
 							id={offer.id}
-							key={offer.cashbackInfo}
-							brand={offer.cashbackInfo}
-							cashback={offer.cashbackPercent}
+							key={offer.id}
+							brand={offer.name}
+							cashbackPercent={offer.cashbackPercent}
 							category={offer.category_name}
 							imgUrl={offer.logoUrl}
 						/>
