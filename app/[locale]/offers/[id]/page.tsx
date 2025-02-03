@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Layout from '@/components/Layout';
 import { useLocale } from '@/contexts/LocaleContext';
 import { useSession } from "next-auth/react";
+import OfferButton from "@/components/OfferButton";
 
 const OfferPage = () => {
   const { locale } = useLocale();
@@ -18,11 +19,8 @@ const OfferPage = () => {
   const { id } = useParams(); 
 
   useEffect(() => {
-    
-    // Fetch or filter cards based on category ID
     const fetchOffer = async () => {
       try {
-        // Assuming you fetch data from an API
         const response = await fetch(`/api/offers/${id}`, {
           method: 'GET',
           headers: {
@@ -39,7 +37,7 @@ const OfferPage = () => {
     
     fetchOffer();
   }, [id, locale]);
-  
+
 
   if (!offer) {
     return <div className='overlay mt-5'><Image src="/img/loader.svg" alt="Loader" className="w-10 h-10 loader" width={50} height={50}/></div>; // Display a loading message or spinner while data is being fetched
@@ -63,9 +61,7 @@ const OfferPage = () => {
             <Image src={offer['logoUrl']} alt={offer['name']} className="offer-img mb-4 object-contain w-full" width={50} height={50} />
           </div>
           {isAuthorized ? (
-            <Link target='_blank' href={offer['logoUrl']} className="m-2 offer-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
-              {t('button_text')}
-            </Link>
+            <OfferButton offer={offer}/>
           ) : ''}
          
           <Link key={offer['category_id']} href={`/${locale}/category/${offer['category_id']}`} className="hover-green bg-gray-50 border border-gray-300 text-gray-900 text-center rounded-full px-4 py-2 m-2 text-sm font-medium dark-bg-gray-700 dark-border-gray-600 dark-text-white">
