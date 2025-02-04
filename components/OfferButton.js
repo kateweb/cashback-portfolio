@@ -22,8 +22,6 @@ export default function OfferButton({ offer }) {
 			}
 		} catch (error) {
 			console.error('Error:', error);
-		} finally {
-			setLoading(false);
 		}
 	};
 
