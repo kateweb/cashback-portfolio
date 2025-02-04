@@ -1,12 +1,9 @@
-'use client';
-
 import {useTranslations} from 'next-intl';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
-import { useLocale } from '@/contexts/LocaleContext';
 
-const Account = () => {
-  const { locale } = useLocale();
+const Account = ({ params }: { params: { locale: string } }) => {
+  const { locale } = params;
   const t = useTranslations('Account');
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 

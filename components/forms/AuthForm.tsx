@@ -9,6 +9,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import axios from "axios";
+import axiosInstance from "@/utils/axiosInstance";
 
 interface AuthFormProps {
 	type: 'login' | 'registration';
@@ -35,7 +36,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 				.required(t('errors.required', {name: t('password')})),
 		});
 
-		const formSubmitted = async (values) => {
+		const loginFormSubmitted = async (values) => {
 			setPending(true);
 			const response = await axios.get('/api/auth/getip');
 			const ip = response.data.ip;
@@ -59,12 +60,43 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 				setPending(false);
 			}
 		};
+		const registerFormSubmitted = async (values, { setErrors }) => {
+			try {
+				const response = await axiosInstance.post('/registration', {
+					...values,
+					locale
+				});
+
+				if (response.status === 201) {
+					router.push('/confirmation');
+				}
+			} catch (error:any) {
+				const backendErrors = {};
+				if(error.response.data.errors) {
+					error.response.data.errors.forEach(error => {
+						for (const [key, message] of Object.entries(error)) {
+							if (key === 'password') {
+								backendErrors[key] = t('errors.password_full');
+							} else if (key === 'email' && typeof message === 'string' && message.includes('already exists')) {
+								backendErrors[key] = t('errors.user_exist');
+							} else {
+								backendErrors[key] = message;
+								toast.error(backendErrors[key]);
+							}
+						}
+					});
+					setErrors(backendErrors);
+				} else {
+					toast.error(t('errors.server_error'));
+				}
+			}
+		};
 
 		return (
 			<Formik
 				initialValues={{email: '', password: ''}}
 				validationSchema={validationSchema}
-				onSubmit={formSubmitted}>
+				onSubmit={type === 'registration' ? registerFormSubmitted : loginFormSubmitted}>
 				{({isSubmitting}) => (
 					<Form className="w-full">
 						<div className='form-control mb-3'>
@@ -83,6 +115,6 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 				)}
 			</Formik>
 		);
-	};
+	}
 }
 export default AuthForm;
