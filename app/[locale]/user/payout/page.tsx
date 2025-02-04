@@ -3,8 +3,8 @@
 import {useTranslations} from 'next-intl';
 import React from "react";
 import Layout from '@/components/Layout';
-import {Input} from "@nextui-org/input";
-import {Select, SelectItem} from "@nextui-org/select";
+import {Input} from "@heroui/input";
+import {Select, SelectItem} from "@heroui/select";
 
 const Payout = () => {
   const tcash = useTranslations('Cashback');

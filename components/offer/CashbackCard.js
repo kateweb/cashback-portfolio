@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useLocale } from '../contexts/LocaleContext';
+import { useLocale } from '@/contexts/LocaleContext';
 import Image from 'next/image'
 
 const CashbackCard = ({id, brand, cashbackPercent, category, imgUrl }) => {

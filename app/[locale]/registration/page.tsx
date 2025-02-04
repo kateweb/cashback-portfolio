@@ -2,7 +2,7 @@
 import { useTranslations } from 'next-intl';
 import React from "react";
 import Layout from '@/components/Layout';
-import { Input } from "@nextui-org/input";
+import { Input } from "@heroui/input";
 import { useLocale } from '@/contexts/LocaleContext';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -11,8 +11,7 @@ import { toast } from 'react-toastify';
 import axiosInstance from '@/utils/axiosInstance';
 
 const Registration = () => {
-  const t = useTranslations('Registration');
-  const tb = useTranslations('Offer');
+  const t = useTranslations('Auth');
   const router = useRouter();
   const { locale } = useLocale();
 
@@ -71,11 +70,11 @@ const Registration = () => {
           <svg className="w-4 h-4 mr-2 text-gray-800 dark-text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
           </svg>
-          {tb('back_button')}
+          {t('back_button')}
         </button>
       </div>
       <div className='max-w-[385px] m-auto flex flex-col items-center justify-center'>
-        <h2 className="text-center dark-text-white mb-3">{t('text')}</h2>
+        <h2 className="text-center dark-text-white mb-3">{t('reg_text')}</h2>
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={validationSchema}
@@ -92,7 +91,7 @@ const Registration = () => {
                 <ErrorMessage name="password" component="p" className="text-sm text-red-400" />
               </div>
               <button type='submit' className="disabled:pointer-events-none disabled:opacity-50 mt-2 btn inline-flex items-center justify-center rounded-md text-sm font-medium px-4 py-2 w-full">
-                {t('btn_text')}
+                {t('reg_button')}
               </button>
             </Form>
           )}

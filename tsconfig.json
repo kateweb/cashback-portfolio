@@ -26,6 +26,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/offers.tsx", "components/Header.tsx", "components/DropdownMenu.js", "utils/saveQueryParams.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/offers.tsx",
+    "components/nav/Header.tsx", "components/DropdownMenu.js", "utils/saveQueryParams.js"],
   "exclude": ["node_modules"]
 }

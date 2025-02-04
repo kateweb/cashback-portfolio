@@ -165,11 +165,11 @@
     "mm": "mm",
     "yyyy": "yyyy"
   },
-  "Registration": {
-    "text": "Enter your email to register for an account.",
+  "Auth": {
+    "reg_text": "Enter your email to register for an account.",
     "enter_email": "Enter your email",
     "enter_password": "Enter your password",
-    "btn_text": "Send confirmation",
+    "reg_button": "Send confirmation",
     "password": "Password",
     "errors": {
       "email_valid": "Please enter a valid email address.",
@@ -180,18 +180,14 @@
       "password_number": "The password must contain at least one number.",
       "server_error": "An error occurred",
       "password_full": "Password should contains at least one uppercase letter, one digit and one special symbol",
-      "user_exist": "User already exists in the system"
-    }
-  },
-  "Login": {
-    "text": "Enter your email and password to login for an account.",
-    "btn_text": "Login",
-    "reset_password": "Forgot password?",
-    "errors": {
+      "user_exist": "User already exists in the system",
       "invalid_credentials": "Invalid email or password",
       "authentication_failed": "An error occurred during authorization",
       "user_not_yet_activated": "Account is not activated, check your email for activation"
-    }
+    },
+    "login_text": "Enter your email and password to login for an account.",
+    "login_button": "Login",
+    "reset_password": "Forgot password?"
   },
   "Confirmation": {
     "text": "A confirmation email has been sent to your email. Follow the link in the email to activate your account."

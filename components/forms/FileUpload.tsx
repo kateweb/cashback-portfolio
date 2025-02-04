@@ -2,7 +2,7 @@
 
 import {useTranslations} from 'next-intl';
 import { useState } from 'react';
-import { Input } from '@nextui-org/input';
+import { Input } from "@heroui/input";
 
 const FileUpload = () => {
   const t = useTranslations('File');

@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react'
-import { useLocale } from '../contexts/LocaleContext';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const Categories = () => {
   const { locale } = useLocale();

@@ -6,7 +6,7 @@ import LogoutButton from './LogoutButton';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image'
-import { useLocale } from '../contexts/LocaleContext';
+import { useLocale } from '@/contexts/LocaleContext';
 import Dropdown from './Dropdown';
 import { saveParamsToLocalStorage } from '@/utils/saveQueryParams'
 import { useEffect } from 'react';

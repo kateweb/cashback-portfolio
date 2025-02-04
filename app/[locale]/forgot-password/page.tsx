@@ -2,7 +2,7 @@
 import { useTranslations } from 'next-intl';
 import React from "react";
 import Layout from '@/components/Layout';
-import { Input } from "@nextui-org/input";
+import { Input } from "@heroui/input";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
@@ -13,9 +13,9 @@ const ForgotPassword = () => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email(t('Registration.errors.email_valid'))
+      .email(t('Auth.errors.email_valid'))
       // @ts-ignore
-      .required(`${t('Registration.errors.required', { name: 'Email' })}`),
+      .required(`${t('Auth.errors.required', { name: 'Email' })}`),
   });
 
   const handleSubmit = async (values, { setErrors }) => {
@@ -39,7 +39,7 @@ const ForgotPassword = () => {
           }
         });
       } else {
-        toast.error(t('Registration.errors.server_error'));
+        toast.error(t('Auth.errors.server_error'));
       }
     }
   };
@@ -64,7 +64,7 @@ const ForgotPassword = () => {
         >
           <Form className="w-full">
             <div className='form-control mb-3'>
-              <Field as={Input} type="text" placeholder={t('Registration.enter_email')} name="email" />
+              <Field as={Input} type="text" placeholder={t('Auth.enter_email')} name="email" />
               <ErrorMessage name="email" component="p" className="text-sm text-red-400" />
             </div>
             <button type='submit' className="disabled:pointer-events-none disabled:opacity-50 mt-2 btn inline-flex items-center justify-center rounded-md text-sm font-medium px-4 py-2 w-full">

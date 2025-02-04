@@ -1,7 +1,7 @@
 // app/components/ThemeSwitcher.tsx
 'use client';
 import { useState, useEffect } from 'react';
-import styles from './styles/ThemeSwitcher.module.css'
+import styles from '../styles/ThemeSwitcher.module.css'
 
 export default function ThemeSwitcher() {
   const [isDark, setIsDark] = useState(false);

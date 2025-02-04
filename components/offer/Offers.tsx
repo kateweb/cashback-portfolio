@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { useLocale } from "@/contexts/LocaleContext";
 import {useTranslations} from 'next-intl';
 import Image from "next/image";
-import CashbackCard from "@/components/CashbackCard";
+import CashbackCard from "@/components/offer/CashbackCard";
 import { PaginationWithLinks } from "@/components/ui/pagination-with-links";
 
 interface Offer {

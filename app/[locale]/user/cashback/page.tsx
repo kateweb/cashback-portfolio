@@ -3,8 +3,8 @@
 import {useTranslations} from 'next-intl';
 import { useState }  from "react";
 import Layout from '@/components/Layout';
-import {Select, SelectItem} from "@nextui-org/select";
-import CustomDatepicker from '@/components/CustomDatepicker';
+import {Select, SelectItem} from "@heroui/select";
+import CustomDatepicker from '@/components/forms/CustomDatepicker';
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];

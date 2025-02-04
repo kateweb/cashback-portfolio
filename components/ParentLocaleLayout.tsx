@@ -1,11 +1,10 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from './nav/Header';
+import Footer from './nav/Footer';
 import { NextIntlClientProvider } from 'next-intl';
-import { LocaleProvider } from '../contexts/LocaleContext';
+import { LocaleProvider } from '@/contexts/LocaleContext';
 import { getMessages } from 'next-intl/server';
-import { cookies } from 'next/headers';
 import '../app/[locale]/globals.css';
-import {NextUIProvider} from "@nextui-org/system";
+import {HeroUIProvider} from "@heroui/system";
 import Provider from "../components/Provider";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,7 +23,7 @@ export async function ParentLocaleLayout({
       <html lang={locale}>
         <body>
           <div className="bg-white dark-bg-black font-roboto">
-            <NextUIProvider>
+            <HeroUIProvider>
               <NextIntlClientProvider messages={messages}>
                 <LocaleProvider locale={locale}>
                   <Provider>
@@ -35,7 +34,7 @@ export async function ParentLocaleLayout({
                   </Provider>
                 </LocaleProvider>
               </NextIntlClientProvider>
-            </NextUIProvider>
+            </HeroUIProvider>
           </div>
         </body>
       </html>

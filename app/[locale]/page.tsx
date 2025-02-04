@@ -1,9 +1,7 @@
-"use client"
-
 import {useTranslations} from 'next-intl';
 import Layout from '@/components/Layout';
 import Categories from '@/components/Categories';
-import Offers from "@/components/Offers";
+import Offers from "@/components/offer/Offers";
 
 interface HomeProps {
   searchParams: {[key: string]: string};
