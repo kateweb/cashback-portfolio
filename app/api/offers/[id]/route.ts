@@ -17,7 +17,6 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     }
 
     const offer = await response.json();
-    console.log(offer);
     return NextResponse.json(offer);
   } catch (error) {
     console.error('Error fetching offer:', error);

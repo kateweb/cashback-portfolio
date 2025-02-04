@@ -12,11 +12,9 @@ export default function OfferButton({ offer }) {
 		setLoading(true);
 		try {
 			const response = await fetch(`/api/offers/${offer.id}/get-rdr-link/${session.user.userId}`);
-			console.log(response);
 			if (response.ok) {
 				const data = await response.json();
 				const redirectUrl = data.redirectUrl;
-
 				window.location.href = redirectUrl;
 			} else {
 				console.log('Failed to retrieve the redirect link');

@@ -50,7 +50,8 @@ export const authOptions : NextAuthOptions = {
         const decoded = jwtDecode(token?.token as string);
         // @ts-ignore
         token.username = decoded?.username || null;
-        token.userId = token?.jti || null;
+        // @ts-ignore
+        token.userId = decoded?.id || null;
       }
       return {...token, ...user}
     },
