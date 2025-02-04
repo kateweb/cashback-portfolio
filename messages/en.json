@@ -81,7 +81,8 @@
   },
   "Settings": {
     "title": "You can",
-    "link_text": "delete your account"
+    "link_text": "delete your account",
+    "deactivated_successfully": "Account was successfully deleted!"
   },
   "Cashback": {
     "waiting": "Waiting for enrollment: ",

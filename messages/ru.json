@@ -80,7 +80,8 @@
   },
   "Settings": {
     "title": "Вы можете",
-    "link_text": "удалить свой аккаунт"
+    "link_text": "удалить свой аккаунт",
+    "deactivated_successfully": "Аккаунт был успешно удален!"
   },
   "Cashback": {
     "waiting": "В ожидании зачисления: ",

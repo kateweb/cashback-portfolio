@@ -32,6 +32,7 @@ export const authOptions : NextAuthOptions = {
         }); 
         const resData = await res.json();
         if (res.ok && resData.token) {
+          localStorage.setItem('access_token', resData.token);
           return { token: resData.token };
         } else {
           throw new Error(resData.message || "Authentication failed");
