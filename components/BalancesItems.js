@@ -44,10 +44,10 @@ const BalancesItems = () => {
 			{loading && (
 				<Loader/>
 			)}
-			<div className='cashback-item m-3 p-2 pb-6 font-bold rounded-lg bg-white dark-bg-gray-800 border dark:border-transparent shadow-sm bg-card text-darkgreen'>
+			<div className='cashback-item m-3 p-2 pb-6 font-bold rounded-lg bg-white dark-bg-gray-800 border dark-border-transparent shadow-sm bg-card text-darkgreen'>
 				{t('Cashback.waiting') + " " + balances.waiting + " " + t(`Cashback.${balances.currency}`)}
 			</div>
-			<div className='cashback-item m-3 p-2 pb-6 font-bold rounded-lg bg-white dark-bg-gray-800 border dark:border-transparent shadow-sm bg-card text-darkgreen'>
+			<div className='cashback-item m-3 p-2 pb-6 font-bold rounded-lg bg-white dark-bg-gray-800 border dark-border-transparent shadow-sm bg-card text-darkgreen'>
 				{t('Cashback.available') + " " + balances.available + " " + t(`Cashback.${balances.currency}`)}
 			</div>
 		</div>

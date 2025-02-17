@@ -40,7 +40,7 @@ const Page = () => {
 
 	return (
 		<Layout>
-			<div className={`static-page my-5 mx-5 dark:text-white ${slug}`}>
+			<div className={`static-page my-5 mx-5 dark-text-white ${slug}`}>
 				<h2 className="mb-4 font-bold text-xl">{pageData.title}</h2>
 				<div className='text-md' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(pageData.content)}}/>
 			</div>
