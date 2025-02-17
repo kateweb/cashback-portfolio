@@ -308,11 +308,42 @@ select:hover {
   list-style-position: outside;
   padding-left: 50px;
 }
-.faq a {
+.static-page a {
   color: var(--green);
 }
-.faq a:hover {
+.static-page p {
+  margin-bottom: 1rem;
+}
+.static-page ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+  padding-left: 50px;
+  margin-bottom: 1rem;
+}
+.static-page h3 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.static-page ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  padding-left: 50px;
+  margin-bottom: 1rem;
+}
+.rules ol li {
+  margin-bottom: 1rem;
+}
+.static-page ol li p {
+  font-size: .875rem;
+  line-height: 1.25rem;
+  margin-top: .5rem;
+}
+.static-page a:hover {
   color: var(--dark-green);
+}
+.rules {
+  font-size: 18px;
 }
 .text-green {
   color: var(--green);

@@ -32,7 +32,6 @@ export const authOptions : NextAuthOptions = {
         }); 
         const resData = await res.json();
         if (res.ok && resData.token) {
-          localStorage.setItem('access_token', resData.token);
           return { token: resData.token };
         } else {
           throw new Error(resData.message || "Authentication failed");
@@ -54,11 +53,12 @@ export const authOptions : NextAuthOptions = {
         // @ts-ignore
         token.userId = decoded?.id || null;
       }
-      return {...token, ...user}
+      return {...token, ...user};
     },
-    async session ({ session, token, user }) {
+    async session ({ session, token }) {
       session.user = {
         ...session.user,
+        jwt: token.token,
         // @ts-ignore
         email: token.username,
         userId: token.userId,
