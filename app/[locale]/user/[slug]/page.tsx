@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import Layout from "@/components/Layout";
 import {useTranslations} from "next-intl";
 import DOMPurify from 'dompurify';
+import Loader from "@/components/ui/Loader";
 
 type PageData = {
 	title: string;
@@ -34,7 +35,7 @@ const Page = () => {
 		}
 	}, [slug]);
 
-	if (!pageData) return <div className='text-center my-3'>{t('loading')}</div>;;
+	if (!pageData) return <Loader/>
 	if (error) return <div className='text-center my-3'>{error}</div>;
 
 	return (
