@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useLocale } from "@/contexts/LocaleContext";
 import {useTranslations} from 'next-intl';
-import Image from "next/image";
 import CashbackCard from "@/components/offer/CashbackCard";
 import { PaginationWithLinks } from "@/components/ui/pagination-with-links";
+import Loader from "@/components/ui/Loader";
 
 interface Offer {
 	id: string;
@@ -78,15 +78,7 @@ const Offers = ({ searchParams = {}, categoryId, title }: OffersProps) => {
 
 	if (!filteredOffers) {
 		return (
-			<div className="overlay mt-5">
-				<Image
-					src="/img/loader.svg"
-					alt="Loader"
-					className="w-10 h-10 loader"
-					width={50}
-					height={50}
-				/>
-			</div>
+			<Loader/>
 		);
 	}
 	const dynamicTitle = categoryId ? (filteredOffers.length > 0 ? filteredOffers[0].category_name : "") : "";

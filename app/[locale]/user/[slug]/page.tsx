@@ -1,7 +1,7 @@
 // app/[locale]/user/[slug]/page.tsx
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Layout from "@/components/Layout";
 import {useTranslations} from "next-intl";
@@ -34,13 +34,8 @@ const Page = () => {
 		}
 	}, [slug]);
 
-	if (error) {
-		return <div className='text-center my-3'>{error}</div>;
-	}
-
-	if (!pageData) {
-		return <div className='text-center my-3'>{t('loading')}</div>;
-	}
+	if (!pageData) return <div className='text-center my-3'>{t('loading')}</div>;;
+	if (error) return <div className='text-center my-3'>{error}</div>;
 
 	return (
 		<Layout>

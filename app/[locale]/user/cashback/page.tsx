@@ -5,6 +5,7 @@ import { useState }  from "react";
 import Layout from '@/components/Layout';
 import {Select, SelectItem} from "@heroui/select";
 import CustomDatepicker from '@/components/forms/CustomDatepicker';
+import BalancesItems from "@/components/BalancesItems";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -21,14 +22,7 @@ const Cashback = () => {
   return (
     <Layout>
       <div className='my-5 sm:-mx-3 md:mx-5 dark-text-white '>
-        <div className='sm:flex justify-content-center'>
-          <div className='cashback-item m-3 p-2 pb-6 font-bold rounded-lg bg-white dark-bg-gray-800 border dark-border-transparent shadow-sm bg-card text-darkgreen'>
-            {t('waiting')+"0 "+t('uah')}
-          </div>
-          <div className='cashback-item m-3 p-2 pb-6 font-bold rounded-lg bg-white dark-bg-gray-800 border dark-border-transparent shadow-sm bg-card text-darkgreen'>
-            {t('available')+"0 "+t('uah')}
-          </div>
-        </div>
+        <BalancesItems/>
         <div className='sm:flex justify-content-center cashback-form'>
           <Select 
             label={t('status.title')}

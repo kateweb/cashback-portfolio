@@ -5,6 +5,7 @@ import React from "react";
 import Layout from '@/components/Layout';
 import {Input} from "@heroui/input";
 import {Select, SelectItem} from "@heroui/select";
+import BalancesItems from "@/components/BalancesItems";
 
 const Payout = () => {
   const tcash = useTranslations('Cashback');
@@ -14,14 +15,7 @@ const Payout = () => {
   return (
     <Layout>
       <div className='my-5 -mx-3 md:mx-5 dark-text-white '>
-        <div className='flex justify-content-center'>
-          <div className='cashback-item m-3 p-2 pb-6 font-bold rounded-lg bg-white dark-bg-gray-800 border dark-border-transparent shadow-sm bg-card text-darkgreen'>
-            {tcash('waiting')+"0 "+tcash('uah')}
-          </div>
-          <div className='cashback-item m-3 p-2 pb-6 font-bold rounded-lg bg-white dark-bg-gray-800 border dark-border-transparent shadow-sm bg-card text-darkgreen'>
-            {tcash('available')+"0 "+tcash('uah')}
-          </div>
-        </div>
+        <BalancesItems/>
         <div className='mx-auto my-4 max-w-[664px] dark-text-white'>
           <form className='mx-3'>
             <h3 className='text-xl font-bold mb-4'>{t('form.application_title')}</h3>

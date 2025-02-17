@@ -39,6 +39,7 @@
     "waiting": "Waiting for enrollment: ",
     "available": "Available for payout: ",
     "uah": "UAH",
+    "failed": "Failed to fetch balances",
     "status": {
       "title": "Status",
       "available": "Available",

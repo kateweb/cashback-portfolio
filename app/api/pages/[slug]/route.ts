@@ -1,17 +1,6 @@
 // app/api/pages/[slug]/route.ts
 import { NextResponse } from 'next/server';
-import { getServerSession } from "next-auth"
-
-import { authOptions } from "@/utils/authOptions"
-
-const getToken = async () => {
-	const session: any = await getServerSession(authOptions)
-	let token;
-	if (session && session.user.jwt) {
-		token = session.user.jwt
-	}
-	return token
-}
+import { getToken } from "@/utils/getToken";
 
 export async function GET(req, { params }) {
 	const { slug } = params;
