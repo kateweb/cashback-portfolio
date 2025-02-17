@@ -16,14 +16,16 @@
     "login": "Login"
   },
   "Main": {
-    "all_offers": "All offers with cashbacks"
+    "all_offers": "All offers with cashbacks",
+    "all_offers_error": "Error loading offers"
   },
 
   "Offer": {
     "button_text": "Go to store",
     "info": "Cashback information:",
     "conditions": "Important conditions:",
-    "back_button": "Back"
+    "back_button": "Back",
+    "loading": "Loading..."
   },
   "Help": {
     "title": "To create a claim for lost cashback, follow the link below, select the transition that corresponds to the date of purchase and create a claim.",

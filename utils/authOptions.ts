@@ -50,6 +50,8 @@ export const authOptions : NextAuthOptions = {
         const decoded = jwtDecode(token?.token as string);
         // @ts-ignore
         token.username = decoded?.username || null;
+        // @ts-ignore
+        token.userId = decoded?.id || null;
       }
       return {...token, ...user}
     },
@@ -57,7 +59,8 @@ export const authOptions : NextAuthOptions = {
       session.user = {
         ...session.user,
         // @ts-ignore
-        email: token.username
+        email: token.username,
+        userId: token.userId,
       };
       return session;
     }

@@ -48,7 +48,6 @@ const Login: React.FC = () => {
         ip: ip
       });
       if (res?.error ) {
-        console.log('res error :::: ',res)
         let errText = res.error.toLowerCase().replaceAll(/\s+/g, '_').replace(/\.$/, '')
         toast.error(tl(`errors.${errText}`));
         setPending(false);

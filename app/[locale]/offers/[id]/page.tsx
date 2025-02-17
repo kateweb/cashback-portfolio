@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Layout from '@/components/Layout';
 import { useLocale } from '@/contexts/LocaleContext';
 import { useSession } from "next-auth/react";
+import OfferButton from "@/components/OfferButton";
 
 const OfferPage = () => {
   const { locale } = useLocale();
@@ -17,13 +18,9 @@ const OfferPage = () => {
   const isAuthorized = status === "authenticated";
   const { id } = useParams(); 
 
-
   useEffect(() => {
-    
-    // Fetch or filter cards based on category ID
-    const fetchFilteredCards = async () => {
+    const fetchOffer = async () => {
       try {
-        // Assuming you fetch data from an API
         const response = await fetch(`/api/offers/${id}`, {
           method: 'GET',
           headers: {
@@ -38,9 +35,9 @@ const OfferPage = () => {
       }
     };
     
-    fetchFilteredCards();
+    fetchOffer();
   }, [id, locale]);
-  
+
 
   if (!offer) {
     return <div className='overlay mt-5'><Image src="/img/loader.svg" alt="Loader" className="w-10 h-10 loader" width={50} height={50}/></div>; // Display a loading message or spinner while data is being fetched
@@ -48,7 +45,7 @@ const OfferPage = () => {
 
   return (
     <Layout>
-        <div key={offer['brand']} className='flex align-items-center flex-column'>
+        <div key={offer['id']} className='flex align-items-center flex-column'>
           <div className='top-block w-full my-6 md:my-10 mb-0'>
             <button onClick={() => window.history.back()}
               className="back-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
@@ -57,38 +54,36 @@ const OfferPage = () => {
               </svg>
               {t('back_button')}
             </button>
-            <h1 className="mx-auto text-center text-3xl font-bold dark-text-white">{offer['brand']}</h1>
+            <h1 className="mx-auto text-center text-3xl font-bold dark-text-white">{offer['name']}</h1>
           </div>
-          <div className='text-md my-4 text-gray-500'>{offer['category']}</div>
+          <div className='text-md my-4 text-gray-500'>{offer['category_name']}</div>
           <div className='w-48'>
-            <Image src={offer['imgUrl']} alt={offer['brand']} className="offer-img mb-4 object-contain w-full" width={50} height={50} />
+            {offer['logoUrl'] ? <Image src={offer['logoUrl']} alt={offer['name']} className="offer-img mb-4 object-contain w-full" width={50} height={50} /> : <div className="cashback-empty-img w-full h-48 mb-4 object-contain"></div>}
           </div>
           {isAuthorized ? (
-            <Link target='_blank' href={offer['link']} className="m-2 offer-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
-              {t('button_text')}
-            </Link>
+            <OfferButton offer={offer}/>
           ) : ''}
          
-          <Link key={offer['category']} href={`/${locale}/category/${offer['categoryId']}`} className="hover-green bg-gray-50 border border-gray-300 text-gray-900 text-center rounded-full px-4 py-2 m-2 text-sm font-medium dark-bg-gray-700 dark-border-gray-600 dark-text-white">
-            {offer['category']}
+          <Link key={offer['category_id']} href={`/${locale}/category/${offer['category_id']}`} className="hover-green bg-gray-50 border border-gray-300 text-gray-900 text-center rounded-full px-4 py-2 m-2 text-sm font-medium dark-bg-gray-700 dark-border-gray-600 dark-text-white">
+            {offer['category_name']}
           </Link>
+          {offer?.['cashbackInfo'] && (
           <div className='rounded-lg border bg-white dark-bg-gray-800 dark-border-transparent text-card-foreground shadow-sm mx-4 my-4 w-full max-w-screen-md dark-text-white'>
             <div className="flex flex-col space-y-1.5 p-6">{t('info')}</div>
-            {offer?.['info'] && (
-              <div className='p-6 pt-0' dangerouslySetInnerHTML={{ __html: offer['info'] }} />
-            )}
+              <div className='p-6 pt-0' dangerouslySetInnerHTML={{ __html: offer['cashbackInfo'] }} />
           </div>
-          <div className='rounded-lg border bg-white dark-bg-gray-800 dark-border-transparent text-card-foreground shadow-sm mx-4 my-4 w-full max-w-screen-md dark-text-white'>
-            <div className="flex flex-col space-y-1.5 p-6">{t('conditions')}</div>
-            {offer?.['conditions'] && (
-              <div className='p-6 pt-0' dangerouslySetInnerHTML={{ __html: offer['conditions'] }} />
-            )}
-          </div>
-          <div className='rounded-lg border bg-white dark-bg-gray-800 dark-border-transparent text-card-foreground shadow-sm mx-4 my-4 w-full max-w-screen-md dark-text-white'>
-            {offer?.['text'] && (
-              <div className='p-6' dangerouslySetInnerHTML={{ __html: offer['text'] }} />
-            )}
-          </div>
+          )}
+          {offer?.['conditions'] && (
+            <div className='rounded-lg border bg-white dark-bg-gray-800 dark-border-transparent text-card-foreground shadow-sm mx-4 my-4 w-full max-w-screen-md dark-text-white'>
+              <div className="flex flex-col space-y-1.5 p-6">{t('conditions')}</div>
+                <div className='p-6 pt-0' dangerouslySetInnerHTML={{ __html: offer['conditions'] }} />
+            </div>
+          )}
+          {offer?.['description'] && (
+            <div className='rounded-lg border bg-white dark-bg-gray-800 dark-border-transparent text-card-foreground shadow-sm mx-4 my-4 w-full max-w-screen-md dark-text-white'>
+                <div className='p-6' dangerouslySetInnerHTML={{ __html: offer['description'] }} />
+            </div>
+          )}
         </div>
 
     </Layout>
