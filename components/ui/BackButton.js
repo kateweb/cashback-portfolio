@@ -2,10 +2,9 @@
 import {useLocale} from "@/contexts/LocaleContext";
 import {useTranslations} from "next-intl";
 export default function BackButton({}) {
-	const { locale } = useLocale();
 	const t = useTranslations('Offer');
 	const handleBackButtonClick = () => {
-		window.location.href = `/${locale}`;
+		window.history.back();
 	};
 	return (
 		<button onClick={handleBackButtonClick}

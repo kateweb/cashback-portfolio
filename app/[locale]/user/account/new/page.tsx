@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import {useTranslations} from 'next-intl';
-import {Input} from "@nextui-org/input";
-import {Select, SelectItem} from "@nextui-org/select";
+import {Input} from "@heroui/input";
+import {Select, SelectItem} from "@heroui/select";
 import Layout from '@/components/Layout';
 
 const Account = () => {

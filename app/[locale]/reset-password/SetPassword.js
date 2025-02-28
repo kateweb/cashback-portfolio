@@ -3,7 +3,7 @@
 import React from 'react';
 import Layout from '@/components/Layout';
 import { useTranslations } from 'next-intl';
-import { Input } from "@nextui-org/input";
+import { Input } from "@heroui/input";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -12,11 +12,11 @@ export default function SetPassword({ onSubmitPassword, isSubmitting }) {
 
   const validationSchema = Yup.object().shape({
     password: Yup.string()
-      .min(8, t('Registration.errors.password_min', { num: 8 }))
-      .matches(/[A-Z]/, t('Registration.errors.password_uppercase'))
-      .matches(/[a-z]/, t('Registration.errors.password_lowercase'))
-      .matches(/\d/, t('Registration.errors.password_number'))
-      .required(t('Registration.errors.required', { name: t('Registration.password') })),
+      .min(8, t('Auth.errors.password_min', { num: 8 }))
+      .matches(/[A-Z]/, t('Auth.errors.password_uppercase'))
+      .matches(/[a-z]/, t('Auth.errors.password_lowercase'))
+      .matches(/\d/, t('Auth.errors.password_number'))
+      .required(t('Auth.errors.required', { name: t('Auth.password') })),
   });
 
   return (
@@ -31,7 +31,7 @@ export default function SetPassword({ onSubmitPassword, isSubmitting }) {
           >
             <Form className="w-full">
               <div className='form-control mb-3'>
-                <Field as={Input} type="password" placeholder={t('Registration.enter_password')} name="password" />
+                <Field as={Input} type="password" placeholder={t('Auth.enter_password')} name="password" />
                 <ErrorMessage name="password" component="p" className="text-sm text-red-400" />
               </div>
               <button

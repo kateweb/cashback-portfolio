@@ -1,6 +1,6 @@
 import Layout from '@/components/Layout';
-import Offers from "@/components/Offers";
-import BackButton from "@/components/BackButton";
+import Offers from "@/components/offer/Offers";
+import BackButton from "@/components/ui/BackButton";
 
 interface CategoryPageProps {
   params: {

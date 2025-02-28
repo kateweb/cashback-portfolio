@@ -6,7 +6,7 @@ import LogoutButton from './LogoutButton';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image'
-import { useLocale } from '../contexts/LocaleContext';
+import { useLocale } from '@/contexts/LocaleContext';
 import Dropdown from './Dropdown';
 import { saveParamsToLocalStorage } from '@/utils/saveQueryParams'
 import { useEffect } from 'react';
@@ -53,7 +53,7 @@ const Header = () => {
     <header className="header border-b border-divider">
       <div className="logo">
         <Link href={"/"+locale}>
-          <Image src="/img/logo.svg" alt="Moneyback" className="object-contain" width={200} height={78} />
+          <Image src="/img/logo.svg" alt="Moneyback" className="object-contain" width={200} height={78} priority />
         </Link>
       </div>
       <ThemeSwitcher/>

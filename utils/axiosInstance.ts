@@ -7,8 +7,8 @@ const axiosInstance = axios.create({
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use((config) => {
-  const affiliateId = +Cookies.get('affiliateId');
-  const clickId = +Cookies.get('clickId');
+  const affiliateId = +Cookies.get('affiliateId')!;
+  const clickId = +Cookies.get('clickId')!;
   if (affiliateId || clickId) {
     if (config.data) {
       config.data = {

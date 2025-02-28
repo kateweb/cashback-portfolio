@@ -53,11 +53,12 @@ export const authOptions : NextAuthOptions = {
         // @ts-ignore
         token.userId = decoded?.id || null;
       }
-      return {...token, ...user}
+      return {...token, ...user};
     },
-    async session ({ session, token, user }) {
+    async session ({ session, token }) {
       session.user = {
         ...session.user,
+        jwt: token.token,
         // @ts-ignore
         email: token.username,
         userId: token.userId,

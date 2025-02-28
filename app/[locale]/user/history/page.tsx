@@ -6,7 +6,7 @@ import { useState }  from "react";
 import Link from 'next/link';
 import Layout from '@/components/Layout';
 import {useLocale} from '@/contexts/LocaleContext';
-import CustomDatepicker from '@/components/CustomDatepicker';
+import CustomDatepicker from '@/components/forms/CustomDatepicker';
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];

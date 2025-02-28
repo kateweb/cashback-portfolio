@@ -4,11 +4,11 @@ import {useTranslations} from 'next-intl';
 import { useEffect, useState } from 'react';
 import React from "react";
 import Layout from '@/components/Layout';
-import {Input} from "@nextui-org/input";
-import {Textarea} from "@nextui-org/input";
+import {Input} from "@heroui/input";
+import {Textarea} from "@heroui/input";
 import { useSearchParams } from 'next/navigation';
-import FileUpload from '@/components/FileUpload';
-import CustomDatepicker from '@/components/CustomDatepicker';
+import FileUpload from '@/components/forms/FileUpload';
+import CustomDatepicker from '@/components/forms/CustomDatepicker';
 
 const Disputs = () => {
   const t = useTranslations('Disputs');

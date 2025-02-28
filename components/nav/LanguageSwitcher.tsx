@@ -3,7 +3,7 @@
 import {useRouter} from 'next/navigation';
 import { useState, useEffect } from 'react';
 import {usePathname} from '@/i18n/routing';
-import { useLocale } from '../contexts/LocaleContext';
+import { useLocale } from '@/contexts/LocaleContext';
 import Dropdown from './Dropdown';
 
 export default function LanguageSwitcher() {
