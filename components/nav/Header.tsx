@@ -36,7 +36,6 @@ const Header = () => {
       <nav className="nav">
         <Link href={menuLink('user/cashback')}>{t('cashback')}</Link>
         <Link href={menuLink('user/history')}>{t('history')}</Link>
-        <Link href={menuLink('user/account')}>{t('account')}</Link>
         <Link href={menuLink('user/payout')}>
           {t('payments')} <span className="status dark-text-white">{t('available')}</span>
         </Link>
