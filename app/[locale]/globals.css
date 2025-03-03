@@ -403,6 +403,9 @@ select:hover {
 .data-\[hover\=true\]\:bg-primary-50[data-hover="true"] {
   background-color: var(--transparent-active) !important;
 }
+.dark .pagination .border-input {
+  border-color: rgb(75 85 99);
+}
 @media(max-width: 1199px){
   .cashback-card {
     width: calc(33.3% - 20px);
@@ -510,6 +513,7 @@ select:hover {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --nextui-disabled-opacity: 0.5;
   }
   .dark {
     --background: 0 0% 3.9%;

@@ -55,7 +55,8 @@
       "buy": "Purchase"
     },
     "search_by_date": "Search by date",
-    "button_text": "Submit request"
+    "button_text": "Submit request",
+    "all_clicks_error" : "No results"
   },
   "Account": {
     "no_accounts": "You have no personal accounts added yet",
