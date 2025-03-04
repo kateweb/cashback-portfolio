@@ -1,36 +1,27 @@
-import axios from 'axios';
 import { NextResponse } from 'next/server';
+import { getToken } from "@/utils/getToken";
 
 export async function DELETE(request: Request) {
+	const token = await getToken()
+	if (!token) {
+		return new NextResponse("Unauthorized", { status: 403 })
+	}
 	try {
-		const token = request.headers.get('Authorization')
-		console.log({token});
-		if (!token) {
-			return new NextResponse(
-				JSON.stringify({ success: false, error: 'Authorization header is missing' }),
-				{ status: 401 }
-			);
-		}
-		const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/deactivate`, {
+		const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/deactivate`;
+		const response = await fetch(apiUrl, {
+			method: 'DELETE',
 			headers: {
-				Authorization: `Bearer ${token}`,
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`,
 			},
 		});
-		if (response.status === 200) {
-			return new Response(JSON.stringify({ success: true }), { status: 200 });
-		} else {
-			return new Response(
-				JSON.stringify({ success: false, errors: response.data.errors }),
-				{ status: response.status }
-			);
+
+		if (!response.ok) {
+			throw new Error(`Backend error: ${response.statusText}`);
 		}
-	} catch (error: any) {
-		return new Response(
-			JSON.stringify({
-				success: false,
-				errors: error.response?.data?.message || [{ general: 'Server error' }],
-			}),
-			{ status: error.response?.status || 500 }
-		);
+		return new NextResponse(null, { status: 200 });
+	} catch (error) {
+		console.error('Error fetching api:', error);
+		return new NextResponse(null, { status: 500 });
 	}
 }

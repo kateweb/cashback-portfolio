@@ -8,7 +8,6 @@ import {Select, SelectItem} from "@heroui/select";
 import BalancesItems from "@/components/BalancesItems";
 
 const Payout = () => {
-  const tcash = useTranslations('Cashback');
   const t = useTranslations('Payout');
   const isDisabled = true;
 
@@ -24,7 +23,7 @@ const Payout = () => {
               <Select 
               placeholder={t('form.choose_account')}
               disabledKeys={["no_accounts"]} >
-              <SelectItem key="no_accounts" value="no_accounts">
+              <SelectItem key="no_accounts" textValue="no_accounts">
                 {t('form.no_accounts')}
               </SelectItem>
             </Select>

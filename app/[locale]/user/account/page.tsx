@@ -1,22 +1,17 @@
-import {useTranslations} from 'next-intl';
-import Link from 'next/link';
-import Layout from '@/components/Layout';
+// pages/account
+'use client'
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-const Account = ({ params }: { params: { locale: string } }) => {
-  const { locale } = params;
-  const t = useTranslations('Account');
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+const Account = () => {
+	const router = useRouter();
 
-  return (
-    <Layout>
-      <div className='mx-auto my-4 max-w-max'>
-        <p className="mb-2 text-md dark-text-white">{t('no_accounts')}</p>
-        <Link href={baseUrl+locale+"/user/account/new"} className="m-2 mx-0 account-btn btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
-          {t('add_account')}
-        </Link>
-      </div>
-    </Layout>
-  );
+	useEffect(() => {
+		// Redirect to the custom 404 page
+		router.push('/404'); // Or any path to a custom 404 page you want
+	}, [router]);
+
+	return null; // Empty component, as we're redirecting
 };
 
 export default Account;

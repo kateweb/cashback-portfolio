@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import { useLocale } from "@/contexts/LocaleContext";
 import {useTranslations} from 'next-intl';
 import CashbackCard from "@/components/offer/CashbackCard";
 import { PaginationWithLinks } from "@/components/ui/pagination-with-links";
+import { usePagination } from '@/utils/paginationHook';
 import Loader from "@/components/ui/Loader";
+import Cookies from "js-cookie";
 
 interface Offer {
 	id: string;
@@ -18,59 +18,19 @@ interface Offer {
 interface OffersProps {
 	searchParams?: { [key: string]: string };
 	categoryId?: string;
-	title?: string;
 }
 
-const Offers = ({ searchParams = {}, categoryId, title }: OffersProps) => {
+const Offers = ({ searchParams = {}, categoryId }: OffersProps) => {
 	const { locale } = useLocale();
 	const t = useTranslations('Main');
-	const [filteredOffers, setOffers] = useState<Offer[]>([]);
-	const [totalResults, setTotalResults] = useState(0);
 	const currentPage = parseInt(searchParams.page || "1");
-	const [postsPerPage, setPostsPerPage] = useState<number | null>(null);
-	const [isMounted, setIsMounted] = useState(false);
-
-	useEffect(() => {
-		// Set page size after component is mounted to avoid SSR mismatch
-		const defaultPageSize = parseInt(Cookies.get("pageSize") || searchParams.pageSize || "10");
-		setPostsPerPage(defaultPageSize);
-		setIsMounted(true);
-	}, [searchParams.pageSize]);
-	useEffect(() => {
-		if (postsPerPage === null) return;
-		const fetchOffers = async () => {
-			try {
-				const url = categoryId
-					? `/api/offers?categoryId=${categoryId}&page=${currentPage}&limit=${postsPerPage}`
-					: `/api/offers?page=${currentPage}&limit=${postsPerPage}`;
-
-				const response = await fetch(url, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						lang: locale,
-					},
-				});
-
-				if (!response.ok) {
-					throw new Error(`HTTP error! Status: ${response.status}`);
-				}
-
-				const data = await response.json();
-				setTotalResults(parseInt(data.total_count) || 0);
-				setOffers(Array.isArray(data.offers) ? data.offers : []);
-			} catch (error) {
-				console.error("Error fetching offers:", error);
-			}
-		};
-
-		fetchOffers();
-	}, [locale, currentPage, postsPerPage, categoryId]);
-
-	const handlePageSizeChange = (newPageSize: number) => {
-		setPostsPerPage(newPageSize);
-		Cookies.set("pageSize", newPageSize.toString(), { expires: 30 });
-	};
+	const { data: filteredOffers, totalResults, currentPage: currentPageState, postsPerPage, isMounted, handlePageSizeChange } = usePagination<Offer>(
+		`/api/offers${categoryId ? `?categoryId=${categoryId}` : ''}`,
+		currentPage,
+		parseInt(Cookies.get("pageSize") || "10"),
+		locale,
+		'offers'
+	);
 
 	if (!isMounted) {
 		return null;
@@ -107,13 +67,13 @@ const Offers = ({ searchParams = {}, categoryId, title }: OffersProps) => {
 					<p>{t('all_offers_error')}</p>
 				</div>
 			)}
-			{postsPerPage !== null && (
+			{filteredOffers.length > 0 && postsPerPage !== null && (
 				<PaginationWithLinks
 					page={currentPage}
 					pageSize={postsPerPage}
 					totalCount={totalResults}
 					pageSizeSelectOptions={{
-						pageSizeOptions: [3, 5, 10, 25],
+						pageSizeOptions: [5, 10, 25],
 					}}
 					onPageSizeChange={handlePageSizeChange}
 				/>

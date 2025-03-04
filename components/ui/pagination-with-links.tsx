@@ -142,7 +142,7 @@ export function PaginationWithLinks({
 	};
 
 	return (
-		<div className="flex flex-col md:flex-row items-center justify-center gap-3 mt-3">
+		<div className="pagination dark-text-white flex flex-col md:flex-row items-center justify-center gap-3 mt-3">
 			<Pagination>
 				<PaginationContent className="max-sm:gap-0">
 					<PaginationItem>
