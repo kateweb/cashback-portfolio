@@ -35,7 +35,7 @@ const BalancesItems = () => {
 		};
 
 		fetchBalances();
-	}, []);
+	}, [t]);
 
 	if (error) return <div className='text-center my-3'>{error}</div>;
 
