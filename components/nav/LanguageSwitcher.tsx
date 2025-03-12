@@ -20,8 +20,19 @@ export default function LanguageSwitcher() {
   }, [lang]);
   
   const handleLocaleChange = (newLocale: string) => {
-    setLocale(newLocale);
-    router.push(`/${newLocale}${pathname}`);
+    const sendLocale = async () => {
+      try {
+        const response = await fetch(`/api/set-locale?locale=${newLocale}`, {
+          method: 'PATCH',
+        });
+        await response.json();
+        setLocale(newLocale);
+        router.push(`/${newLocale}${pathname}`);
+      } catch (error) {
+        console.error('Error fetching set-locale:', error);
+      }
+    };
+    sendLocale();
   };
   const mainInfo = (
     <>
