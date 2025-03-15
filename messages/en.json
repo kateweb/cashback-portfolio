@@ -55,8 +55,11 @@
       "buy": "Purchase"
     },
     "search_by_date": "Search by date",
+    "search_by_offer": "Search by offer",
     "button_text": "Submit request",
-    "all_clicks_error" : "No results"
+    "all_clicks_error" : "No results",
+    "search": "Search",
+    "search_offer_error": "Enter at least 3 characters"
   },
   "Account": {
     "no_accounts": "You have no personal accounts added yet",
@@ -116,8 +119,11 @@
   },
   "Datepiсker": {
     "dd": "dd",
+    "MM": "mm",
+    "yyyy": "yyyy",
+    "HH": "HH",
     "mm": "mm",
-    "yyyy": "yyyy"
+    "ss": "ss"
   },
   "Auth": {
     "reg_text": "Enter your email to register for an account.",
