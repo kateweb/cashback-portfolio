@@ -95,6 +95,7 @@ const History = ({ searchParams = {} }: HistoryProps) => {
     if (value.length === 0) {
       setErrorMessage('');
       setOfferId('');
+      setSearchParamsState((prev) => ({ ...prev, offerId: '' }));
       setOfferIsEmpty(false);
       return;
     }
@@ -148,9 +149,9 @@ const History = ({ searchParams = {} }: HistoryProps) => {
       <div className='m-auto mx-5 mb-4 mt-4 flex flex-col items-center justify-center'>
         <h2 className='text-center text-2xl dark-text-white'>{t('title')}</h2>
       </div>
-      <div className='dark-text-white max-w-[600px] -mx-3 md:mx-auto'>
-        <div className='d-flex items-start'>
-          <div className='form-control me-3 max-w-[50%] w-full'>
+      <div className='dark-text-white max-w-[600px] mx-auto'>
+        <div className='flex flex-col sm:flex-row items-start'>
+          <div className='form-control me-3 sm:max-w-[50%] w-full'>
             <label className='text-sm mb-1 block'>{t('search_by_date')}</label>
             <CustomDatepicker
               className='w-full transition-none'
@@ -159,7 +160,7 @@ const History = ({ searchParams = {} }: HistoryProps) => {
             />
           </div>
 
-          <div className='form-control max-w-[50%] w-full'>
+          <div className='form-control sm:max-w-[50%] w-full mt-3 sm:mt-0'>
             <label className='text-sm mb-1 block'>{t('search_by_offer')}</label>
             <Input
               type='text'

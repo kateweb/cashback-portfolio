@@ -437,7 +437,7 @@ select:hover {
   .cashback-form .react-date-picker {
     height: 56px;
   }
-  input, select {
+  input, select, .react-date-picker__inputGroup__divider, .react-date-picker__inputGroup__leadingZero {
     font-size: 16px !important;
   }
 

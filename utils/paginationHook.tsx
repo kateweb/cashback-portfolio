@@ -39,7 +39,6 @@ export function usePagination<T>(
 
 				const response = await fetch(url);
 				const responseData = await response.json();
-				console.log(responseData)
 				if (responseData[dataKey]) setData(responseData[dataKey]);
 
 				setTotalResults(parseInt(responseData.total_count) || 0);
