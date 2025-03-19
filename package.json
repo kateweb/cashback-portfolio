@@ -42,6 +42,7 @@
     "next-translate": "^2.6.2",
     "react": "^18",
     "react-date-picker": "^11.0.0",
+    "react-datetime-picker": "^6.0.1",
     "react-dom": "^18",
     "react-toastify": "^10.0.6",
     "rimraf": "^6.0.1",

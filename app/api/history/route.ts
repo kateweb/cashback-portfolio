@@ -7,11 +7,20 @@ export async function GET(req: Request) {
 	try {
 		const page = searchParams.get('page');
 		const limit = searchParams.get('limit');
+		const createdAt = searchParams.get('createdAt');
+		const offerId = searchParams.get('offerId');
 		const token = await getToken()
+		console.log(token)
 		if (!token) {
 			return new NextResponse("Unauthorized", { status: 403 })
 		}
-		const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/clicks?page=${page}&limit=${limit}`;
+		let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/clicks?page=${page}&limit=${limit}`;
+		if (createdAt) {
+			apiUrl += `&createdAt=${createdAt}`; // Append createdAt if it exists
+		}
+		if (offerId) {
+			apiUrl += `&offerId=${offerId}`; // Append offerId if it exists
+		}
 		const response = await fetch(apiUrl, {
 			method: 'GET',
 			headers: {
@@ -24,6 +33,7 @@ export async function GET(req: Request) {
 		}
 
 		const data = await response.json();
+		console.log(data)
 		return NextResponse.json(data);
 	} catch (error) {
 		console.error('Error fetching history:', error);
