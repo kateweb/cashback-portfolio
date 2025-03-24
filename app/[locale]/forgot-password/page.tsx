@@ -14,7 +14,6 @@ const ForgotPassword = () => {
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email(t('Auth.errors.email_valid'))
-      // @ts-ignore
       .required(`${t('Auth.errors.required', { name: 'Email' })}`),
   });
 

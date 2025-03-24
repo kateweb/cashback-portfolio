@@ -7,7 +7,8 @@ declare module 'next-intl' {
     children: ReactNode;
   }
 
-  export function useTranslations(namespace?: string): (key: string) => string;
+
+  export function useTranslations(namespace?: string): (key: string, values?: Record<string, string | number>) => string;z
 
   export function IntlProvider(props: IntlProviderProps): JSX.Element;
 

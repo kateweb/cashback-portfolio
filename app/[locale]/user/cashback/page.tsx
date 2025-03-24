@@ -12,6 +12,8 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const Cashback = () => {
   const t = useTranslations('Cashback');
+  const [availableBalance, setAvailableBalance] = useState(0);
+  const [refreshBalance, setRefreshBalance] = useState(false);
   const statuses = [
     { key: "available", label: t('status.available')},
     { key: "waiting", label: t('status.waiting')},
@@ -22,7 +24,7 @@ const Cashback = () => {
   return (
     <Layout>
       <div className='my-5 sm:-mx-3 md:mx-5 dark-text-white '>
-        <BalancesItems/>
+        <BalancesItems setAvailableBalance={setAvailableBalance} refresh={refreshBalance}/>
         <div className='sm:flex justify-content-center cashback-form'>
           <Select 
             label={t('status.title')}

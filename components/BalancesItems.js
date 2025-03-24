@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import {useTranslations} from 'next-intl';
 import Loader from "@/components/ui/Loader";
 
-const BalancesItems = () => {
+const BalancesItems = ({ setAvailableBalance, refresh}) => {
 	const [balances, setBalances] = useState({ waiting: 0, available: 0, currency: 'uah' });
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -19,11 +19,16 @@ const BalancesItems = () => {
 				const data = await response.json();
 
 				if (response.ok) {
-					setBalances({
+					const balanceData = {
 						waiting: data[0].hold,
 						available: data[0].paid,
 						currency: data[0].currency
-					});
+					};
+					setBalances(balanceData);
+
+					if (setAvailableBalance) {
+						setAvailableBalance(balanceData.available);
+					}
 				} else {
 					setError(t('Cashback.failed'));
 				}
@@ -35,7 +40,7 @@ const BalancesItems = () => {
 		};
 
 		fetchBalances();
-	}, [t]);
+	}, [t, setAvailableBalance, refresh]);
 
 	if (error) return <div className='text-center my-3'>{error}</div>;
 
