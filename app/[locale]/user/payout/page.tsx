@@ -164,6 +164,8 @@ const Payout = () => {
               </Form>
             )}
           </Formik>
+        </div>
+        <div className='mx-auto my-4 max-w-[800px] dark-text-white'>
           <h3 className='text-xl font-bold mb-4 mt-5'>{t('table.list')}</h3>
           <PaymentTable/>
         </div>

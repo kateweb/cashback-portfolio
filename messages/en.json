@@ -94,12 +94,17 @@
     },
     "table": {
       "list": "Payments List",
-      "ordered_amount": "Ordered Amount",
-      "ndfl_amount": "PIT Amount",
-      "vs_amount": "Military Tax Amount",
-      "amount_to_paid": "Amount to be Paid",
+      "requested_amount": "Ordered Amount",
+      "income_tax_amount": "PIT Amount",
+      "military_tax_amount": "Military Tax Amount",
+      "amount_to_pay": "Amount to be Paid",
       "status": "Status",
-      "date": "Date",
+      "statuses": {
+        "pending": "Pending",
+        "paid": "Paid",
+        "rejected": "Rejected"
+      },
+      "created_at": "Date",
       "action": "Action",
       "cancel": "Cancel"
     }

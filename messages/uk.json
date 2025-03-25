@@ -94,12 +94,17 @@
     },
     "table": {
       "list": "Список виплат",
-      "ordered_amount": "Замовлена сума",
-      "ndfl_amount": "Сума ПДФО",
-      "vs_amount": "Сума ВЗ",
-      "amount_to_paid": "Сума до виплати",
+      "requested_amount": "Замовлена сума",
+      "income_tax_amount": "Сума ПДФО",
+      "military_tax_amount": "Сума ВЗ",
+      "amount_to_pay": "Сума до виплати",
       "status": "Статус",
-      "date": "Дата",
+      "statuses": {
+        "pending": "В очікуванні",
+        "paid": "Виплачено",
+        "rejected": "Відхилено"
+      },
+      "created_at": "Дата",
       "action": "Дія",
       "cancel": "Скасувати"
     }

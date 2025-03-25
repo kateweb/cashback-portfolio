@@ -13,6 +13,7 @@
     "@eslint/config-array": "^0.19.2",
     "@eslint/object-schema": "^2.1.6",
     "@fontsource/roboto": "^5.1.0",
+    "@heroui/badge": "^2.2.10",
     "@heroui/date-picker": "^2.3.10",
     "@heroui/input": "^2.4.10",
     "@heroui/react": "^2.6.14",
@@ -47,6 +48,7 @@
     "react-toastify": "^10.0.6",
     "rimraf": "^6.0.1",
     "sharp": "^0.33.5",
+    "swr": "^2.3.3",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "yup": "^1.4.0"

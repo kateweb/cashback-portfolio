@@ -78,6 +78,14 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [heroui(), require("tailwindcss-animate")],
+  plugins: [heroui({
+		themes: {
+			light: {
+				colors: {
+					danger: '#f52525',
+					success: '#8ab63f'
+				},
+			},
+		}}), require("tailwindcss-animate")],
 }
 export default config

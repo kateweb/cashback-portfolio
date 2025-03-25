@@ -9,29 +9,58 @@ import {
 	TableCell,
 	Pagination,
 	Spinner,
-	getKeyValue,
+	getKeyValue, Button,
 } from "@heroui/react";
 import {useTranslations} from "next-intl";
+import {Badge} from "@heroui/badge";
+import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const PaymentTable= () => {
 	const t = useTranslations('Payout');
+	const tc = useTranslations('Cashback');
+
 	const [page, setPage] = React.useState(1);
-
-	const {data, isLoading} = "";
-
 	const rowsPerPage = 10;
+	const {data, isLoading} = useSWR(`/api/payment/list?page=${page}&limit=${rowsPerPage}`, fetcher, {
+		keepPreviousData: true,
+	});
 
+	console.log(data);
 	const pages = React.useMemo(() => {
-		return data?.count ? Math.ceil(data.count / rowsPerPage) : 0;
-	}, [data?.count, rowsPerPage]);
+		return data?.total_count ? Math.ceil(data.total_count / rowsPerPage) : 0;
+	}, [data?.total_count, rowsPerPage]);
 
-	const loadingState = isLoading || data?.results.length === 0 ? "loading" : "idle";
+	const loadingState = isLoading || data?.offers.length === 0 ? "loading" : "idle";
 
+	const handleCancelButton = (item) => {
+		console.log(item);
+	};
+	const getStatusDetails = (status) => {
+		switch (status) {
+			case 0:
+				return { text: t('table.statuses.pending'), color: 'warning' };
+			case 1:
+				return { text: t('table.statuses.paid'), color: 'success' };
+			case 2:
+				return { text: t('table.statuses.rejected'), color: 'danger' };
+			default:
+				return { text: '', color: 'default' };
+		}
+	};
+	const columnKeys = [
+		'requested_amount',
+		'income_tax_amount',
+		'military_tax_amount',
+		'amount_to_pay',
+		'status',
+		'created_at',
+		'action'
+	];
 	return (
 		<Table
-			aria-label="Example table with client async pagination"
+			aria-label="Payments list table"
 			bottomContent={
 				pages > 0 ? (
 					<div className="flex w-full justify-center">
@@ -48,23 +77,44 @@ const PaymentTable= () => {
 				) : null
 			}
 		>
+
 			<TableHeader>
-				<TableColumn key="ordered_amount">{t('table.ordered_amount')}</TableColumn>
-				<TableColumn key="ndfl_amount">{t('table.ndfl_amount')}</TableColumn>
-				<TableColumn key="vs_amount">{t('table.vs_amount')}</TableColumn>
-				<TableColumn key="amount_to_paid">{t('table.amount_to_paid')}</TableColumn>
-				<TableColumn key="status">{t('table.status')}</TableColumn>
-				<TableColumn key="date">{t('table.date')}</TableColumn>
-				<TableColumn key="action">{t('table.action')}</TableColumn>
+				{columnKeys.map((key) => (
+					<TableColumn key={key}>{t(`table.${key}`)}</TableColumn>
+				))}
 			</TableHeader>
 			<TableBody
-				items={data?.results ?? []}
+				items={data?.offers ?? []}
 				loadingContent={<Spinner />}
 				loadingState={loadingState}
 			>
 				{(item) => (
 					<TableRow key={item?.name}>
-						{(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+						{columnKeys.map((columnKey, index) => (
+							<TableCell key={columnKey} className="whitespace-nowrap">
+								{columnKey === "status" ? (
+										<Badge
+											color={getStatusDetails(item[columnKey]).color}
+											content={getStatusDetails(item[columnKey]).text}
+											size="sm">
+											<span></span>
+										</Badge>
+								) :
+								columnKey === "action" ? (
+									<Button
+										variant="ghost"
+										color="primary"
+										size="sm"
+										onPress={() => handleCancelButton(item)}>
+										{t('table.cancel')}
+									</Button>
+								) : index < 4 ? (
+									`${getKeyValue(item, columnKey)} ${tc('uah')}`
+								) : (
+									getKeyValue(item, columnKey)
+								)}
+							</TableCell>
+						))}
 					</TableRow>
 				)}
 			</TableBody>
