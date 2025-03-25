@@ -9,6 +9,7 @@ import {Alert} from "@heroui/alert";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from "yup";
 import {toast} from "react-toastify";
+import PaymentTable from "@/components/PaymentTable";
 
 const Payout = () => {
   const t = useTranslations('Payout');
@@ -121,7 +122,7 @@ const Payout = () => {
         </div>
         <div className='mx-auto my-4 max-w-[664px] dark-text-white'>
           <div key="warning" className="w-100  flex items-center mb-5">
-            <Alert color="warning" title={t('form.tax_alert', {ndfl: settings?.ndfl, vs: settings?.vs } )}/>
+            <Alert color="warning" title={t('form.tax_alert', {ndfl: settings?.ndfl, vs: settings?.vs})}/>
           </div>
           <Formik
             initialValues={{
@@ -133,28 +134,28 @@ const Payout = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({ isValid }) => (
+            {({isValid}) => (
               <Form noValidate>
                 <h3 className='text-xl font-bold mb-4'>{t('form.application_title')}</h3>
                 <div className='form-control mb-3'>
                   <label className='font-medium text-sm mb-1 block'>{t('form.full_name')}</label>
                   <Field as={Input} type="text" name="client"/>
-                  <ErrorMessage name="client" component="p" className="text-sm text-red-400" />
+                  <ErrorMessage name="client" component="p" className="text-sm text-red-400"/>
                 </div>
                 <div className='form-control mb-3'>
                   <label className='font-medium text-sm mb-1 block'>{t('form.ipn')}</label>
                   <Field as={Input} type="number" name="taxNumber"/>
-                  <ErrorMessage name="taxNumber" component="p" className="text-sm text-red-400" />
+                  <ErrorMessage name="taxNumber" component="p" className="text-sm text-red-400"/>
                 </div>
                 <div className='form-control mb-3'>
                   <label className='font-medium text-sm mb-1 block'>Iban</label>
                   <Field as={Input} type="text" name="iban"/>
-                  <ErrorMessage name="iban" component="p" className="text-sm text-red-400" />
+                  <ErrorMessage name="iban" component="p" className="text-sm text-red-400"/>
                 </div>
                 <div className='form-control mb-3'>
                   <label className='font-medium text-sm mb-1 block'>{t('form.sum')}</label>
                   <Field as={Input} type="number" name="amount"/>
-                  <ErrorMessage name="amount" component="p" className="text-sm text-red-400" />
+                  <ErrorMessage name="amount" component="p" className="text-sm text-red-400"/>
                 </div>
                 <button disabled={!isValid || isSubmitting}
                         className="disabled:pointer-events-none disabled:opacity-50 mt-4 btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
@@ -163,6 +164,8 @@ const Payout = () => {
               </Form>
             )}
           </Formik>
+          <h3 className='text-xl font-bold mb-4 mt-5'>{t('table.list')}</h3>
+          <PaymentTable/>
         </div>
       </div>
     </Layout>

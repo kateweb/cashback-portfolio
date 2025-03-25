@@ -76,7 +76,7 @@
   "Payout": {
     "form":{
       "application_title": "Create an application for a bonus",
-      "tax_alert": "Dear customer, when withdrawing funds you will be withheld the percentage of personal income tax = {ndfl}% and the percentage of military fee = {vs}%",
+      "tax_alert": "Dear customer, when withdrawing funds you will be withheld the percentage of personal income tax = {ndfl}% and the percentage of military tax = {vs}%",
       "full_name": "Full name",
       "ipn": "ITN",
       "sum": "The amount",
@@ -91,6 +91,17 @@
         },
         "invalid_iban": "International Bank Account Number (IBAN) is not valid."
       }
+    },
+    "table": {
+      "list": "Payments List",
+      "ordered_amount": "Ordered Amount",
+      "ndfl_amount": "PIT Amount",
+      "vs_amount": "Military Tax Amount",
+      "amount_to_paid": "Amount to be Paid",
+      "status": "Status",
+      "date": "Date",
+      "action": "Action",
+      "cancel": "Cancel"
     }
   },
   "Errors": {
