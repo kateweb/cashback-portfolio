@@ -17,15 +17,21 @@ import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const PaymentTable= () => {
+const PaymentTable= ({refresh}) => {
 	const t = useTranslations('Payout');
 	const tc = useTranslations('Cashback');
 
 	const [page, setPage] = React.useState(1);
 	const rowsPerPage = 10;
-	const {data, isLoading} = useSWR(`/api/payment/list?page=${page}&limit=${rowsPerPage}`, fetcher, {
+	const {data, isLoading, mutate} = useSWR(`/api/payment/list?page=${page}&limit=${rowsPerPage}`, fetcher, {
 		keepPreviousData: true,
 	});
+
+	React.useEffect(() => {
+		if (refresh) {
+			mutate();
+		}
+	}, [refresh, mutate]);
 
 	console.log(data);
 	const pages = React.useMemo(() => {

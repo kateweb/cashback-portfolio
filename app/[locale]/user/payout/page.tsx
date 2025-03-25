@@ -18,6 +18,7 @@ const Payout = () => {
   const [availableBalance, setAvailableBalance] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [refreshBalance, setRefreshBalance] = useState(false);
+  const [refreshTable, setRefreshTable] = useState(false);
 
   //Fetch payment settings list
   useEffect(() => {
@@ -105,6 +106,7 @@ const Payout = () => {
       }
       resetForm();
       setRefreshBalance((prev) => !prev);
+      setRefreshTable((prev) => !prev);
       toast.success(t('form.success_alert'));
     } catch (error) {
       toast.error('Error creating payment request');
@@ -167,7 +169,7 @@ const Payout = () => {
         </div>
         <div className='mx-auto my-4 max-w-[800px] dark-text-white'>
           <h3 className='text-xl font-bold mb-4 mt-5'>{t('table.list')}</h3>
-          <PaymentTable/>
+          <PaymentTable refresh={refreshTable}/>
         </div>
       </div>
     </Layout>
