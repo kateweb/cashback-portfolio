@@ -78,7 +78,7 @@
       "application_title": "Create an application for a bonus",
       "tax_alert": "Dear customer, when withdrawing funds you will be withheld the percentage of personal income tax = {ndfl}% and the percentage of military tax = {vs}%",
       "full_name": "Full name",
-      "ipn": "ITN",
+      "ipn": "Tax Number",
       "sum": "The amount",
       "btn_text": "Make a request to receive",
       "btn_text_submitting": "Submitting...",

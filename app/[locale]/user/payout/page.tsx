@@ -150,7 +150,7 @@ const Payout = () => {
                   <ErrorMessage name="taxNumber" component="p" className="text-sm text-red-400"/>
                 </div>
                 <div className='form-control mb-3'>
-                  <label className='font-medium text-sm mb-1 block'>Iban</label>
+                  <label className='font-medium text-sm mb-1 block'>IBAN</label>
                   <Field as={Input} type="text" name="iban"/>
                   <ErrorMessage name="iban" component="p" className="text-sm text-red-400"/>
                 </div>
