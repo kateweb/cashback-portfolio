@@ -14,6 +14,7 @@ import {
 import {useTranslations} from "next-intl";
 import {Badge} from "@heroui/badge";
 import useSWR from "swr";
+import {toast} from "react-toastify";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -33,7 +34,6 @@ const PaymentTable= ({refresh}) => {
 		}
 	}, [refresh, mutate]);
 
-	console.log(data);
 	const pages = React.useMemo(() => {
 		return data?.total_count ? Math.ceil(data.total_count / rowsPerPage) : 0;
 	}, [data?.total_count, rowsPerPage]);
@@ -41,7 +41,31 @@ const PaymentTable= ({refresh}) => {
 	const loadingState = isLoading || data?.offers.length === 0 ? "loading" : "idle";
 
 	const handleCancelButton = (item) => {
-		console.log(item);
+		const cancelPayment = async () => {
+			try {
+				const response = await fetch(`/api/payment/cancel/${item.id}`, {
+					method: 'PATCH',
+				});
+				let res = await response.json();
+				if(res.error) {
+					toast.error(t('table.cancel_error'));
+				} else {
+					toast.success(t('table.cancel_success'));
+					mutate((currentData) => {
+						if (!currentData) return currentData;
+						return {
+							...currentData,
+							offers: currentData.offers.map((offer) =>
+								offer.id === item.id ? {...offer, status: 2} : offer
+							),
+						};
+					}, false);
+				}
+			} catch (error) {
+				console.error('Error cancelling payment:', error);
+			}
+		};
+		cancelPayment();
 	};
 	const getStatusDetails = (status) => {
 		switch (status) {
@@ -102,12 +126,14 @@ const PaymentTable= ({refresh}) => {
 										<Badge
 											color={getStatusDetails(item[columnKey]).color}
 											content={getStatusDetails(item[columnKey]).text}
+											className="payment-badge"
 											size="sm">
 											<span></span>
 										</Badge>
 								) :
 								columnKey === "action" ? (
 									<Button
+										isDisabled={item?.status !== 0}
 										variant="ghost"
 										color="primary"
 										size="sm"

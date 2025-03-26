@@ -414,6 +414,10 @@ select:hover {
 .dark .pagination .border-input {
   border-color: rgb(75 85 99);
 }
+.payment-badge {
+  width: 85px;
+  margin-top: -5px;
+}
 @media(max-width: 1199px){
   .cashback-card {
     width: calc(33.3% - 20px);

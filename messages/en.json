@@ -106,7 +106,9 @@
       },
       "created_at": "Date",
       "action": "Action",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "cancel_error": "There was an error canceling the payment. Try again later.",
+      "cancel_success": "Payment successfully canceled."
     }
   },
   "Errors": {
