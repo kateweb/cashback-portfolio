@@ -96,7 +96,7 @@
       "list": "Payments List",
       "requested_amount": "Ordered Amount",
       "income_tax_amount": "Income Tax",
-      "military_tax_amount": "Military Tax Amount",
+      "military_tax_amount": "Military Tax",
       "amount_to_pay": "Amount to be Paid",
       "status": "Status",
       "statuses": {
