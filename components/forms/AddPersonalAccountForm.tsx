@@ -10,9 +10,9 @@ const Account = () => {
   const t = useTranslations('Account');
   const [selectedSupplier, setSelectedSupplier] = useState(''); 
   const suppliers = [
-    { key: "sumy", label: t('suppliers.sumy') },
-    { key: "vinnytsya", label: t('suppliers.vinnytsya') },
-    { key: "chernigiv", label: t('suppliers.chernigiv') }
+    { key: "sumy", label: 'sumy' },
+    { key: "vinnytsya", label: 'vinnytsya' },
+    { key: "chernigiv", label: 'chernigiv' }
   ];
 
   const handleSelectChange = (value: any) => {

@@ -24,15 +24,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 		const validationSchema = Yup.object().shape({
 			email: Yup.string()
 				.email(t('errors.email_valid'))
-				// @ts-ignore
 				.required(`${t('errors.required', {name: 'Email'})}`),
 			password: Yup.string()
-				// @ts-ignore
 				.min(8, t('errors.password_min', {num: 8}))
 				.matches(/[A-Z]/, t('errors.password_uppercase'))
 				.matches(/[a-z]/, t('errors.password_lowercase'))
 				.matches(/\d/, t('errors.password_number'))
-				// @ts-ignore
 				.required(t('errors.required', {name: t('password')})),
 		});
 

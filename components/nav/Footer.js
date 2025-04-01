@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="mt-auto p-2 pt-3">
       <div className="container">
-        <div className="w-full text-center dark-text-white"> © 2012-2024 {t('title')} </div>
+        <div className="w-full text-center dark-text-white"> © 2012-2025 {t('title')} </div>
       </div>
     </footer>
   );

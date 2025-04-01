@@ -71,31 +71,52 @@
       "full_name": "Last Name",
       "full_name_placeholder": "Shevchenko Taras Grigoryovych",
       "add_btn": "Add account"
-    },
-    "suppliers": {
-      "sumy": "Sumy",
-      "vinnytsya": "Vinnytsia",
-      "chernigiv": "Chernigiv"
     }
   },
   "Payout": {
     "form":{
       "application_title": "Create an application for a bonus",
-      "choose_account": "Choose an account to receive",
-      "enter_ipn": "Enter your TIN (We only check it and do not store it anywhere)",
-      "enter_sum": "Enter the amount you want to receive, number only",
+      "tax_alert": "Dear customer, when withdrawing funds you will be withheld the percentage of personal income tax = {ndfl}% and the percentage of military tax = {vs}%",
+      "full_name": "Full name",
+      "ipn": "Tax Number",
+      "sum": "The amount",
       "btn_text": "Make a request to receive",
-      "no_accounts": "No accounts available"
-    },
-    "alert": {
-      "warning": "Attention!",
-      "fees": "MoneyBack will pay cashback taxes on your behalf",
-      "info_list": {
-        "1": "After sending the application, you will not be able to cancel it",
-        "2": "The application will be processed within 14 working days",
-        "3": "If this does not happen - contact the support service"
+      "btn_text_submitting": "Submitting...",
+      "no_accounts": "No accounts available",
+      "success_alert": "The payment will be credited to the specified details within 10 working days",
+      "errors": {
+        "amount": {
+          "min": "Minimum limit: {min} UAH.",
+          "max": "Available on balance: {max} UAH."
+        },
+        "invalid_iban": "International Bank Account Number (IBAN) is not valid."
       }
+    },
+    "table": {
+      "list": "Payments List",
+      "requested_amount": "Ordered Amount",
+      "income_tax_amount": "Income Tax",
+      "military_tax_amount": "Military Tax",
+      "amount_to_pay": "Amount to be Paid",
+      "status": "Status",
+      "statuses": {
+        "pending": "Pending",
+        "paid": "Paid",
+        "rejected": "Rejected"
+      },
+      "created_at": "Date",
+      "action": "Action",
+      "cancel": "Cancel",
+      "cancel_error": "There was an error canceling the payment. Try again later.",
+      "cancel_success": "Payment successfully canceled."
     }
+  },
+  "Errors": {
+    "length": "Field must contain {length} characters",
+    "min": "Minimum number of characters {min}",
+    "max": "Maximum number of characters {max}",
+    "required": "Required field",
+    "decimal_number": "Field has a currency format with a maximum of two decimal places"
   },
   "Disputs": {
     "lost_cashback_title": "Lost cashback application form",

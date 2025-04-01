@@ -18,6 +18,8 @@
   --transparent-active: rgba(124, 180, 66, 0.2);
   --focus-color: rgb(209, 213, 219);
   --green: #8AB63F;
+  --warning: #f5a524;
+  --dark-warning: #f09606;
   --night:rgb(31, 41, 55);
   --dark-card-color: #2A2D34;
 }
@@ -253,11 +255,17 @@ select:hover {
   background-color: var(--green);
 
 }
+.btn-warning {
+  background-color: var(--warning);
+}
 .dark .btn {
   color: #fff;
 }
 .btn:hover {
   background-color: var(--dark-green);
+}
+.btn-warning:hover {
+  background-color: var(--dark-warning);
 }
 .offer-btn {
   min-width: 200px;
@@ -405,6 +413,10 @@ select:hover {
 }
 .dark .pagination .border-input {
   border-color: rgb(75 85 99);
+}
+.payment-badge {
+  width: 85px;
+  margin-top: -5px;
 }
 @media(max-width: 1199px){
   .cashback-card {

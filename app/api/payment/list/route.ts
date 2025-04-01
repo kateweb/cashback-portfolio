@@ -1,4 +1,4 @@
-// app/api/history/route.ts
+// app/api/payment/list/route.ts
 import { NextResponse } from 'next/server';
 import { getToken } from "@/utils/getToken";
 
@@ -7,19 +7,14 @@ export async function GET(req: Request) {
 	try {
 		const page = searchParams.get('page');
 		const limit = searchParams.get('limit');
-		const createdAt = searchParams.get('createdAt');
-		const offerId = searchParams.get('offerId');
+		const status = searchParams.get('status');
 		const token = await getToken()
-
 		if (!token) {
 			return new NextResponse("Unauthorized", { status: 403 })
 		}
-		let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/clicks?page=${page}&limit=${limit}`;
-		if (createdAt) {
-			apiUrl += `&createdAt=${createdAt}`; // Append createdAt if it exists
-		}
-		if (offerId) {
-			apiUrl += `&offerId=${offerId}`; // Append offerId if it exists
+		let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/payment/list?page=${page}&limit=${limit}`;
+		if (status) {
+			apiUrl += `&status=${status}`; // Append status if it exists
 		}
 		const response = await fetch(apiUrl, {
 			method: 'GET',
@@ -29,14 +24,13 @@ export async function GET(req: Request) {
 			},
 		});
 		if (!response.ok) {
-			throw new Error(`Failed to fetch history: ${response.statusText}`);
+			throw new Error(`Failed to fetch payments list: ${response.statusText}`);
 		}
 
 		const data = await response.json();
-		console.log(data)
 		return NextResponse.json(data);
 	} catch (error) {
-		console.error('Error fetching history:', error);
-		return NextResponse.json({ error: 'Failed to fetch history' }, { status: 500 });
+		console.error('Error fetching payments list:', error);
+		return NextResponse.json({ error: 'Failed to fetch payments list' }, { status: 500 });
 	}
 }
