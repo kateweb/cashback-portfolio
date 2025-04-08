@@ -52,7 +52,7 @@ const Header = () => {
     <header className="header border-b border-divider">
       <div className="logo">
         <Link href={"/"+locale}>
-          <Image src="/img/logo.svg" alt="Moneyback" className="object-contain" width={200} height={78} priority />
+          <Image src="/img/logo.svg" alt="Multiback" className="object-contain" width={200} height={78} priority />
         </Link>
       </div>
       <ThemeSwitcher/>
