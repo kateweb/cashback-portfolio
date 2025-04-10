@@ -159,7 +159,7 @@ const Payout = () => {
                   <Field as={Input} type="number" name="amount"/>
                   <ErrorMessage name="amount" component="p" className="text-sm text-red-400"/>
                 </div>
-                <button disabled={!isValid || isSubmitting}
+                <button type="submit" disabled={!isValid || isSubmitting}
                         className="disabled:pointer-events-none disabled:opacity-50 mt-4 btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2">
                   {isSubmitting ? t('form.btn_text_submitting') : t('form.btn_text')}
                 </button>

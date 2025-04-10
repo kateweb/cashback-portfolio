@@ -116,7 +116,10 @@
     "min": "Minimum number of characters {min}",
     "max": "Maximum number of characters {max}",
     "required": "Required field",
-    "decimal_number": "Field has a currency format with a maximum of two decimal places"
+    "decimal_number": "Field has a currency format with a maximum of two decimal places",
+    "file_size": "File is too large (max {size}MB)",
+    "file_format": "Unsupported file format",
+    "tel_format": "Invalid Ukrainian phone number"
   },
   "Disputs": {
     "lost_cashback_title": "Lost cashback application form",
@@ -128,8 +131,10 @@
     "phone_number": "The phone number on which the order was placed",
     "comment": "Your comment",
     "enter_comment": "Enter a comment",
-    "alert_file_text": "WARNING!!! Attach photo proof of purchase - receipt, receipt, screenshot, anything",
-    "btn_text": "Claim cashback loss"
+    "alert_file_text": "WARNING!!! Attach photo proof of purchase - receipt, receipt, screenshot, anything  in .png, .jpeg, .jpg, .pdf format",
+    "btn_text": "Claim cashback loss",
+    "btn_text_submitting": "Submitting...",
+    "success_alert": "Your application has been successfully submitted!"
   },
   "File": {
     "add_file": "Add file",

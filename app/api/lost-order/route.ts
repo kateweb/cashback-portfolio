@@ -1,28 +1,23 @@
-// app/api/payment/create/route.ts
+// app/api/lost-order/route.ts
 import { NextResponse } from 'next/server';
 import { getToken } from "@/utils/getToken";
 
 export async function POST(req: Request) {
 	try {
-		const { client, taxNumber, iban, amount } = await req.json();
+		const formData = await req.formData();
 		const token = await getToken()
+
 		if (!token) {
-			return new NextResponse("Unauthorized", { status: 403 })
+			return new NextResponse("Unauthorized", {status: 403})
 		}
-		let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/balance/payment/create`;
-		const requestBody = {
-			client,
-			taxNumber,
-			iban,
-			amount,
-		};
+		let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/lost-order`;
+
 		const response = await fetch(apiUrl, {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json',
 				'Authorization': `Bearer ${token}`,
 			},
-			body: JSON.stringify(requestBody)
+			body: formData
 		});
 		if (!response.ok) {
 			const errorData = await response.json();
@@ -32,13 +27,13 @@ export async function POST(req: Request) {
 		const data = await response.json();
 		return NextResponse.json(data);
 	} catch (error) {
-		console.error('Error fetching to create payment request:', error);
+		console.error('Error fetching to create lost order request:', error);
 		let errorMessage: string;
 		if (error instanceof Error) {
 			errorMessage = error.message;
 		} else {
 			errorMessage = JSON.stringify(error);
 		}
-		return NextResponse.json({ errors: errorMessage }, { status: 500 });
+		return NextResponse.json({errors: errorMessage}, {status: 500});
 	}
 }
