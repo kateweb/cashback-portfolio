@@ -145,7 +145,7 @@ const Payout = () => {
                   <ErrorMessage name="client" component="p" className="text-sm text-red-400"/>
                 </div>
                 <div className='form-control mb-3'>
-                  <label className='font-medium text-sm mb-1 block'>{t('form.ipn')}</label>
+                  <label className='font-medium text-sm mb-1 block'>{t('form.ipn')} <small>({t('form.passport_info')})</small></label>
                   <Field as={Input} type="number" name="taxNumber"/>
                   <ErrorMessage name="taxNumber" component="p" className="text-sm text-red-400"/>
                 </div>

@@ -44,6 +44,12 @@ body > div.bg-white > div {
   flex-direction: column;
   min-height: 100vh;
 }
+.dark .bg-danger {
+  background-color: #f52525 !important;
+}
+.dark .bg-success {
+  background-color: var(--green) !important;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -417,6 +423,7 @@ select:hover {
 .payment-badge {
   width: 85px;
   margin-top: -5px;
+  border-color: transparent;
 }
 .text-red-400.text-sm {
   padding-top: 3px;
