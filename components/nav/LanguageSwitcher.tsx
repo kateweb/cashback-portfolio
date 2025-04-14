@@ -1,6 +1,6 @@
 // app/components/LanguageSwitcher.tsx
 'use client';
-import {useRouter} from 'next/navigation';
+import {useRouter, useSearchParams} from 'next/navigation';
 import { useState, useEffect } from 'react';
 import {usePathname} from '@/i18n/routing';
 import { useLocale } from '@/contexts/LocaleContext';
@@ -10,6 +10,10 @@ export default function LanguageSwitcher() {
   const {locale} = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const queryString = searchParams.toString();
+  const fullPath = queryString ? `${pathname}?${queryString}` : pathname;
 
   // Extract locale from pathname or set a default (like 'uk')
   const currentLocale = pathname.split('/')[1] || 'uk';
@@ -27,7 +31,7 @@ export default function LanguageSwitcher() {
         });
         await response.json();
         setLocale(newLocale);
-        router.push(`/${newLocale}${pathname}`);
+        router.push(`/${newLocale}${fullPath}`);
       } catch (error) {
         console.error('Error fetching set-locale:', error);
       }

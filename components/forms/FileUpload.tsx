@@ -1,33 +1,39 @@
 'use client';
 
 import {useTranslations} from 'next-intl';
-import { useState } from 'react';
 import { Input } from "@heroui/input";
+import { ErrorMessage } from 'formik';
 
-const FileUpload = () => {
+type Props = {
+  formik: any;
+};
+
+const FileUpload = ({ formik }: Props) => {
   const t = useTranslations('File');
-  const [selectedFileName, setSelectedFileName] = useState(t('no_file_selected'));
+  const file = formik.values.file;
 
-  const handleFileChange = (event:any) => {
-    if (event.target.files.length > 0) {
-      setSelectedFileName(event.target.files[0].name);
-    }
+  const handleChange = (event: any) => {
+    const file = event.currentTarget.files[0];
+    formik.setFieldValue('file', file);
   };
 
   return (
     <div>
       <label htmlFor="file-upload" className="custom-file-label font-medium text-sm">
-        {t('add_file')} <span>({selectedFileName})</span>
+        {t('add_file')} <span>({file?.name || t('no_file_selected')})</span>
       </label>
-      <Input 
+      <Input
         id="file-upload"
-        type="file" 
-        onChange={handleFileChange}
+        name="file"
+        type="file"
+        accept=".png, .jpeg, .jpg, .pdf"
+        onChange={handleChange}
         className='file-input'
       />
-      
+      <div className="text-red-400 text-sm mt-2">
+        <ErrorMessage name="file"/>
+      </div>
     </div>
-    
   );
 };
 

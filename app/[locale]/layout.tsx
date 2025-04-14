@@ -2,7 +2,7 @@ import { ParentLocaleLayout } from '@/components/ParentLocaleLayout';
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Moneyback',
+  title: 'Multiback',
   description: 'Cashback service',
   icons: {
     icon: '/img/favicon.svg',

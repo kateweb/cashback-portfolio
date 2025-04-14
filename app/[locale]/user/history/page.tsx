@@ -192,7 +192,7 @@ const History = ({ searchParams = {} }: HistoryProps) => {
                   <p className='text-green'>{click.offer_name}</p>
                 </div>
                 <Link
-                  href={`${baseUrl}${locale}/user/disputs?offerId=${click.offer_id}&offerName=${click.offer_name}&date=${click.created_at.substring(0, 10)}`}
+                  href={`${baseUrl}${locale}/user/disputs?offerId=${click.offer_id}&offerName=${click.offer_name}&date=${click.created_at}`}
                   className='history-btn btn-secondary hover-green inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium px-4 py-2'
                 >
                   {t('button_text')}

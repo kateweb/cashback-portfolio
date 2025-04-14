@@ -39,7 +39,6 @@ const PaymentTable= ({refresh}) => {
 	}, [data?.total_count, rowsPerPage]);
 
 	const loadingState = isLoading || data?.offers.length === 0 ? "loading" : "idle";
-
 	const handleCancelButton = (item) => {
 		const cancelPayment = async () => {
 			try {
@@ -133,10 +132,11 @@ const PaymentTable= ({refresh}) => {
 								) :
 								columnKey === "action" ? (
 									<Button
-										isDisabled={item?.status !== 0}
+										isDisabled={item?.status !== 0 || item?.exported === true}
 										variant="ghost"
 										color="primary"
 										size="sm"
+										data-exported={item?.exported}
 										onPress={() => handleCancelButton(item)}>
 										{t('table.cancel')}
 									</Button>
