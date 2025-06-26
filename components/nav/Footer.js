@@ -1,8 +1,10 @@
 'use client';
 import {useTranslations} from 'next-intl';
+import {useLocale} from "@/contexts/LocaleContext";
 
 const Footer = () => {
   const t = useTranslations('Footer');
+  const { locale } = useLocale();
   return (
     <footer className="mt-auto py-7 dark-text-white">
       <div className="footer-wrap border-t border-divider border-dashed px-5">
@@ -11,7 +13,7 @@ const Footer = () => {
             © 2012–2025 {t('title')}
           </div>
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
-            <a href="/user/agreement" className="text-link hover:underline">{t('agreement')}</a>
+            <a href={"/"+locale+"/user/agreement"} className="text-link hover:underline">{t('agreement')}</a>
             <a href="#" className="text-link hover:underline">{t('cookie')}</a>
             <a href="#" className="text-link hover:underline">{t('policy')}</a>
           </div>
