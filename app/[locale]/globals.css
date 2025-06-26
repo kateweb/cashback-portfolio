@@ -230,7 +230,7 @@ footer {
   background-color: #3a3f44 !important;
 }
 .dark .border-divider {
-  border-bottom: 1px solid rgb(75, 85, 99);
+  border-color: rgb(75, 85, 99);
 }
 .cashback-card img, img.offer-img, .cashback-empty-img{
   border-radius: 4px !important;
@@ -356,6 +356,29 @@ select:hover {
 .static-page a:hover {
   color: var(--dark-green);
 }
+.agreement ul {
+  list-style-type: none;
+  padding-left: 0;
+  text-align: justify;
+}
+.agreement ul li {
+  margin-bottom: 1rem;
+}
+.agreement h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+.agreement h2 {
+  display: none;
+}
+.agreement .text-md {
+  max-width: 1300px;
+  margin: 0 auto;
+}
 .rules {
   font-size: 18px;
 }
@@ -466,6 +489,9 @@ select:hover {
   color: #fff !important;
   -webkit-text-fill-color: #fff;
 }
+footer a {
+  text-align: center;
+}
 @media(max-width: 1199px){
   .cashback-card {
     width: calc(33.3% - 20px);
@@ -535,13 +561,16 @@ select:hover {
 @media(max-width: 460px){
   .header {
     flex-wrap: wrap;
-    padding-right: 0;
+    padding-right: 10px;
   }
   .nav-btn {
     margin: 10px;
   }
   .nav-btns {
     margin-left: auto;
+  }
+  .logo {
+    margin-right: -30px;
   }
   
 

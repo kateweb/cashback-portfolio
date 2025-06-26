@@ -142,7 +142,10 @@
     "no_file_selected": "файл не обрано"
   },
   "Footer": {
-    "title": "Multiback"
+    "title": "Multiback",
+    "agreement": "Офіційні правила проведення програми",
+    "cookie": "Файли cookie",
+    "policy": "Політика конфіденційності"
   },
   "Datepiсker": {
     "dd": "дд",

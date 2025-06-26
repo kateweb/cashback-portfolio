@@ -7,7 +7,7 @@ export function usePagination<T>(
 	initialPageSize: number,
 	locale: string,
 	dataKey: string,
-	filters?: { createdAt?: string; offerId?: string }
+	filters?: { createdAt?: string; offerId?: string; categoryId?: string }
 ) {
 	const [data, setData] = useState<T[]>([]);
 	const [totalResults, setTotalResults] = useState(0);
@@ -33,6 +33,7 @@ export function usePagination<T>(
 					lang: locale,
 					...(filters?.createdAt && { createdAt: filters.createdAt }),
 					...(filters?.offerId && { offerId: filters.offerId }),
+					...(filters?.categoryId && { categoryId: filters.categoryId }),
 				});
 
 				const url = `${fetchUrl}?${params.toString()}`;
