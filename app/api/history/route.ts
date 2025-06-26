@@ -33,7 +33,6 @@ export async function GET(req: Request) {
 		}
 
 		const data = await response.json();
-		console.log(data)
 		return NextResponse.json(data);
 	} catch (error) {
 		console.error('Error fetching history:', error);

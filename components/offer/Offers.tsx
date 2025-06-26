@@ -7,6 +7,7 @@ import { PaginationWithLinks } from "@/components/ui/pagination-with-links";
 import { usePagination } from '@/utils/paginationHook';
 import Loader from "@/components/ui/Loader";
 import Cookies from "js-cookie";
+import {useState} from "react";
 
 interface Offer {
 	id: string;
@@ -24,12 +25,16 @@ const Offers = ({ searchParams = {}, categoryId }: OffersProps) => {
 	const { locale } = useLocale();
 	const t = useTranslations('Main');
 	const currentPage = parseInt(searchParams.page || "1");
+	const [searchParamsState, setSearchParamsState] = useState(() => ({
+		categoryId: categoryId?.toString() || '',
+	}));
 	const { data: filteredOffers, totalResults, currentPage: currentPageState, postsPerPage, isMounted, handlePageSizeChange } = usePagination<Offer>(
-		`/api/offers${categoryId ? `?categoryId=${categoryId}` : ''}`,
+		`/api/offers`,
 		currentPage,
 		parseInt(Cookies.get("pageSize") || "10"),
 		locale,
-		'offers'
+		'offers',
+		searchParamsState
 	);
 
 	if (!isMounted) {

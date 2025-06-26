@@ -142,7 +142,10 @@
     "no_file_selected": "no file selected"
   },
   "Footer": {
-    "title": "Multiback"
+    "title": "Multiback",
+    "agreement": "Official rules of the program",
+    "cookie": "Cookie files",
+    "policy": "Privacy policy"
   },
   "Datepiсker": {
     "dd": "dd",

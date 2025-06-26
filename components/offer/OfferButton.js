@@ -16,7 +16,6 @@ export default function OfferButton({ offer }) {
 			if (response.ok) {
 				const data = await response.json();
 				const redirectUrl = data.redirectUrl;
-				console.log({redirectUrl});
 				window.location.href = redirectUrl;
 			} else {
 				console.log('Failed to retrieve the redirect link');
