@@ -15,25 +15,34 @@ type PageData = {
 
 const Page = () => {
 	const t = useTranslations('Offer');
-	const { slug } = useParams();
+	const { slug, locale } = useParams() as { slug: string; locale: string };
 	const [pageData, setPageData] = useState<PageData | null>(null);
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
-		if (slug) {
-			// Fetch the page data from the API
-			fetch(`/api/pages/${slug}`)
-				.then((res) => res.json())
-				.then((data) => {
-					if (data.error) {
-						setError(data.error);
-					} else {
-						setPageData(data);
-					}
-				})
-				.catch(() => setError('Failed to load page'));
-		}
-	}, [slug]);
+		if (!slug || !locale) return;
+
+		const fetchData = async () => {
+			try {
+				// Set locale from url
+				await fetch(`/api/set-locale?locale=${locale}`, {
+					method: 'PATCH',
+				});
+				// Get page
+				const res = await fetch(`/api/pages/${slug}`);
+				const data = await res.json();
+
+				if (data.error) {
+					setError(data.error);
+				} else {
+					setPageData(data);
+				}
+			} catch (err) {
+				setError('Failed to load page');
+			}
+		};
+		fetchData();
+	}, [slug, locale]);
 
 	if (!pageData) return <Loader/>
 	if (error) return <div className='text-center my-3'>{error}</div>;
