@@ -389,9 +389,7 @@ select:hover {
 .user_agreement article{
   text-align: center;
 }
-.user_agreement pre {
-  font-family: inherit;
-  white-space: normal;
+.user_agreement p:first-of-type {
   text-align: center;
 }
 .user_agreement ol {
