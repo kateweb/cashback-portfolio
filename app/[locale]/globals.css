@@ -382,6 +382,19 @@ select:hover {
 .rules {
   font-size: 18px;
 }
+.user_agreement {
+  text-align: justify;
+}
+.user_agreement h2, .user_agreement h3,
+.user_agreement article{
+  text-align: center;
+}
+.user_agreement p:first-of-type {
+  text-align: center;
+}
+.user_agreement ol {
+  list-style-type: lower-alpha;
+}
 .text-green {
   color: var(--green);
 }
@@ -556,6 +569,12 @@ footer a {
   }
   .language-button {
     margin-right: 10px;
+  }
+  .static-page ol, .static-page ul {
+    padding-left: 30px;
+  }
+  .agreement ul {
+    padding-left: 0;
   }
 }
 @media(max-width: 460px){
