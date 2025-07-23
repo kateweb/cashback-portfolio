@@ -375,15 +375,14 @@ select:hover {
 .agreement h2 {
   display: none;
 }
-.agreement .text-md {
+.agreement .text-md, .personal_data .text-md,
+.user_agreement .text-md {
   max-width: 1300px;
   margin: 0 auto;
+  text-align: justify;
 }
 .rules {
   font-size: 18px;
-}
-.user_agreement {
-  text-align: justify;
 }
 .user_agreement h2, .user_agreement h3,
 .user_agreement article{
@@ -394,6 +393,13 @@ select:hover {
 }
 .user_agreement ol {
   list-style-type: lower-alpha;
+}
+.personal_data h2 {
+  text-align: center;
+}
+.personal_data ol {
+  padding-left: 0;
+  list-style-position: inside;
 }
 .text-green {
   color: var(--green);
@@ -573,7 +579,7 @@ footer a {
   .static-page ol, .static-page ul {
     padding-left: 30px;
   }
-  .agreement ul {
+  .agreement ul, .personal_data ol {
     padding-left: 0;
   }
 }
