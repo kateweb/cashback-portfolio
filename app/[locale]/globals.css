@@ -356,6 +356,13 @@ select:hover {
 .static-page a:hover {
   color: var(--dark-green);
 }
+.static-page table td {
+  padding: 5px 10px;
+  text-align: left;
+}
+.static-page table td p {
+  margin-bottom: 0;
+}
 .agreement ul {
   list-style-type: none;
   padding-left: 0;
@@ -376,7 +383,7 @@ select:hover {
   display: none;
 }
 .agreement .text-md, .personal_data .text-md,
-.user_agreement .text-md {
+.user_agreement .text-md, .cookie_files .text-md {
   max-width: 1300px;
   margin: 0 auto;
   text-align: justify;
@@ -385,7 +392,7 @@ select:hover {
   font-size: 18px;
 }
 .user_agreement h2, .user_agreement h3,
-.user_agreement article{
+.user_agreement article, .cookie_files h2{
   text-align: center;
 }
 .user_agreement p:first-of-type {
@@ -400,6 +407,9 @@ select:hover {
 .personal_data ol {
   padding-left: 0;
   list-style-position: inside;
+}
+.cookie_files a {
+  word-break: break-word;
 }
 .text-green {
   color: var(--green);
