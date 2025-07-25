@@ -13,9 +13,14 @@ const Footer = () => {
             © 2012–2025 {t('title')}
           </div>
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
-            <a href={"/" + locale + "/user/agreement"} className="text-link hover:underline">{t('agreement')}</a>
-            <a href={"/" + locale + "/user/user_agreement"} className="text-link hover:underline">{t('user_agreement')}</a>
-            <a href="#" className="text-link hover:underline">{t('cookie')}</a>
+            <a href={"/" + locale + "/user/agreement"}
+               className="text-link hover:underline">{t('agreement')}</a>
+            <a href={"/" + locale + "/user/user_agreement"}
+               className="text-link hover:underline">{t('user_agreement')}</a>
+            <a href={"/" + locale + "/user/personal_data"}
+               className="text-link hover:underline">{t('personal_data')}</a>
+            <a href={"/" + locale + "/user/cookie_files"}
+               className="text-link hover:underline">{t('cookie')}</a>
             <a href="#" className="text-link hover:underline">{t('policy')}</a>
           </div>
         </div>

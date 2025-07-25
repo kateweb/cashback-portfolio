@@ -13,6 +13,14 @@ type PageData = {
 	content: string;
 };
 
+if (typeof window !== 'undefined') {
+	DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+		if (node.tagName === 'A' && node.getAttribute('target') === '_blank') {
+			node.setAttribute('rel', 'noopener noreferrer');
+		}
+	});
+}
+
 const Page = () => {
 	const t = useTranslations('Offer');
 	const { slug, locale } = useParams() as { slug: string; locale: string };
@@ -47,11 +55,15 @@ const Page = () => {
 	if (!pageData) return <Loader/>
 	if (error) return <div className='text-center my-3'>{error}</div>;
 
+	const sanitizedContent = DOMPurify.sanitize(pageData.content, {
+		ADD_ATTR: ['target', 'rel'],
+	});
+
 	return (
 		<Layout>
 			<div className={`static-page my-5 mx-5 dark-text-white ${slug}`}>
 				<h2 className="mb-4 font-bold text-xl">{pageData.title}</h2>
-				<div className='text-md' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(pageData.content)}}/>
+				<div className='text-md' dangerouslySetInnerHTML={{ __html: sanitizedContent }}/>
 			</div>
 		</Layout>
 	);
