@@ -1,4 +1,4 @@
-// app/[locale]/user/[slug]/page.tsx
+// app/[locale]/static/[slug]/page.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';

@@ -40,8 +40,8 @@ const Header = () => {
           {t('payments')} <span className="status dark-text-white">{t('available')}</span>
         </Link>
         <Link href={menuLink('user/settings')}>{t('settings')}</Link>
-        <Link href={menuLink('user/faq')}>{t('faq')}</Link>
-        <Link href={menuLink('user/rules')}>{t('rules')}</Link>
+        <Link href={menuLink('static/faq')}>{t('faq')}</Link>
+        <Link href={menuLink('static/rules')}>{t('rules')}</Link>
         <Link href={menuLink('user/help')}>{t('help')}</Link>
         <LogoutButton/>
       </nav>

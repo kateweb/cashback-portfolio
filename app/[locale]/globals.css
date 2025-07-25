@@ -223,6 +223,10 @@ input[type=number] {
 footer {
   font-size: 14px;
 }
+.footer-block {
+  max-width: 1500px;
+  margin: 0 auto;
+}
 .text-green-600 {
   color: var(--green);
 }
@@ -383,7 +387,7 @@ select:hover {
   display: none;
 }
 .agreement .text-md, .personal_data .text-md,
-.user_agreement .text-md, .cookie_files .text-md {
+.user_agreement .text-md, .cookie_files .text-md, .marketing_consent .text-md {
   max-width: 1300px;
   margin: 0 auto;
   text-align: justify;
@@ -391,8 +395,8 @@ select:hover {
 .rules {
   font-size: 18px;
 }
-.user_agreement h2, .user_agreement h3,
-.user_agreement article, .cookie_files h2{
+.user_agreement h2, .user_agreement h3, .personal_data h2
+.user_agreement article, .cookie_files h2, .marketing_consent h2{
   text-align: center;
 }
 .user_agreement p:first-of-type {
@@ -401,10 +405,7 @@ select:hover {
 .user_agreement ol {
   list-style-type: lower-alpha;
 }
-.personal_data h2 {
-  text-align: center;
-}
-.personal_data ol {
+.personal_data ol, .marketing_consent ol {
   padding-left: 0;
   list-style-position: inside;
 }
@@ -520,6 +521,9 @@ select:hover {
 }
 footer a {
   text-align: center;
+}
+.accent-green {
+  accent-color: var(--green);
 }
 @media(max-width: 1199px){
   .cashback-card {
