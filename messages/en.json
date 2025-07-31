@@ -146,6 +146,8 @@
     "agreement": "Official rules of the program",
     "user_agreement": "Website User Agreement",
     "personal_data": "Notice regarding the processing of personal data",
+    "marketing_consent": "Consent to receive informational (advertising) messages",
+    "controller_agreement": "Agreement between joint controllers on the processing of personal data",
     "cookie": "Cookie files",
     "policy": "Privacy policy"
   },
@@ -163,6 +165,8 @@
     "enter_password": "Enter your password",
     "reg_button": "Send confirmation",
     "password": "Password",
+    "agree_with": "I agree to the processing of",
+    "personal_data": "personal data",
     "errors": {
       "email_valid": "Please enter a valid email address.",
       "required": "{name} is required.",
@@ -175,7 +179,8 @@
       "user_exist": "User already exists in the system",
       "invalid_credentials": "Invalid email or password",
       "authentication_failed": "An error occurred during authorization",
-      "user_not_yet_activated": "Account is not activated, check your email for activation"
+      "user_not_yet_activated": "Account is not activated, check your email for activation",
+      "agree_required": "You must agree to the processing of personal data"
     },
     "login_text": "Enter your email and password to login for an account.",
     "login_button": "Login",

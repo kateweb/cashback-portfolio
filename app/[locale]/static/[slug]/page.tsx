@@ -1,4 +1,4 @@
-// app/[locale]/user/[slug]/page.tsx
+// app/[locale]/static/[slug]/page.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -51,6 +51,20 @@ const Page = () => {
 		};
 		fetchData();
 	}, [slug, locale]);
+
+	useEffect(() => {
+		const container = document.querySelector('.static-page');
+		if (!container) return;
+
+		container.querySelectorAll('table').forEach((table) => {
+			if (!table.parentElement?.classList.contains('table-wrapper')) {
+				const wrapper = document.createElement('div');
+				wrapper.className = 'table-wrapper overflow-auto';
+				table.parentNode?.insertBefore(wrapper, table);
+				wrapper.appendChild(table);
+			}
+		});
+	}, [pageData]);
 
 	if (!pageData) return <Loader/>
 	if (error) return <div className='text-center my-3'>{error}</div>;
