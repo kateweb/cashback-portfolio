@@ -2,11 +2,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import {useParams, useRouter} from 'next/navigation';
 import Layout from "@/components/Layout";
 import {useTranslations} from "next-intl";
 import DOMPurify from 'dompurify';
 import Loader from "@/components/ui/Loader";
+import {fetchWithAuth} from "@/utils/fetchWithAuth";
 
 type PageData = {
 	title: string;
@@ -26,6 +27,7 @@ const Page = () => {
 	const { slug, locale } = useParams() as { slug: string; locale: string };
 	const [pageData, setPageData] = useState<PageData | null>(null);
 	const [error, setError] = useState<string | null>(null);
+	const router = useRouter();
 
 	useEffect(() => {
 		if (!slug || !locale) return;
@@ -37,7 +39,11 @@ const Page = () => {
 					method: 'PATCH',
 				});
 				// Get page
-				const res = await fetch(`/api/pages/${slug}`);
+				const res = await fetchWithAuth(`/api/pages/${slug}`);
+				if (!res) return;
+				if(res.status == 403) {
+					router.push(`/${locale}/login`);
+				}
 				const data = await res.json();
 
 				if (data.error) {

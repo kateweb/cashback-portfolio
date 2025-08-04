@@ -24,6 +24,9 @@ export async function POST(req: Request) {
 			},
 			body: JSON.stringify(requestBody)
 		});
+		if (response.status === 401) {
+			return new NextResponse("Unauthorized", { status: 401 });
+		}
 		if (!response.ok) {
 			const errorData = await response.json();
 			console.error('Error Response:', errorData);

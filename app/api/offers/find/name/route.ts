@@ -18,6 +18,9 @@ export async function POST(req: Request) {
 			},
 			body: JSON.stringify({ name: offerName })
 		});
+		if (response.status === 401) {
+			return new NextResponse("Unauthorized", { status: 401 });
+		}
 		if (!response.ok) {
 			throw new Error(`Failed to fetch offer name: ${response.statusText}`);
 		}

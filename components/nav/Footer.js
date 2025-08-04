@@ -22,7 +22,8 @@ const Footer = () => {
                className="text-link hover:underline">{t('controller_agreement')}</a>
             <a href={"/" + locale + "/static/cookie_files"}
                className="text-link hover:underline">{t('cookie')}</a>
-            <a href="#" className="text-link hover:underline">{t('policy')}</a>
+            <a href={"/" + locale + "/static/policy"}
+               className="text-link hover:underline">{t('policy')}</a>
           </div>
           <div className="text-left text-gray-500 dark:text-white">
             © 2012–2025 {t('title')}

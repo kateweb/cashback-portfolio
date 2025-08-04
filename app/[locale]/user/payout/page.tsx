@@ -10,6 +10,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from "yup";
 import {toast} from "react-toastify";
 import PaymentTable from "@/components/PaymentTable";
+import {fetchWithAuth} from "@/utils/fetchWithAuth";
 
 const Payout = () => {
   const t = useTranslations('Payout');
@@ -77,7 +78,7 @@ const Payout = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/payment/create', {
+      const response = await fetchWithAuth('/api/payment/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,6 +90,7 @@ const Payout = () => {
           amount: values.amount,
         }),
       });
+      if (!response) return;
       const data = await response.json();
       if (!response.ok) {
         if (data.errors && Array.isArray(data.errors)) {

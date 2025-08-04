@@ -12,6 +12,7 @@ import Cookies from 'js-cookie';
 import Image from 'next/image';
 import {Input} from "@heroui/input";
 import { useRouter, usePathname } from 'next/navigation';
+import { fetchWithAuth } from "@/utils/fetchWithAuth";
 
 interface Click {
   id: number;
@@ -109,14 +110,14 @@ const History = ({ searchParams = {} }: HistoryProps) => {
     setErrorMessage('');
 
     // Fetch offer ID from the API based on the offer name
-    const response = await fetch('/api/offers/find/name', {
+    const response = await fetchWithAuth('/api/offers/find/name', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name: value }), // Send the name as a string
     });
-
+    if (!response) return;
     const data = await response.json();
     if (data.length === 0) {
       setOfferIsEmpty(true);

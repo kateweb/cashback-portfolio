@@ -12,11 +12,31 @@ import { saveParamsToLocalStorage } from '@/utils/saveQueryParams'
 import { useEffect } from 'react';
 import { useSession } from "next-auth/react";
 
+import { signOut } from "next-auth/react";
+import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+
 const Header = () => {
   const t = useTranslations('Nav');
   const { data: session, status } = useSession();
   const isAuthorized = status === "authenticated";
   const { locale } = useLocale();
+
+  useEffect(() => {
+    if (isAuthorized && session?.user?.jwt) {
+      try {
+        const decoded: any = jwtDecode(session.user.jwt);
+        const isExpired = decoded.exp * 1000 < Date.now();
+        if (isExpired) {
+          console.warn("JWT expired. Signing out...");
+          signOut({ callbackUrl: `/${locale}/login` });
+        }
+      } catch (e) {
+        console.error("JWT invalid. Signing out...");
+        signOut({ callbackUrl: `/${locale}/login` });
+      }
+    }
+  }, [session, status, locale]);
 
   useEffect(() => {
     saveParamsToLocalStorage();
