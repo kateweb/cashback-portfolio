@@ -17,6 +17,9 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 				'Authorization': `Bearer ${token}`,
 			},
 		});
+		if (response.status === 401) {
+			return new NextResponse("Unauthorized", { status: 401 });
+		}
 		if (!response.ok) {
 			throw new Error(`Backend error: ${response.statusText}`);
 		}

@@ -5,12 +5,15 @@ import { useState, useEffect } from 'react';
 import {usePathname} from '@/i18n/routing';
 import { useLocale } from '@/contexts/LocaleContext';
 import Dropdown from './Dropdown';
+import {fetchWithAuth} from "@/utils/fetchWithAuth";
+import { useSession } from 'next-auth/react';
 
 export default function LanguageSwitcher() {
   const {locale} = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { data: session, status } = useSession();
 
   const queryString = searchParams.toString();
   const fullPath = queryString ? `${pathname}?${queryString}` : pathname;
@@ -26,10 +29,13 @@ export default function LanguageSwitcher() {
   const handleLocaleChange = (newLocale: string) => {
     const sendLocale = async () => {
       try {
-        const response = await fetch(`/api/set-locale?locale=${newLocale}`, {
-          method: 'PATCH',
-        });
-        await response.json();
+        if (status === 'authenticated' && session) {
+          const response = await fetchWithAuth(`/api/set-locale?locale=${newLocale}`, {
+            method: 'PATCH',
+          });
+          if (!response) return;
+          await response.json();
+        }
         setLocale(newLocale);
         router.push(`/${newLocale}${fullPath}`);
       } catch (error) {

@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import {useTranslations} from 'next-intl';
 import Loader from "@/components/ui/Loader";
+import { fetchWithAuth } from "@/utils/fetchWithAuth";
 
 const BalancesItems = ({ setAvailableBalance, refresh}) => {
 	const [balances, setBalances] = useState({ waiting: 0, available: 0, currency: 'uah' });
@@ -15,7 +16,8 @@ const BalancesItems = ({ setAvailableBalance, refresh}) => {
 		const fetchBalances = async () => {
 			try {
 				setLoading(true);
-				const response = await fetch('/api/balances');
+				const response = await fetchWithAuth('/api/balances');
+				if (!response) return;
 				const data = await response.json();
 
 				if (response.ok) {

@@ -26,17 +26,17 @@ export const authOptions : NextAuthOptions = {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
           method: 'POST',
           body: JSON.stringify(data),
-          headers: { 
+          headers: {
             "Content-Type": "application/json",
           }
-        }); 
+        });
         const resData = await res.json();
         if (res.ok && resData.token) {
           return { token: resData.token };
         } else {
           throw new Error(resData.message || "Authentication failed");
         }
-        
+
       }
     })
   ],
@@ -45,22 +45,19 @@ export const authOptions : NextAuthOptions = {
   },
   session: { strategy: "jwt" },
   callbacks: {
-    async jwt({token, user}){
+    async jwt({ token, user }) {
       if (token?.token) {
-        const decoded = jwtDecode(token?.token as string);
-        // @ts-ignore
-        token.username = decoded?.username || null;
-        // @ts-ignore
-        token.userId = decoded?.id || null;
+        const decoded = jwtDecode<any>(token.token);
+        token.username = decoded?.username ?? null;
+        token.userId = decoded?.id ?? null;
       }
-      return {...token, ...user};
+      return { ...token, ...user };
     },
     async session ({ session, token }) {
       session.user = {
         ...session.user,
         jwt: token.token,
-        // @ts-ignore
-        email: token.username,
+        email: token.username ?? "",
         userId: token.userId,
       };
       return session;

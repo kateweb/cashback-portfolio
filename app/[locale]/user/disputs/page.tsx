@@ -12,6 +12,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import CustomDateTimepicker from "@/components/forms/CustomDateTimepicker";
 import {toast} from "react-toastify";
+import { fetchWithAuth } from "@/utils/fetchWithAuth";
 
 
 const Disputs = () => {
@@ -121,10 +122,11 @@ const Disputs = () => {
       formData.append('file', values.file);
     }
     try {
-      const response = await fetch('/api/lost-order', {
+      const response = await fetchWithAuth('/api/lost-order', {
         method: 'POST',
         body: formData,
       });
+      if (!response) return;
       const data = await response.json();
 
       if (!response.ok) {

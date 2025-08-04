@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import {useTranslations} from "next-intl";
 import DOMPurify from 'dompurify';
 import Loader from "@/components/ui/Loader";
+import {fetchWithAuth} from "@/utils/fetchWithAuth";
 
 type PageData = {
 	title: string;
@@ -37,7 +38,8 @@ const Page = () => {
 					method: 'PATCH',
 				});
 				// Get page
-				const res = await fetch(`/api/pages/${slug}`);
+				const res = await fetchWithAuth(`/api/pages/${slug}`);
+				if (!res) return;
 				const data = await res.json();
 
 				if (data.error) {

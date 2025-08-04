@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { signOut } from "next-auth/react";
 
 export function usePagination<T>(
 	fetchUrl: string,
@@ -39,6 +40,10 @@ export function usePagination<T>(
 				const url = `${fetchUrl}?${params.toString()}`;
 
 				const response = await fetch(url);
+				if (response.status === 401) {
+					await signOut({ callbackUrl: '/login' });
+					return;
+				}
 				const responseData = await response.json();
 				if (responseData[dataKey]) setData(responseData[dataKey]);
 

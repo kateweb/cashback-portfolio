@@ -15,6 +15,7 @@ import {useTranslations} from "next-intl";
 import {Badge} from "@heroui/badge";
 import useSWR from "swr";
 import {toast} from "react-toastify";
+import {fetchWithAuth} from "@/utils/fetchWithAuth";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -42,9 +43,10 @@ const PaymentTable= ({refresh}) => {
 	const handleCancelButton = (item) => {
 		const cancelPayment = async () => {
 			try {
-				const response = await fetch(`/api/payment/cancel/${item.id}`, {
+				const response = await fetchWithAuth(`/api/payment/cancel/${item.id}`, {
 					method: 'PATCH',
 				});
+				if (!response) return;
 				let res = await response.json();
 				if(res.error) {
 					toast.error(t('table.cancel_error'));

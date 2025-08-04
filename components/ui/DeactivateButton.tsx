@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import {useLocale} from "@/contexts/LocaleContext";
 import {useRouter} from "next/navigation";
 import {signOut} from "next-auth/react";
+import { fetchWithAuth } from "@/utils/fetchWithAuth";
 
 const DeactivateButton = () => {
 	const t = useTranslations('Settings');
@@ -19,12 +20,13 @@ const DeactivateButton = () => {
 	};
 	const handleDelete = async () => {
 		try {
-			const response = await fetch('/api/auth/deactivate', {
+			const response = await fetchWithAuth('/api/auth/deactivate', {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 			});
+			if (!response) return;
 			if (response.status === 200) {
 				toast.success(t('deactivated_successfully'));
 				setTimeout(async () => {
