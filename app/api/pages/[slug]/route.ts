@@ -1,13 +1,10 @@
 // app/api/pages/[slug]/route.ts
 import { NextResponse } from 'next/server';
-import { getToken } from "@/utils/getToken";
 
 export async function GET(req, { params }) {
 	const { slug } = params;
-	const token = await getToken()
-	if (!token) {
-		return new NextResponse("Unauthorized", { status: 403 })
-	}
+	const locale = req.headers.get("locale") || "uk";
+
 	try {
 		const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/pages/${slug}`;
 
@@ -15,12 +12,9 @@ export async function GET(req, { params }) {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': `Bearer ${token}`,
+				'locale': locale,
 			},
 		});
-		if (response.status === 401) {
-			return new NextResponse("Unauthorized", { status: 401 });
-		}
 		if (!response.ok) {
 			throw new Error(`Failed to fetch page: ${response.statusText}`);
 		}

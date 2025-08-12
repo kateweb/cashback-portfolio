@@ -34,16 +34,11 @@ const Page = () => {
 
 		const fetchData = async () => {
 			try {
-				// Set locale from url
-				await fetch(`/api/set-locale?locale=${locale}`, {
-					method: 'PATCH',
-				});
 				// Get page
-				const res = await fetchWithAuth(`/api/pages/${slug}`);
+				const res = await fetch(`/api/pages/${slug}`, {
+					headers: { 'locale': locale }
+				});
 				if (!res) return;
-				if(res.status == 403) {
-					router.push(`/${locale}/login`);
-				}
 				const data = await res.json();
 
 				if (data.error) {
