@@ -4,9 +4,8 @@ import Image from 'next/image'
 
 const CashbackCard = ({id, brand, cashbackPercent, category, imgUrl }) => {
   const {locale} = useLocale();
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   return (
-    <Link href={baseUrl+locale+"/offers/"+id}
+    <Link href={"/"+locale+"/offers/"+id}
       className="cashback-card p-4 bg-white dark-bg-gray-800 rounded-lg shadow-md h-auto border-1 dark-border-transparent hover:scale-10 transition duration-300 ease-in-out hover:-translate-y-1">
         {imgUrl ? <Image src={imgUrl} alt={brand} className="w-20 h-20 mb-4 object-contain" width={50} height={50} /> : <div className="cashback-empty-img w-20 h-20 mb-4 object-contain"></div>}
       <h2 className="text-lg font-bold dark-text-white">{brand}</h2>
