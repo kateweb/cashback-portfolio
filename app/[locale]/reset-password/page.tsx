@@ -22,7 +22,7 @@ export default function ResetPassword({ searchParams, params }) {
     };
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/set-password`, {
+      const response = await fetch(`/api/set-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
