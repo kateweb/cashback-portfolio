@@ -45,6 +45,19 @@ deploy:stage:
     refs:
       - branches
 
+deploy:prod:
+  extends: .base_deploy
+  resource_group: prod
+  variables:
+    K8S_INGRESS_HOST: multiback.com.ua
+  environment:
+    name: prod
+    action: start
+    url: https://multiback.com.ua
+  only:
+    refs:
+      - tags
+
 stop:stage:
   extends: .base_stop
   resource_group: stage
@@ -54,6 +67,18 @@ stop:stage:
   only:
     refs:
       - branches
+
+stop:prod:
+  extends: .base_stop
+  resource_group: prod
+  environment:
+    name: prod
+    action: stop
+  only:
+    refs:
+      - tags
+    variables:
+      - $ENABLE_DESTROY == "YES"
 
 werf:cleanup:
   script:
