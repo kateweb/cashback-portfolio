@@ -8,6 +8,7 @@ import { usePagination } from '@/utils/paginationHook';
 import Loader from "@/components/ui/Loader";
 import Cookies from "js-cookie";
 import {useState} from "react";
+import Categories from "@/components/Categories";
 
 interface Offer {
 	id: string;
@@ -54,6 +55,7 @@ const Offers = ({ searchParams = {}, categoryId }: OffersProps) => {
 					{dynamicTitle}
 				</h1>
 			)}
+			{categoryId && <Categories />}
 			{Array.isArray(filteredOffers) ? (
 				<div className="d-flex flex-wrap justify-content-center">
 					{filteredOffers.map((offer) => (
