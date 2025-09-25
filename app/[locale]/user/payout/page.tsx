@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import {toast} from "react-toastify";
 import PaymentTable from "@/components/PaymentTable";
 import {fetchWithAuth} from "@/utils/fetchWithAuth";
+import { mutate } from 'swr';
 
 const Payout = () => {
   const t = useTranslations('Payout');
@@ -19,7 +20,6 @@ const Payout = () => {
   const [availableBalance, setAvailableBalance] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [refreshBalance, setRefreshBalance] = useState(false);
-  const [refreshTable, setRefreshTable] = useState(false);
 
   //Fetch payment settings list
   useEffect(() => {
@@ -107,8 +107,10 @@ const Payout = () => {
         return;
       }
       resetForm();
+      await mutate('/api/balances');
+      await mutate('/api/payment/list');
       setRefreshBalance((prev) => !prev);
-      setRefreshTable((prev) => !prev);
+
       toast.success(t('form.success_alert'));
     } catch (error) {
       toast.error('Error creating payment request');
@@ -171,7 +173,7 @@ const Payout = () => {
         </div>
         <div className='mx-auto my-4 max-w-[800px] dark-text-white'>
           <h3 className='text-xl font-bold mb-4 mt-5'>{t('table.list')}</h3>
-          <PaymentTable refresh={refreshTable}/>
+          <PaymentTable />
         </div>
       </div>
     </Layout>
