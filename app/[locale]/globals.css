@@ -149,15 +149,20 @@ input[type=number] {
 }
 
 .status {
-  border-radius: 20px;
+  border-radius: 10px;
   background: var(--green);
   color: #000;
   font-weight: bold;
-  padding: 5px 10px;
+  padding: 5px;
   font-size: 12px;
-  margin-left: auto;
+  display: none;
 }
-
+.status-on {
+  display: block;
+}
+.status-off {
+  display: none;
+}
 .logout {
   color: red;
 }

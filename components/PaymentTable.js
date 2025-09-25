@@ -19,7 +19,7 @@ import {fetchWithAuth} from "@/utils/fetchWithAuth";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const PaymentTable= ({refresh}) => {
+const PaymentTable= () => {
 	const t = useTranslations('Payout');
 	const tc = useTranslations('Cashback');
 
@@ -28,12 +28,6 @@ const PaymentTable= ({refresh}) => {
 	const {data, isLoading, mutate} = useSWR(`/api/payment/list?page=${page}&limit=${rowsPerPage}`, fetcher, {
 		keepPreviousData: true,
 	});
-
-	React.useEffect(() => {
-		if (refresh) {
-			mutate();
-		}
-	}, [refresh, mutate]);
 
 	const pages = React.useMemo(() => {
 		return data?.total_count ? Math.ceil(data.total_count / rowsPerPage) : 0;

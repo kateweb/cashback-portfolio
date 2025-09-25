@@ -14,13 +14,14 @@ import { useSession } from "next-auth/react";
 
 import { signOut } from "next-auth/react";
 import { jwtDecode } from "jwt-decode";
-import { useRouter } from "next/navigation";
+import {usePayoutReady} from "@/utils/usePayoutReady";
 
 const Header = () => {
   const t = useTranslations('Nav');
   const { data: session, status } = useSession();
   const isAuthorized = status === "authenticated";
   const { locale } = useLocale();
+  const payoutReady = usePayoutReady(isAuthorized);
 
   useEffect(() => {
     if (isAuthorized && session?.user?.jwt) {
@@ -57,7 +58,7 @@ const Header = () => {
         <Link href={menuLink('user/cashback')}>{t('cashback')}</Link>
         <Link href={menuLink('user/history')}>{t('history')}</Link>
         <Link href={menuLink('user/payout')}>
-          {t('payments')} <span className="status dark-text-white">{t('available')}</span>
+          {t('payments')} <span className={`status dark-text-white ml-2 ${payoutReady ? 'status-on' : 'status-off'}`}></span>
         </Link>
         <Link href={menuLink('user/settings')}>{t('settings')}</Link>
         <Link href={menuLink('static/faq')}>{t('faq')}</Link>
