@@ -20,6 +20,7 @@ const Payout = () => {
   const [availableBalance, setAvailableBalance] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [refreshBalance, setRefreshBalance] = useState(false);
+  const [refreshTable, setRefreshTable] = useState(false);
 
   //Fetch payment settings list
   useEffect(() => {
@@ -108,7 +109,7 @@ const Payout = () => {
       }
       resetForm();
       await mutate('/api/balances');
-      await mutate('/api/payment/list');
+      await mutate((key) => typeof key === 'string' && key.startsWith('/api/payment/list'));
       setRefreshBalance((prev) => !prev);
 
       toast.success(t('form.success_alert'));
@@ -150,7 +151,7 @@ const Payout = () => {
                 </div>
                 <div className='form-control mb-3'>
                   <label className='font-medium text-sm mb-1 block'>{t('form.ipn')} <small>({t('form.passport_info')})</small></label>
-                  <Field as={Input} type="number" name="taxNumber"/>
+                  <Field as={Input} type="number" name="taxNumber" className="no-spin"/>
                   <ErrorMessage name="taxNumber" component="p" className="text-sm text-red-400"/>
                 </div>
                 <div className='form-control mb-3'>
@@ -160,7 +161,7 @@ const Payout = () => {
                 </div>
                 <div className='form-control mb-3'>
                   <label className='font-medium text-sm mb-1 block'>{t('form.sum')}</label>
-                  <Field as={Input} type="number" name="amount"/>
+                  <Field as={Input} type="number" name="amount" className="no-spin"/>
                   <ErrorMessage name="amount" component="p" className="text-sm text-red-400"/>
                 </div>
                 <button type="submit" disabled={!isValid || isSubmitting}
@@ -173,7 +174,9 @@ const Payout = () => {
         </div>
         <div className='mx-auto my-4 max-w-[800px] dark-text-white'>
           <h3 className='text-xl font-bold mb-4 mt-5'>{t('table.list')}</h3>
-          <PaymentTable />
+          <PaymentTable
+            refresh={refreshTable}
+            onAfterCancel={() => setRefreshBalance(prev => !prev)}/>
         </div>
       </div>
     </Layout>

@@ -19,7 +19,7 @@ import {fetchWithAuth} from "@/utils/fetchWithAuth";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const PaymentTable= () => {
+const PaymentTable= ({refresh = false, onAfterCancel}) => {
 	const t = useTranslations('Payout');
 	const tc = useTranslations('Cashback');
 
@@ -55,6 +55,7 @@ const PaymentTable= () => {
 							),
 						};
 					}, false);
+					onAfterCancel?.();
 				}
 			} catch (error) {
 				console.error('Error cancelling payment:', error);
