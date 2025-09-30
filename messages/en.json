@@ -89,8 +89,7 @@
         "amount": {
           "min": "Minimum limit: {min} UAH.",
           "max": "Available on balance: {max} UAH."
-        },
-        "invalid_iban": "International Bank Account Number (IBAN) is not valid."
+        }
       }
     },
     "table": {
@@ -120,7 +119,9 @@
     "decimal_number": "Field has a currency format with a maximum of two decimal places",
     "file_size": "File is too large (max {size}MB)",
     "file_format": "Unsupported file format",
-    "tel_format": "Invalid Ukrainian phone number"
+    "tel_format": "Invalid Ukrainian phone number",
+    "ua_iban": "The field only accepts Ukrainian IBAN",
+    "invalid_iban": "The IBAN entered is incorrect"
   },
   "Disputs": {
     "lost_cashback_title": "Lost cashback application form",

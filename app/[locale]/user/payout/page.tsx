@@ -20,6 +20,7 @@ const Payout = () => {
   const [availableBalance, setAvailableBalance] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [refreshBalance, setRefreshBalance] = useState(false);
+  const [refreshTable, setRefreshTable] = useState(false);
 
   //Fetch payment settings list
   useEffect(() => {
@@ -55,8 +56,10 @@ const Payout = () => {
       .length(10, te('length', {length: 10}))
       .required(te('required')),
     iban: Yup.string()
-      .length(29, te('length', {length: 29}))
-      .required(te('required')),
+      .required(te('required'))
+      .transform(v => (v ? v.replace(/\s+/g, '').toUpperCase() : v))
+      .test('prefix-ua', te('ua_iban'), v => !v || v.startsWith('UA'))
+      .length(29, te('length', {length: 29})),
     amount: Yup.number()
       .test(
         "is-decimal",
@@ -93,11 +96,15 @@ const Payout = () => {
       if (!response) return;
       const data = await response.json();
       if (!response.ok) {
-        if (data.errors && Array.isArray(data.errors)) {
-          data.errors.forEach((error) => {
+        let err = data?.errors ?? data?.error ?? data?.message;
+        if (typeof err === 'string') {
+          try { err = JSON.parse(err); } catch {}
+        }
+        if (err && Array.isArray(err)) {
+          err.forEach((error) => {
             let errorMessage = Object.values(error).join(', ');
             if (error.iban && error.iban.includes('is not a valid')) {
-              errorMessage = t('form.errors.invalid_iban');
+              errorMessage = te('invalid_iban');
             }
             toast.error(errorMessage);
           });
@@ -108,7 +115,7 @@ const Payout = () => {
       }
       resetForm();
       await mutate('/api/balances');
-      await mutate('/api/payment/list');
+      await mutate((key) => typeof key === 'string' && key.startsWith('/api/payment/list'));
       setRefreshBalance((prev) => !prev);
 
       toast.success(t('form.success_alert'));
@@ -150,7 +157,7 @@ const Payout = () => {
                 </div>
                 <div className='form-control mb-3'>
                   <label className='font-medium text-sm mb-1 block'>{t('form.ipn')} <small>({t('form.passport_info')})</small></label>
-                  <Field as={Input} type="number" name="taxNumber"/>
+                  <Field as={Input} type="number" name="taxNumber" className="no-spin"/>
                   <ErrorMessage name="taxNumber" component="p" className="text-sm text-red-400"/>
                 </div>
                 <div className='form-control mb-3'>
@@ -160,7 +167,7 @@ const Payout = () => {
                 </div>
                 <div className='form-control mb-3'>
                   <label className='font-medium text-sm mb-1 block'>{t('form.sum')}</label>
-                  <Field as={Input} type="number" name="amount"/>
+                  <Field as={Input} type="number" name="amount" className="no-spin"/>
                   <ErrorMessage name="amount" component="p" className="text-sm text-red-400"/>
                 </div>
                 <button type="submit" disabled={!isValid || isSubmitting}
@@ -173,7 +180,9 @@ const Payout = () => {
         </div>
         <div className='mx-auto my-4 max-w-[800px] dark-text-white'>
           <h3 className='text-xl font-bold mb-4 mt-5'>{t('table.list')}</h3>
-          <PaymentTable />
+          <PaymentTable
+            refresh={refreshTable}
+            onAfterCancel={() => setRefreshBalance(prev => !prev)}/>
         </div>
       </div>
     </Layout>
