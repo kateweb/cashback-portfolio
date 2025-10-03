@@ -17,7 +17,8 @@
   },
   "Main": {
     "all_offers": "All offers with cashbacks",
-    "all_offers_error": "Error loading offers"
+    "all_offers_error": "Error loading offers",
+    "home_btn": "Home"
   },
   "Offer": {
     "button_text": "Go to store",

@@ -1,6 +1,6 @@
 import Layout from '@/components/Layout';
 import Offers from "@/components/offer/Offers";
-import BackButton from "@/components/ui/BackButton";
+import HomeButton from "@/components/ui/HomeButton";
 
 interface CategoryPageProps {
   params: {
@@ -17,7 +17,7 @@ const CategoryPage = ({ searchParams, params }: CategoryPageProps) => {
   return (
     <Layout>
       <div className='top-block my-6 md:my-10'>
-        <BackButton/>
+        <HomeButton/>
       </div>
       <Offers searchParams={searchParams} categoryId={id} />
     </Layout>
