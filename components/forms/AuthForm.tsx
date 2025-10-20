@@ -66,9 +66,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 					...values,
 					locale
 				});
-
 				if (response.status === 201) {
-					router.push('/confirmation');
+					router.push(`/${locale}/confirmation/`);
 				}
 			} catch (error:any) {
 				const backendErrors = {};
