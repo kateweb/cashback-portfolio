@@ -5,17 +5,17 @@ import { getToken } from "@/utils/getToken";
 export async function GET(req: Request) {
 	const { searchParams } = new URL(req.url);
 	try {
-		const page = searchParams.get('page');
-		const limit = searchParams.get('limit');
+		const page = Math.max(1, parseInt(searchParams.get('page') ?? '1') || 1);
+		const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') ?? '10') || 10));
 		const status = searchParams.get('status');
 		const token = await getToken()
 		if (!token) {
 			return new NextResponse("Unauthorized", { status: 403 })
 		}
-		let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/payment/list?page=${page}&limit=${limit}`;
-		if (status) {
-			apiUrl += `&status=${status}`; // Append status if it exists
-		}
+
+		const params = new URLSearchParams({ page: String(page), limit: String(limit) });
+		if (status) params.set('status', status);
+		const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/payment/list?${params}`;
 		const response = await fetch(apiUrl, {
 			method: 'GET',
 			headers: {

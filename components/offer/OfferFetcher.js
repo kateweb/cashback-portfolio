@@ -5,13 +5,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image'
-import { useLocale } from '@/contexts/LocaleContext';
+import { useLocale } from 'use-intl';
 import { useSession } from "next-auth/react";
 import OfferButton from "@/components/offer/OfferButton";
 import Loader from "@/components/ui/Loader";
 
 const OfferPage = () => {
-	const { locale } = useLocale();
+	const locale = useLocale();
 	const [offer, setOffer] = useState(null);
 	const t = useTranslations('Offer');
 	const { data: session, status } = useSession();

@@ -6,12 +6,12 @@ export const authOptions : NextAuthOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        email: { label: "Email", type: "text", placeholder: "jsmith", value: "administrator" },
-        password: { label: "Password", type: "password", value: "admin" },
+        email: { label: "Email", type: "text", placeholder: "jsmith" },
+        password: { label: "Password", type: "password" },
         ip: {label: "IP", type: "text"}
       },
       // @ts-ignore
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         // Check if credentials are undefined
         if (!credentials) {
           console.error("Credentials are missing");

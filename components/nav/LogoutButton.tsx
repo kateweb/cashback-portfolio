@@ -1,12 +1,12 @@
 import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import {useLocale} from "@/contexts/LocaleContext";
+import { useLocale } from 'use-intl';
 
 const LogoutButton = () => {
   const t = useTranslations('Nav');
   const router = useRouter();
-  const { locale } = useLocale();
+  const locale = useLocale();
 
   const handleLogout = async () => {
     await signOut({

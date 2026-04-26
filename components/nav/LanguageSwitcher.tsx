@@ -3,13 +3,13 @@
 import {useRouter, useSearchParams} from 'next/navigation';
 import { useState, useEffect } from 'react';
 import {usePathname} from '@/i18n/routing';
-import { useLocale } from '@/contexts/LocaleContext';
+import { useLocale } from 'use-intl';
 import Dropdown from './Dropdown';
 import {fetchWithAuth} from "@/utils/fetchWithAuth";
 import { useSession } from 'next-auth/react';
 
 export default function LanguageSwitcher() {
-  const {locale} = useLocale();
+  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -20,7 +20,7 @@ export default function LanguageSwitcher() {
 
   // Extract locale from pathname or set a default (like 'uk')
   const currentLocale = pathname.split('/')[1] || 'uk';
-  const [lang, setLocale] = useState(currentLocale); // default to current locale
+  const [lang, setLocale] = useState(currentLocale);
   
   useEffect(() => {
     setLocale(lang);

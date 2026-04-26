@@ -3,10 +3,10 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react'
-import { useLocale } from '@/contexts/LocaleContext';
+import { useLocale } from 'use-intl';
 
 const Categories = () => {
-  const { locale } = useLocale();
+  const locale = useLocale();
   const [categories, setCategory] = useState([]);
   useEffect(() => {
     try {

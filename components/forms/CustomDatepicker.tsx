@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from '@/contexts/LocaleContext';
+import { useLocale } from 'use-intl';
 import {useTranslations} from 'next-intl';
 import DatePicker from 'react-date-picker';
 import '@/components/styles/Datepicker.css';
@@ -18,7 +18,7 @@ interface CustomDatePickerProps {
 }
 
 const CustomDatePicker: React.FC<CustomDatePickerProps> = ({ value, onChange, className, isDisabled, calendarAriaLabel }) => {
-  const { locale } = useLocale();
+  const locale = useLocale();
   const t = useTranslations('Datepiсker');
   const [selectedDate, setSelectedDate] = useState<Value>(null);
 

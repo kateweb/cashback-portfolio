@@ -5,8 +5,8 @@ import { getToken } from "@/utils/getToken";
 export async function GET(req: Request) {
 	const { searchParams } = new URL(req.url);
 	try {
-		const page = searchParams.get('page');
-		const limit = searchParams.get('limit');
+		const page = Math.max(1, parseInt(searchParams.get('page') ?? '1') || 1);
+		const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') ?? '10') || 10));
 		const createdAt = searchParams.get('createdAt');
 		const offerId = searchParams.get('offerId');
 		const token = await getToken()
@@ -14,13 +14,11 @@ export async function GET(req: Request) {
 		if (!token) {
 			return new NextResponse("Unauthorized", { status: 403 })
 		}
-		let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/clicks?page=${page}&limit=${limit}`;
-		if (createdAt) {
-			apiUrl += `&createdAt=${createdAt}`; // Append createdAt if it exists
-		}
-		if (offerId) {
-			apiUrl += `&offerId=${offerId}`; // Append offerId if it exists
-		}
+
+		const params = new URLSearchParams({ page: String(page), limit: String(limit) });
+		if (createdAt) params.set('createdAt', createdAt);
+		if (offerId) params.set('offerId', offerId);
+		const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/clicks?${params}`;
 		const response = await fetch(apiUrl, {
 			method: 'GET',
 			headers: {

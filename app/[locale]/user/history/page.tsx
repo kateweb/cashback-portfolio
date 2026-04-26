@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
-import { useLocale } from '@/contexts/LocaleContext';
+import { useLocale } from 'use-intl';
 import CustomDatepicker from '@/components/forms/CustomDatepicker';
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
 import { usePagination } from '@/utils/paginationHook';
@@ -30,7 +30,7 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const History = ({ searchParams = {} }: HistoryProps) => {
   const t = useTranslations('History');
-  const { locale } = useLocale();
+  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const currentPage = parseInt(searchParams.page || '1');
@@ -90,42 +90,43 @@ const History = ({ searchParams = {} }: HistoryProps) => {
     return () => clearTimeout(timer);
   }, [date, offerId]);
 
-  const handleOfferNameChange = async (value: string) => {
+  const handleOfferNameChange = (value: string) => {
     setOfferName(value);
     if (value.length === 0) {
       setErrorMessage('');
       setOfferId('');
       setSearchParamsState((prev) => ({ ...prev, offerId: '' }));
       setOfferIsEmpty(false);
-      return;
-    }
-    // Validate offer name length
-    if (value.length < 3) {
+    } else if (value.length < 3) {
       setErrorMessage(t('search_offer_error'));
       setOfferId('');
-      return;
-    }
-
-    setErrorMessage('');
-
-    // Fetch offer ID from the API based on the offer name
-    const response = await fetchWithAuth('/api/offers/find/name', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name: value }), // Send the name as a string
-    });
-    if (!response) return;
-    const data = await response.json();
-    if (data.length === 0) {
-      setOfferIsEmpty(true);
-      setOfferId('');
     } else {
-      setOfferId(data[0].id);
-      setOfferIsEmpty(false);
+      setErrorMessage('');
     }
   };
+
+  useEffect(() => {
+    if (offerName.length < 3) return;
+
+    const timer = setTimeout(async () => {
+      const response = await fetchWithAuth('/api/offers/find/name', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: offerName }),
+      });
+      if (!response) return;
+      const data = await response.json();
+      if (data.length === 0) {
+        setOfferIsEmpty(true);
+        setOfferId('');
+      } else {
+        setOfferId(data[0].id);
+        setOfferIsEmpty(false);
+      }
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [offerName]);
 
   // Update URL when offer name, date, or offerId changes
   useEffect(() => {

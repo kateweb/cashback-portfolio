@@ -3,7 +3,7 @@
 import React from 'react';
 import {useTranslations} from "next-intl";
 import { toast } from 'react-toastify';
-import {useLocale} from "@/contexts/LocaleContext";
+import { useLocale } from 'use-intl';
 import {useRouter} from "next/navigation";
 import {signOut} from "next-auth/react";
 import { fetchWithAuth } from "@/utils/fetchWithAuth";
@@ -11,7 +11,7 @@ import { fetchWithAuth } from "@/utils/fetchWithAuth";
 const DeactivateButton = () => {
 	const t = useTranslations('Settings');
 	const router = useRouter();
-	const { locale } = useLocale();
+	const locale = useLocale();
 	const handleLogout = async () => {
 		await signOut({
 			redirect: false,

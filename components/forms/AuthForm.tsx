@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import {Input} from "@heroui/input";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useLocale } from '@/contexts/LocaleContext';
+import { useLocale } from 'use-intl';
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
@@ -20,7 +20,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 		const t = useTranslations('Auth');
 		const router = useRouter();
 		const [pending, setPending] = useState(false);
-		const { locale } = useLocale();
+		const locale = useLocale();
 		const validationSchema = Yup.object().shape({
 			email: Yup.string()
 				.email(t('errors.email_valid'))

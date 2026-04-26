@@ -1,10 +1,10 @@
 'use client';
 import {useTranslations} from 'next-intl';
-import {useLocale} from "@/contexts/LocaleContext";
+import {useLocale} from "use-intl";
 
 const Footer = () => {
   const t = useTranslations('Footer');
-  const { locale } = useLocale();
+  const locale = useLocale();
   return (
     <footer className="mt-auto py-7 dark-text-white">
       <div className="footer-wrap border-t border-divider border-dashed px-5">

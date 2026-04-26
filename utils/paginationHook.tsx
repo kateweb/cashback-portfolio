@@ -49,8 +49,8 @@ export function usePagination<T>(
 
 				setTotalResults(parseInt(responseData.total_count) || 0);
 
-				if (totalResults > 0 && responseData.clicks?.length === 0) {
-					setCurrentPage(1); // Prevents unnecessary re-fetches
+				if (totalResults > 0 && responseData[dataKey]?.length === 0) {
+					setCurrentPage(1);
 				}
 			} catch (error) {
 				console.error("Error fetching data:", error);
@@ -60,7 +60,7 @@ export function usePagination<T>(
 		};
 
 		fetchData();
-	}, [currentPage, postsPerPage, fetchUrl, locale, dataKey, filters]);
+	}, [currentPage, postsPerPage, fetchUrl, locale, dataKey, filters, totalResults]);
 
 	const handlePageSizeChange = (newPageSize: number) => {
 		setPostsPerPage(newPageSize);

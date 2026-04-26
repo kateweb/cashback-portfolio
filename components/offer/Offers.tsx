@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "@/contexts/LocaleContext";
+import { useLocale } from 'use-intl';
 import {useTranslations} from 'next-intl';
 import CashbackCard from "@/components/offer/CashbackCard";
 import { PaginationWithLinks } from "@/components/ui/pagination-with-links";
@@ -23,7 +23,7 @@ interface OffersProps {
 }
 
 const Offers = ({ searchParams = {}, categoryId }: OffersProps) => {
-	const { locale } = useLocale();
+	const locale = useLocale();
 	const t = useTranslations('Main');
 	const currentPage = parseInt(searchParams.page || "1");
 	const [searchParamsState, setSearchParamsState] = useState(() => ({

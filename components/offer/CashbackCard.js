@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { useLocale } from '@/contexts/LocaleContext';
+import { useLocale } from 'use-intl';
 import Image from 'next/image'
 
 const CashbackCard = ({id, brand, cashbackPercent, category, imgUrl }) => {
-  const {locale} = useLocale();
+  const locale = useLocale();
   return (
     <Link href={"/"+locale+"/offers/"+id}
       className="cashback-card p-4 bg-white dark-bg-gray-800 rounded-lg shadow-md h-auto border-1 dark-border-transparent hover:scale-10 transition duration-300 ease-in-out hover:-translate-y-1">
