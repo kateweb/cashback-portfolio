@@ -36,7 +36,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 			}),
 		});
 
-		const loginFormSubmitted = async (values) => {
+		const loginFormSubmitted = async (values: { email: string; password: string }) => {
 			setPending(true);
 			const response = await axios.get('/api/auth/getip');
 			const ip = response.data.ip;
@@ -60,7 +60,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 				setPending(false);
 			}
 		};
-		const registerFormSubmitted = async (values, { setErrors }) => {
+		const registerFormSubmitted = async (values: { email: string; password: string }, { setErrors }: { setErrors: (errors: Record<string, string>) => void }) => {
 			try {
 				const response = await axiosInstance.post('/registration', {
 					...values,
@@ -69,18 +69,18 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 				if (response.status === 201) {
 					router.push(`/${locale}/confirmation/`);
 				}
-			} catch (error:any) {
-				const backendErrors = {};
-				if(error.response.data.errors) {
-					error.response.data.errors.forEach(error => {
-						for (const [key, message] of Object.entries(error)) {
+			} catch (error: any) {
+				const backendErrors: Record<string, string> = {};
+				if (error.response?.data?.errors) {
+					error.response.data.errors.forEach((fieldError: Record<string, string>) => {
+						for (const [key, message] of Object.entries(fieldError)) {
 							if (key === 'password') {
 								backendErrors[key] = t('errors.password_full');
-							} else if (key === 'email' && typeof message === 'string' && message.includes('already exists')) {
+							} else if (key === 'email' && message.includes('already exists')) {
 								backendErrors[key] = t('errors.user_exist');
 							} else {
 								backendErrors[key] = message;
-								toast.error(backendErrors[key]);
+								toast.error(message);
 							}
 						}
 					});
@@ -93,10 +93,10 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
 		return (
 			<Formik
-				initialValues={{email: '', password: '', agreeToTerms: false}}
+				initialValues={{email: type === 'login' ? 'demo@demo.com' : '', password: type === 'login' ? 'Demo1234!' : '', agreeToTerms: false}}
 				validationSchema={validationSchema}
 				onSubmit={type === 'registration' ? registerFormSubmitted : loginFormSubmitted}>
-				{({isSubmitting}) => (
+				{() => (
 					<Form className="w-full">
 						<div className='form-control mb-3'>
 							<Field as={Input} type="text" placeholder={t('enter_email')} name="email"/>

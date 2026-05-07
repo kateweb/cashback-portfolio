@@ -24,16 +24,14 @@ const Header = () => {
   const payoutReady = usePayoutReady(isAuthorized);
 
   useEffect(() => {
-    if (isAuthorized && session?.user?.jwt) {
+    if (isAuthorized && session?.user?.jwt && session.user.jwt !== 'demo') {
       try {
         const decoded: any = jwtDecode(session.user.jwt);
         const isExpired = decoded.exp * 1000 < Date.now();
         if (isExpired) {
-          console.warn("JWT expired. Signing out...");
           signOut({ callbackUrl: `/${locale}/login` });
         }
-      } catch (e) {
-        console.error("JWT invalid. Signing out...");
+      } catch {
         signOut({ callbackUrl: `/${locale}/login` });
       }
     }

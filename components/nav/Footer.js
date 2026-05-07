@@ -25,7 +25,7 @@ const Footer = () => {
             <a href={"/" + locale + "/static/policy"}
                className="text-link hover:underline">{t('policy')}</a>
           </div>
-          <div className="text-left text-gray-500 dark:text-white">
+          <div className="text-left text-gray-500 dark-text-white">
             © 2012–2025 {t('title')}
           </div>
         </div>

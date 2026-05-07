@@ -57,7 +57,7 @@ const OfferPage = () => {
 			</div>
 			<div className='text-md my-4 text-gray-500'>{offer['category_name']}</div>
 			<div className='w-48'>
-				{offer['logoUrl'] ? <Image src={offer['logoUrl']} alt={offer['name']} className="offer-img mb-4 object-contain w-full" width={50} height={50} /> : <div className="cashback-empty-img w-full h-48 mb-4 object-contain"></div>}
+				{offer['logoUrl'] ? <Image src={offer['logoUrl']} alt={offer['name']} className="offer-img mb-4 object-contain w-full" width={128} height={128} /> : <div className="cashback-empty-img w-full h-48 mb-4 object-contain"></div>}
 			</div>
 			{isAuthorized ? (
 				<OfferButton offer={offer}/>

@@ -33,7 +33,7 @@ const PaymentTable= ({refresh = false, onAfterCancel}) => {
 		return data?.total_count ? Math.ceil(data.total_count / rowsPerPage) : 0;
 	}, [data?.total_count, rowsPerPage]);
 
-	const loadingState = isLoading || data?.offers.length === 0 ? "loading" : "idle";
+	const loadingState = isLoading || data?.offers?.length === 0 ? "loading" : "idle";
 	const handleCancelButton = (item) => {
 		const cancelPayment = async () => {
 			try {

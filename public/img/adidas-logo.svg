@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <!-- Adidas 3-bar mountain -->
+  <polygon points="100,10 145,65 115,65 100,35 85,65 55,65" fill="#111"/>
+  <!-- Transparent cutout for stripes effect (works on any bg) -->
+  <polygon points="100,26 127,65 118,65 100,36 82,65 73,65" fill="white" opacity="0.9"/>
+  <text x="50%" y="76" dominant-baseline="middle" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="#111" letter-spacing="3">ADIDAS</text>
+</svg>

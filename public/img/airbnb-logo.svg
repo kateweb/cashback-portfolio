@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <!-- Bélo symbol -->
+  <path d="M 85 12 C 85 12 68 35 68 48 C 68 58 76 65 85 65 C 88 65 91 64 94 62 C 91 59 89 55 89 50 C 89 42 94 36 100 36 C 106 36 111 42 111 50 C 111 55 109 59 106 62 C 109 64 112 65 115 65 C 124 65 132 58 132 48 C 132 35 115 12 115 12 C 110 4 90 4 85 12 Z" fill="none" stroke="#FF5A5F" stroke-width="3.5"/>
+  <circle cx="100" cy="50" r="6" fill="#FF5A5F"/>
+  <text x="50%" y="76" dominant-baseline="middle" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="#FF5A5F" letter-spacing="1">airbnb</text>
+</svg>

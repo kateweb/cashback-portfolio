@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <!-- P icon -->
+  <rect x="16" y="16" width="10" height="48" rx="2" fill="#F6821F"/>
+  <rect x="16" y="16" width="28" height="10" rx="2" fill="#F6821F"/>
+  <rect x="34" y="16" width="10" height="28" rx="2" fill="#F6821F"/>
+  <rect x="16" y="34" width="28" height="10" rx="2" fill="#F6821F"/>
+  <text x="64" y="50%" dominant-baseline="middle" text-anchor="start" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#F6821F">Prom.ua</text>
+</svg>

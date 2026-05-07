@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <!-- Rose petals icon -->
+  <circle cx="34" cy="40" r="14" fill="none" stroke="#00A046" stroke-width="3"/>
+  <path d="M 26 40 Q 34 28 42 40 Q 34 52 26 40 Z" fill="#00A046"/>
+  <text x="58" y="50%" dominant-baseline="middle" text-anchor="start" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#00A046">Rozetka</text>
+</svg>

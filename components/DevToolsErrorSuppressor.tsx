@@ -10,8 +10,7 @@ export default function DevToolsErrorSuppressor() {
       if (
         event.error instanceof DOMException &&
         event.error.name === 'InvalidStateError' &&
-        event.error.message.includes('showPopover') &&
-        event.filename?.includes('react_devtools')
+        event.error.message.includes('showPopover')
       ) {
         event.preventDefault();
       }

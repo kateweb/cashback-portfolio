@@ -431,6 +431,11 @@ select:hover {
 .text-darkgreen {
   color: var(--dark-green);
 }
+.cashback-percent {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark-green);
+}
 .bg-default-100 {
   background-color: #fff;
 }
@@ -450,6 +455,94 @@ select:hover {
 }
 .cashback-item {
   width: 320px;
+}
+
+/* Balance cards */
+.balance-card {
+  background: #fff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.balance-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  transform: translateY(-1px);
+}
+.dark .balance-card {
+  background: var(--dark-card-color);
+  border-color: transparent;
+}
+.balance-card--waiting {
+  border-color: #e5e7eb;
+}
+.balance-card--available {
+  border-color: #e5e7eb;
+}
+.balance-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.balance-icon--waiting {
+  background: rgba(245, 165, 36, 0.12);
+  color: #d97706;
+}
+.balance-icon--available {
+  background: rgba(138, 182, 63, 0.15);
+  color: var(--dark-green);
+}
+.dark .balance-icon--waiting {
+  background: rgba(245, 165, 36, 0.18);
+}
+.dark .balance-icon--available {
+  background: rgba(138, 182, 63, 0.18);
+}
+
+/* Cashback list items */
+.cashback-list-item {
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.cashback-list-item:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+.dark .cashback-list-item {
+  border-color: rgb(55 65 81) !important;
+}
+
+/* Status chips */
+.cashback-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1.6;
+}
+.cashback-chip--available {
+  background: rgba(78, 150, 0, 0.12);
+  color: #3a7200;
+}
+.dark .cashback-chip--available {
+  background: rgba(138, 182, 63, 0.2);
+  color: #a3d55a;
+}
+.cashback-chip--waiting {
+  background: rgba(245, 165, 36, 0.15);
+  color: #b45309;
+}
+.dark .cashback-chip--waiting {
+  background: rgba(245, 165, 36, 0.2);
+  color: #fbbf24;
+}
+.cashback-chip--declined {
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+}
+.dark .cashback-chip--declined {
+  background: rgba(220, 38, 38, 0.18);
+  color: #f87171;
 }
 .data-\[selected\=true\]\:bg-primary[data-selected="true"] {
   background-color: var(--green) !important;

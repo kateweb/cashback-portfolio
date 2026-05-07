@@ -67,8 +67,8 @@ const Page = () => {
 		});
 	}, [pageData]);
 
-	if (!pageData) return <Loader/>
-	if (error) return <div className='text-center my-3'>{error}</div>;
+	if (error) return <Layout><div className='text-center my-10 text-gray-500'>{error}</div></Layout>;
+	if (!pageData) return <Loader/>;
 
 	const sanitizedContent = DOMPurify.sanitize(pageData.content, {
 		ADD_ATTR: ['target', 'rel'],

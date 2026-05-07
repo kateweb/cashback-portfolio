@@ -17,6 +17,9 @@ const LoginPage= ({ params }: { params: { locale: string } }) => {
       </div>
       <div className='max-w-[385px] m-auto flex flex-col items-center justify-center'>
         <h2 className="text-center dark-text-white mb-3">{t('login_text')}</h2>
+        <div className='w-full mb-3 rounded-md border border-green-400 bg-green-50 px-4 py-3 text-sm text-green-800'>
+          <strong>Demo access:</strong> email <code>demo@demo.com</code> / password <code>Demo1234!</code>
+        </div>
         <LoginForm type="login"/>
         <Link href={"/"+locale+"/forgot-password"} className='mt-4 text-gray-400 text-sm font-medium'>
           {t('reset_password')}

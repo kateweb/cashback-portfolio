@@ -37,17 +37,20 @@
     "deactivated_successfully": "Account was successfully deleted!"
   },
   "Cashback": {
-    "waiting": "Waiting for enrollment: ",
-    "available": "Available for payout: ",
+    "waiting": "Pending: ",
+    "available": "Available: ",
     "uah": "UAH",
     "failed": "Failed to fetch balances",
     "status": {
-      "title": "Status",
+      "title": "Filter by status",
       "available": "Available",
       "waiting": "Waiting",
       "declined": "Declined"
     },
-    "choose_date": "Choose a date"
+    "choose_date": "Filter by date",
+    "list_title": "Cashback transactions",
+    "order_id": "Order",
+    "no_items": "No cashback transactions found"
   },
   "History": {
     "title": "Transition History",
