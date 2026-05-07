@@ -6,6 +6,7 @@ const DEMO_EMAIL = "demo@demo.com";
 const DEMO_PASSWORD = "Demo1234!";
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET || 'portfolio-demo-nextauth-secret-key',
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -80,5 +81,4 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
 };
