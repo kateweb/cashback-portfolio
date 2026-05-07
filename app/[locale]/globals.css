@@ -471,10 +471,10 @@ select:hover {
   border-color: transparent;
 }
 .balance-card--waiting {
-  border-color: #e5e7eb;
+  border-color: #d1d5db;
 }
 .balance-card--available {
-  border-color: #e5e7eb;
+  border-color: #d1d5db;
 }
 .balance-icon {
   display: flex;
