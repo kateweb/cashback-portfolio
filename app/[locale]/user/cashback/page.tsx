@@ -102,7 +102,7 @@ const Cashback = () => {
           {isLoading ? (
             <div className='space-y-3'>
               {[1, 2, 3].map((i) => (
-                <div key={i} className='cashback-list-item animate-pulse bg-gray-100 dark:bg-gray-800 rounded-xl h-16' />
+                <div key={i} className='cashback-list-item animate-pulse rounded-xl h-16' />
               ))}
             </div>
           ) : items.length === 0 ? (
@@ -112,7 +112,7 @@ const Cashback = () => {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className='cashback-list-item flex items-center justify-between bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 shadow-sm'
+                  className='cashback-list-item flex items-center justify-between rounded-xl px-4 py-3 shadow-sm'
                 >
                   <div className='flex flex-col min-w-0'>
                     <span className='font-medium truncate'>{item.offer_name}</span>

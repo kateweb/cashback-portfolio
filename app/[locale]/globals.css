@@ -499,6 +499,8 @@ select:hover {
 
 /* Cashback list items */
 .cashback-list-item {
+  background: #fff;
+  border: 1px solid #d1d5db;
   transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 .cashback-list-item:hover {
@@ -506,7 +508,8 @@ select:hover {
   transform: translateY(-1px);
 }
 .dark .cashback-list-item {
-  border-color: rgb(55 65 81) !important;
+  background: var(--dark-card-color);
+  border-color: rgb(55 65 81);
 }
 
 /* Status chips */
